@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TelaInicialCadastro"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/txtCadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cadastro"
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecione o tipo de usuario que deseja."
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginVertical="40dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Idoso"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+
+        />
+    <ImageView
+        android:id="@+id/btCadastroIdoso"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/idoso"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cuidador"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        />
+
+    <ImageView
+        android:id="@+id/btCadastroCuidador"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/cuidadorIdoso" />
+
+    <Button
+        android:id="@+id/btProximoCadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/proximo"
+        android:layout_gravity="center"
+        android:drawableRight="@drawable/ic_arrow_next"
+        />
+
+
+</LinearLayout>
