@@ -60,7 +60,7 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
-        android:src="@drawable/cuidadorIdoso" />
+        android:src="@drawable/cuidador" />
 
     <Button
         android:id="@+id/btProximoCadastro"

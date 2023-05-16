@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bab_item1"
+        android:enabled="true"
+        android:icon="@drawable/ic_medication"
+        android:title="teste"/>
+    <item
+        android:id="@+id/bab_item2"
+        android:enabled="true"
+        android:icon="@drawable/ic_idoso"
+        android:title="teste"/>
+    <item
+        android:id="@+id/bab_item3"
+        android:enabled="true"
+        android:icon="@drawable/ic_list"
+        android:title="teste"/>
+
+
+</menu>
