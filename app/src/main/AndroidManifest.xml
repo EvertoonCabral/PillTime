@@ -12,6 +12,9 @@
         android:theme="@style/Theme.PillTime"
         tools:targetApi="31">
         <activity
+            android:name=".TelaPrincipal"
+            android:exported="false" />
+        <activity
             android:name=".DadosCadastroCuidador"
             android:exported="false" />
         <activity
