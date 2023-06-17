@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">PillTime</string>
+    <string name="app_name" >PillTime</string>
     <string name="cadastro">Cadastro</string>
     <string name="proximo">Próximo</string>
     <string name="confirmar">Confirmar</string>
+    <string name="salvar">Salvar</string>
 </resources>

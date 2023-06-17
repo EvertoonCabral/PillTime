@@ -5,71 +5,136 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TelaInicialCadastro"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/azulTeste"
+    >
 
 
-    <TextView
-        android:id="@+id/txtCadastro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cadastro"
-        android:textSize="30dp"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
-    <TextView
+            <TextView
+                android:id="@+id/txtCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:text="@string/cadastro"
+                android:background="@color/white"
+                android:textSize="30dp"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:layout_marginBottom="30dp"
+                />
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Selecione o tipo de usuario que deseja."
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginVertical="40dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Idoso"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
 
-        />
-    <ImageView
-        android:id="@+id/btCadastroIdoso"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/idoso"
-        android:layout_marginBottom="20dp"
-        android:layout_gravity="center"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cuidador"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/btCadastroCuidador"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/cuidador" />
 
-    <Button
-        android:id="@+id/btProximoCadastro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/proximo"
-        android:layout_gravity="center"
-        android:drawableRight="@drawable/ic_arrow_next"
-        />
+                <View
+                    android:id="@+id/containerCadastro"
+                    style="@style/ContainerComponentesCadastro"
+                    android:background="@drawable/viewstyle"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
+                <TextView
+                    android:id="@+id/txtIdosoCadastro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="40dp"
+                    android:text="Idoso"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="19dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/containerCadastro"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="@id/containerCadastro"
+                    app:layout_constraintTop_toTopOf="@id/containerCadastro" />
+
+                <ImageView
+                    android:id="@+id/btCadastroIdoso"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="36dp"
+                    android:backgroundTint="@color/white"
+                    android:src="@drawable/idoso"
+                    app:layout_constraintEnd_toEndOf="@id/containerCadastro"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="@id/containerCadastro"
+                    app:layout_constraintTop_toBottomOf="@id/txtIdosoCadastro" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="28dp"
+                    android:text="Cuidador"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="19dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/containerCadastro"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="@id/containerCadastro"
+                    app:layout_constraintTop_toBottomOf="@id/btCadastroIdoso" />
+
+                <ImageView
+                    android:id="@+id/btCadastroCuidador"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/cuidador"
+                    app:layout_constraintEnd_toEndOf="@id/containerCadastro"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="@id/containerCadastro"
+                    tools:layout_editor_absoluteY="402dp" />
+
+
+                <Button
+                    android:id="@+id/btProximoCadastro"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="36dp"
+                    android:background="@drawable/container_components"
+                    android:backgroundTint="@color/light_green"
+                    android:drawableRight="@drawable/ic_arrow_next"
+                    android:paddingRight="15dp"
+                    android:text="@string/proximo"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toBottomOf="@id/containerCadastro"
+                    app:layout_constraintEnd_toEndOf="@id/containerCadastro"
+                    app:layout_constraintStart_toStartOf="@id/containerCadastro"
+                    app:layout_constraintTop_toBottomOf="@id/btCadastroCuidador"
+                    app:layout_constraintVertical_bias="0.0"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
