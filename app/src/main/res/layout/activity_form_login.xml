@@ -8,100 +8,122 @@
     android:background="@color/azulTeste"
     >
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <View
-        android:id="@+id/containerLogin"
-        style="@style/ContainerComponentes"
-        android:background="@drawable/viewstyle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.496" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <View
+                android:id="@+id/containerLogin"
+                style="@style/ContainerComponentes"
+                android:background="@drawable/viewstyle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.496"
+                android:padding="10dp"
+                />
 
-    <ImageView
-        android:id="@+id/logoLogin"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:src="@drawable/logoPillTime"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="@id/containerLogin"
-        app:layout_constraintStart_toStartOf="@id/containerLogin"
-        app:layout_constraintTop_toTopOf="@id/containerLogin"
+            <ImageView
+                android:id="@+id/logoLogin"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/logo"
+                android:textSize="30dp"
+                app:layout_constraintEnd_toEndOf="@id/containerLogin"
+                app:layout_constraintHorizontal_bias="0.497"
 
-        />
+                app:layout_constraintStart_toStartOf="@id/containerLogin"
+                app:layout_constraintTop_toTopOf="@id/containerLogin" />
 
-    <TextView
-            android:id="@+id/txtLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/azulTeste"
-            android:text="Login"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_margin="20dp"
-            app:layout_constraintStart_toStartOf="@id/containerLogin"
-            app:layout_constraintTop_toBottomOf="@id/logoLogin"
-        />
+            <TextView
+                android:id="@+id/txtLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/azulTeste"
+                android:text="Login"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_margin="20dp"
+                app:layout_constraintStart_toStartOf="@id/containerLogin"
+                app:layout_constraintTop_toBottomOf="@id/logoLogin"
+                />
 
 
-        <EditText
-            android:id="@+id/edLogin"
-            style="@style/Edit_Text"
-            android:drawableRight="@drawable/ic_email"
-            android:inputType="textEmailAddress"
-            app:layout_constraintStart_toStartOf="@id/containerLogin"
-            app:layout_constraintEnd_toEndOf="@id/containerLogin"
-            app:layout_constraintTop_toBottomOf="@id/txtLogin"
-            />
-        <TextView
-            android:id="@+id/txtSenha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/azulTeste"
-            android:text="Senha"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_margin="20dp"
-            app:layout_constraintStart_toStartOf="@id/containerLogin"
-            app:layout_constraintTop_toBottomOf="@id/edLogin"
-            />
-        <EditText
-            android:id="@+id/edSenha"
-            style="@style/Edit_Text"
-            android:inputType="textPassword"
-            android:drawableRight="@drawable/ic_eye"
-            app:layout_constraintStart_toStartOf="@id/containerLogin"
-            app:layout_constraintEnd_toEndOf="@id/containerLogin"
-            app:layout_constraintTop_toBottomOf="@id/txtSenha"
-            />
+            <EditText
+                android:id="@+id/edLogin"
+                style="@style/Edit_Text"
+                android:drawableRight="@drawable/ic_email"
+                android:inputType="textEmailAddress"
+                app:layout_constraintStart_toStartOf="@id/containerLogin"
+                app:layout_constraintEnd_toEndOf="@id/containerLogin"
+                app:layout_constraintTop_toBottomOf="@id/txtLogin"
+                />
+            <TextView
+                android:id="@+id/txtSenha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/azulTeste"
+                android:text="Senha"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_margin="20dp"
+                app:layout_constraintStart_toStartOf="@id/containerLogin"
+                app:layout_constraintTop_toBottomOf="@id/edLogin"
+                />
+            <EditText
+                android:id="@+id/edSenha"
+                style="@style/Edit_Text"
+                android:inputType="textPassword"
+                android:drawableRight="@drawable/ic_eye"
+                app:layout_constraintStart_toStartOf="@id/containerLogin"
+                app:layout_constraintEnd_toEndOf="@id/containerLogin"
+                app:layout_constraintTop_toBottomOf="@id/txtSenha"
+                />
 
-        <Button
-            android:id="@+id/btEntrarlogin"
-            android:layout_width="150dp"
-            android:background="@drawable/btn_style"
-            android:layout_height="wrap_content"
-            android:text="ENTRAR"
-            android:textColor="@color/white"
-            android:layout_margin="20dp"
-            app:layout_constraintStart_toStartOf="@id/containerLogin"
-            app:layout_constraintEnd_toEndOf="@id/containerLogin"
-            app:layout_constraintTop_toBottomOf="@id/edSenha"
-            />
+            <Button
+                android:id="@+id/btEntrarlogin"
+                android:layout_width="150dp"
+                android:background="@drawable/btn_style"
+                android:layout_height="wrap_content"
+                android:text="ENTRAR"
+                android:textColor="@color/white"
+                android:layout_margin="20dp"
+                app:layout_constraintStart_toStartOf="@id/containerLogin"
+                app:layout_constraintEnd_toEndOf="@id/containerLogin"
+                app:layout_constraintTop_toBottomOf="@id/edSenha"
+                />
 
-    <TextView
-        android:id="@+id/txtCadastro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/azulTeste"
-        android:text="CadastrarConta"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/btEntrarlogin"
-        app:layout_constraintStart_toStartOf="@id/containerLogin"
-        app:layout_constraintEnd_toEndOf="@id/containerLogin"
-        android:layout_margin="30dp"
-        />
+            <TextView
+                android:id="@+id/txtCadastro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/azulTeste"
+                android:text="CadastrarConta"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/btEntrarlogin"
+                app:layout_constraintStart_toStartOf="@id/containerLogin"
+                app:layout_constraintEnd_toEndOf="@id/containerLogin"
+                android:layout_margin="30dp"
+                />
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+
 
 
 
