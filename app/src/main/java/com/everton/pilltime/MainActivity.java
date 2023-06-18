@@ -2,24 +2,30 @@ package com.everton.pilltime;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
+import com.everton.pilltime.databinding.ActivityFormLoginBinding;
+import com.google.firebase.ktx.Firebase;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityFormLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form_login);
+        binding = ActivityFormLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot()); //usando ViewBinding ao invez de FindView
+
+        binding.txtCadastro.setOnClickListener(view -> {
+
+            startActivity(new Intent(this, CadastroCuidador.class));
+
+        });
 
 
     }
 
-    public static class FormLogin extends AppCompatActivity {
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_form_login);
-        }
-    }
 }

@@ -4,7 +4,7 @@
 
    <style name="ContainerComponentes">
        <item name="android:layout_width">match_parent</item>
-       <item name="android:layout_height">600dp</item>
+       <item name="android:layout_height">700dp</item>
        <item name="android:layout_margin">20dp</item>
        <item name="android:radius">30dp</item>
 

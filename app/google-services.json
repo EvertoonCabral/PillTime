@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "859310399741",
+    "project_id": "pilltime-771f7",
+    "storage_bucket": "pilltime-771f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859310399741:android:23466e223c66889da3de94",
+        "android_client_info": {
+          "package_name": "com.everton.pilltime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859310399741-39g14dbr8a4uvfkib09lk3gk784cno2q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6-aXGBUzxK0xZKnLTL89AHhNV-8JXd3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859310399741-39g14dbr8a4uvfkib09lk3gk784cno2q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

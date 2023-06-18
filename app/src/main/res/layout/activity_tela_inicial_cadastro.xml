@@ -58,14 +58,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="32dp"
                     android:text="Idoso"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
                     android:textSize="19dp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@id/containerCadastro"
-                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintHorizontal_bias="0.495"
                     app:layout_constraintStart_toStartOf="@id/containerCadastro"
                     app:layout_constraintTop_toTopOf="@id/containerCadastro" />
 
@@ -74,7 +74,7 @@
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginTop="30dp"
                     android:backgroundTint="@color/white"
                     android:src="@drawable/idoso"
                     app:layout_constraintEnd_toEndOf="@id/containerCadastro"
@@ -84,6 +84,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtcuidador"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -107,7 +108,9 @@
                     app:layout_constraintEnd_toEndOf="@id/containerCadastro"
                     app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="@id/containerCadastro"
-                    tools:layout_editor_absoluteY="402dp" />
+                    tools:layout_editor_absoluteY="402dp"
+                    app:layout_constraintTop_toBottomOf="@id/txtcuidador"
+                    />
 
 
                 <Button

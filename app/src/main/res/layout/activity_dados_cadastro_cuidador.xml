@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DadosCadastroCuidador"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/azulTeste"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,14 +23,18 @@
                 android:layout_height="wrap_content"
                 android:text="Dados Cuidador"
                 android:textSize="25dp"
+                android:background="@color/white"
                 android:textAlignment="center"
                 android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
+                android:padding="10dp"
                 />
-            <TextView
+            <ImageView
                 android:id="@+id/logoCadastoCuidador2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LOGO"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:src="@drawable/logoredondo"
                 android:textSize="30dp"
                 android:layout_gravity="center"
                 android:layout_margin="30dp"
@@ -39,8 +45,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CPF"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
                 android:layout_marginHorizontal="40dp"
                 />
             <EditText
@@ -54,8 +62,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Telefone"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
                 android:layout_marginHorizontal="40dp"
                 />
             <EditText
@@ -70,8 +80,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Data de Nascimento"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
                 android:layout_marginHorizontal="40dp"
                 />
             <EditText
@@ -85,17 +97,21 @@
                 android:layout_height="wrap_content"
                 android:text="Endereço"
                 android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
                 android:layout_margin="20dp"
                 android:textAlignment="center"
-                android:textStyle="bold"
                 />
             <TextView
                 android:id="@+id/txtCidadeCadastroCuidador"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cidade"
-                android:textSize="18dp"
+                android:text="estado"
+                android:textSize="20dp"
                 android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
                 android:layout_marginHorizontal="40dp"
                 />
             <EditText
@@ -109,8 +125,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cidade"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
                 android:layout_marginHorizontal="40dp"
                 />
             <EditText
@@ -124,8 +142,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bairro"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
                 android:layout_marginHorizontal="40dp"
                 />
             <EditText
@@ -139,8 +159,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rua"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
                 android:layout_marginHorizontal="40dp"
                 />
             <EditText
@@ -156,6 +178,8 @@
                 android:text="Nº"
                 android:textSize="20dp"
                 android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
                 android:layout_marginHorizontal="40dp"
                 />
             <EditText
@@ -168,12 +192,16 @@
 
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="41dp"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textSize="20dp"
                 android:layout_margin="30dp"
+                android:background="@drawable/container_components"
+                android:backgroundTint="@color/light_green"
                 android:text="@string/confirmar"
                 android:drawableRight="@drawable/ic_check_sucesso"
+                android:padding="10dp"
                 />
 
         </LinearLayout>

@@ -5,17 +5,20 @@
         android:id="@+id/bab_item1"
         android:enabled="true"
         android:icon="@drawable/ic_medication"
-        android:title="teste"/>
+        android:title="Remedio"
+        />
     <item
         android:id="@+id/bab_item2"
         android:enabled="true"
         android:icon="@drawable/ic_idoso"
-        android:title="teste"/>
+        android:title="Cadastro"
+        />
     <item
         android:id="@+id/bab_item3"
         android:enabled="true"
         android:icon="@drawable/ic_list"
-        android:title="teste"/>
+        android:title="Lista"
+        />
 
 
 </menu>
