@@ -82,7 +82,7 @@
             <EditText
                 android:id="@+id/edSenha"
                 style="@style/Edit_Text"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
                 android:drawableRight="@drawable/ic_eye"
                 app:layout_constraintStart_toStartOf="@id/containerLogin"
                 app:layout_constraintEnd_toEndOf="@id/containerLogin"
