@@ -12,6 +12,9 @@
         android:theme="@style/Theme.PillTime"
         tools:targetApi="31">
         <activity
+            android:name=".TelaCadastroRemedio"
+            android:exported="false" />
+        <activity
             android:name=".TelaPrincipal"
             android:exported="false" />
         <activity

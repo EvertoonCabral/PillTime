@@ -12,7 +12,6 @@ import android.widget.ProgressBar;
 import com.everton.pilltime.databinding.ActivityFormLoginBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.ktx.Firebase;
 
 public class MainActivity extends AppCompatActivity {
 

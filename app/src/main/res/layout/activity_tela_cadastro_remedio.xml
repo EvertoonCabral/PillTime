@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TelaCadastroRemedio"
+    android:orientation="vertical"
+    android:background="@color/azulTeste"
+
+    >
+
+    <TextView
+        android:id="@+id/txtTituloCadastroRemedio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cadastro de Remédio"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textAllCaps="true"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="15dp"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:inputType="text"
+                android:text="Nome Remédio"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edNomeRemedio"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                style="@style/Edit_Text"
+                android:layout_marginHorizontal="30dp"
+                android:padding="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="15dp"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:inputType="text"
+                android:text="Marca Remédio"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edMarcaRemedio"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                style="@style/Edit_Text"
+                android:layout_marginHorizontal="30dp"
+                android:padding="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="15dp"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:text="Dosagem"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edDosagemRemedio"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                style="@style/Edit_Text"
+                android:layout_marginHorizontal="30dp"
+                android:hint="1 comprimido / 10ml"
+                android:padding="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="15dp"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:text="Forma Farmaceutico"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinnerFormaFarmaceutica"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                style="@style/Edit_Text"
+                android:layout_marginHorizontal="30dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="15dp"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:text="Validade"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edValidadeRemedio"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                style="@style/Edit_Text"
+                android:layout_marginHorizontal="30dp"
+                android:hint="dd/mm/yyyy"
+                android:inputType="date"
+                android:padding="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="15dp"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:text="Observações"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edObservacaoRemedio"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                style="@style/Edit_Text"
+                android:layout_marginHorizontal="30dp"
+                android:gravity="top"
+                android:hint="Ex:  Este remédio não é recomendado para pessoas que possuam diabetes, pressão alta..."
+                android:padding="5dp" />
+
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:background="@drawable/container_components"
+                android:backgroundTint="@color/light_green"
+                android:drawableRight="@drawable/ic_check_sucesso"
+                android:padding="10dp"
+                android:text="@string/confirmar"
+                android:textSize="20dp" /> />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>
