@@ -12,6 +12,9 @@
         android:theme="@style/Theme.PillTime"
         tools:targetApi="31">
         <activity
+            android:name=".telaPerfilIdoso"
+            android:exported="false" />
+        <activity
             android:name=".TelaCadastroRemedio"
             android:exported="false" />
         <activity
@@ -25,9 +28,6 @@
             android:exported="false" />
         <activity
             android:name=".TelaInicialCadastro"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity$FormLogin"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
