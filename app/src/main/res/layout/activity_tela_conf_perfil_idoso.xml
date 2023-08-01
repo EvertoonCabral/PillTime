@@ -6,8 +6,218 @@
     android:layout_height="match_parent"
     tools:context=".TelaConfPerfilIdoso"
     android:orientation="vertical"
+    android:background="@color/azulTeste"
     >
 
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Configuração de Perfil"
+    android:textSize="20dp"
+    android:background="@color/white"
+    android:textStyle="bold"
+    android:gravity="center"
+    android:padding="10dp"
+    android:textColor="@color/black"
+    android:textAllCaps="true"
+    />
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:textAllCaps="true"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:inputType="text"
+            android:text="Nome"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edNomeUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            style="@style/Edit_Text"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
+            android:drawableRight="@drawable/ic_config_black"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:textAllCaps="true"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:inputType="text"
+            android:text="Senha"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edSenhaUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            style="@style/Edit_Text"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
+            android:hint="*********"
+            android:inputType="textPassword"
+            android:drawableRight="@drawable/ic_config_black"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:textAllCaps="true"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:inputType="text"
+            android:text="E-mail"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edEmailUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            style="@style/Edit_Text"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
+            android:hint="teste@gmail.com"
+            android:inputType="textEmailAddress"
+            android:drawableRight="@drawable/ic_config_black"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:textAllCaps="true"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:inputType="text"
+            android:text="Telefone"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edTelefoneUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            style="@style/Edit_Text"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
+            android:inputType="number"
+            android:hint="(DD)9 9999-0000"
+            android:drawableRight="@drawable/ic_config_black"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:textAllCaps="true"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:inputType="text"
+            android:text="Data de Nascimento"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edDataNascUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            style="@style/Edit_Text"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
+            android:inputType="date"
+            android:drawableRight="@drawable/ic_config_black"
+            android:hint="dd/mm/yyyy"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:textAllCaps="true"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:inputType="text"
+            android:text="Nome"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edCPFUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            style="@style/Edit_Text"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
+            android:inputType="text"
+            android:drawableRight="@drawable/ic_config_black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:inputType="text"
+            android:text="Observaçõs"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edOBSUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            style="@style/Edit_Text"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
+            android:drawableRight="@drawable/ic_config_black"
+            />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/container_components"
+            android:backgroundTint="@color/light_green"
+            android:drawableRight="@drawable/ic_check_sucesso"
+            android:padding="10dp"
+            android:text="@string/confirmar"
+            android:textSize="20dp" />
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/container_components"
+            android:backgroundTint="@color/light_green"
+            android:drawableRight="@drawable/ic_config_black"
+            android:padding="10dp"
+            android:text="Alterar Endereço"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+</ScrollView>
 </LinearLayout>
