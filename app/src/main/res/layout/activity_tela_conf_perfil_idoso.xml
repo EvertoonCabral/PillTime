@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".TelaConfPerfilIdoso"
     android:orientation="vertical"
-    android:background="@color/azulTeste"
+
     >
 
 <TextView
@@ -48,7 +48,7 @@
         <EditText
             android:id="@+id/edNomeUsuario"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             style="@style/Edit_Text"
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
@@ -69,7 +69,7 @@
         <EditText
             android:id="@+id/edSenhaUsuario"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             style="@style/Edit_Text"
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
@@ -92,7 +92,7 @@
         <EditText
             android:id="@+id/edEmailUsuario"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             style="@style/Edit_Text"
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
@@ -115,11 +115,11 @@
         <EditText
             android:id="@+id/edTelefoneUsuario"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             style="@style/Edit_Text"
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
-            android:inputType="number"
+            android:inputType="phone"
             android:hint="(DD)9 9999-0000"
             android:drawableRight="@drawable/ic_config_black"
             />
@@ -138,7 +138,7 @@
         <EditText
             android:id="@+id/edDataNascUsuario"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             style="@style/Edit_Text"
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
@@ -154,14 +154,14 @@
             android:layout_marginTop="10dp"
             android:textColor="@color/black"
             android:inputType="text"
-            android:text="Nome"
+            android:text="CPF"
             android:textSize="20dp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edCPFUsuario"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             style="@style/Edit_Text"
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
