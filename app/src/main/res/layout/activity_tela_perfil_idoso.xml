@@ -109,8 +109,8 @@
                 android:padding="15dp"
                 android:textSize="18dp"
                 android:background="@drawable/container_components"
-
                 />
+
         </LinearLayout>
     </ScrollView>
 

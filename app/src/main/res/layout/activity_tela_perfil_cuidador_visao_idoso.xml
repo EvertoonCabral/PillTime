@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TelaPerfilCuidadorVisaoIdoso"
+    android:orientation="vertical"
+    android:background="@color/azulTeste"
+    >
+
+
+    <!-- Adicionar Image View-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:textAllCaps="true"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:inputType="text"
+                android:text="Nome"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edNomeCuidadorParaIdoso"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                style="@style/Edit_Text"
+                android:layout_marginHorizontal="30dp"
+                android:padding="10dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:textAllCaps="true"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:inputType="text"
+                android:text="E-mail"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edEmailCuidadorParaIdoso"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                style="@style/Edit_Text"
+                android:layout_marginHorizontal="30dp"
+                android:padding="10dp"
+                android:hint="teste@gmail.com"
+                android:maxLength="255"
+                android:inputType="text"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:textAllCaps="true"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:inputType="text"
+                android:text="Telefone"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edTelefoneUsuarioParaIdoso"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                style="@style/Edit_Text"
+                android:layout_marginHorizontal="30dp"
+                android:padding="10dp"
+                android:hint="(45)99999-0000"
+                android:inputType="phone"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:textAllCaps="true"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:inputType="text"
+                android:text="CPF"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edCPFcuidadorParaIdoso"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                style="@style/Edit_Text"
+                android:layout_marginHorizontal="30dp"
+                android:padding="10dp"
+                android:inputType="text"
+                android:maxLength="11"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="40dp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:inputType="text"
+                    android:text="Inicio Cuidados"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:inputType="text"
+                    android:text="Tempo Responsavel"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+
+                <EditText
+                    android:id="@+id/edDataInicioCuidados"
+                    android:layout_width="170dp"
+                    android:layout_height="60dp"
+                    style="@style/Edit_Text"
+                    android:layout_margin="20dp"
+                    android:padding="10dp"
+                    android:inputType="text"
+                    />
+                <EditText
+                    android:id="@+id/edTempoSobeCuidados"
+                    android:layout_width="170dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="20dp"
+                    style="@style/Edit_Text"
+                    android:padding="10dp"
+                    android:inputType="text"
+                    />
+
+            </LinearLayout>
+
+
+
+
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:backgroundTint="@color/light_green"
+                android:text="Voltar"
+                android:drawableRight="@drawable/btnhome"
+                android:padding="15dp"
+                android:textSize="18dp"
+                android:background="@drawable/container_components"
+                />
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
