@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
-import com.everton.pilltime.R;
-import com.everton.pilltime.databinding.ActivityTelaPrincipalCuidadorBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -15,6 +13,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.everton.pilltime.UI.databinding.ActivityTelaPrincipalCuidadorBinding;
 
 public class TelaPrincipal_Cuidador extends AppCompatActivity {
 

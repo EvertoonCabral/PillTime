@@ -1,4 +1,4 @@
-package com.everton.pilltime.UI.profile;
+package com.everton.pilltime.UI.ui.gallery;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.everton.pilltime.databinding.FragmentGalleryBinding;
+import com.everton.pilltime.UI.databinding.FragmentGalleryBinding;
 
-public class ProfileFragment extends Fragment {
+public class GalleryFragment extends Fragment {
 
     private FragmentGalleryBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ProfileViewModel profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
+        GalleryViewModel galleryViewModel =
+                new ViewModelProvider(this).get(GalleryViewModel.class);
 
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textGallery;
-        profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

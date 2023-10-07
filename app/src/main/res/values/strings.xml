@@ -4,13 +4,6 @@
     <string name="proximo">Próximo</string>
     <string name="confirmar">Confirmar</string>
     <string name="salvar">Salvar</string>
-    <string name="medicacao">Medicação</string>
-    <string name="home">Home</string>
-    <string name="idoso">Idoso</string>
-    <string name="cuidador">Cuidador</string>
-    <string name="suporte">Suporte</string>
-    <string name="sair">Sair</string>
-    <string name="perfil">Perfil</string>
     <string name="title_activity_tela_principal_cuidador">TelaPrincipal_Cuidador</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -22,6 +15,4 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
