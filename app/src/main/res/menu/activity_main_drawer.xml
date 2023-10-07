@@ -4,17 +4,43 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/ic_person_pb"
+            android:title="@string/perfil"/>
+
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:icon="@drawable/ic_idoso"
+            android:title="@string/idoso"/>
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:icon="@drawable/ic_medication"
+            android:title="@string/medicacao" />
+
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/ic_list"
+            android:title="Relatorios"
+            />
+        <item
+            android:id="@+id/nav_support"
+            android:icon="@drawable/ic_contact_support"
+            android:title="Suporte"
+           />
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Tela Principal"
+            />
+
+        <item
+            android:id="@+id/nav_sair"
+            android:icon="@drawable/ic_exit_to_app"
+            android:title="Sair"
+            />
+
     </group>
 </menu>
