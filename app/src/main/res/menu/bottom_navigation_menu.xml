@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/bab_item1"
+        android:id="@+id/btn_remedio"
         android:enabled="true"
         android:icon="@drawable/ic_medication"
         android:title="Remedio"
         />
     <item
-        android:id="@+id/bab_item2"
+        android:id="@+id/btnCadastroIdoso"
         android:enabled="true"
         android:icon="@drawable/ic_idoso"
-        android:title="Cadastro"
+        android:title="Idoso"
         />
     <item
-        android:id="@+id/bab_item3"
+        android:id="@+id/btn_relatorio"
         android:enabled="true"
         android:icon="@drawable/ic_list"
-        android:title="Lista"
+        android:title="Relatorio"
         />
 
 
