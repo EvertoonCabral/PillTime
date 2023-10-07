@@ -12,11 +12,6 @@
         android:theme="@style/Theme.PillTime"
         tools:targetApi="31">
         <activity
-            android:name=".TelaPrincipal_Cuidador"
-            android:exported="false"
-            android:label="@string/title_activity_tela_principal_cuidador"
-            android:theme="@style/Theme.PillTime.NoActionBar" />
-        <activity
             android:name=".TelaRelatorios"
             android:exported="false" />
         <activity
