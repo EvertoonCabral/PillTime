@@ -2,29 +2,37 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="3dp"
+    android:background="@drawable/list_layout"
+
     >
 
     <TextView
         android:id="@+id/nomeTextView"
+        android:layout_marginHorizontal="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome" />
+        android:text="Nome:"
+        />
 
     <TextView
         android:id="@+id/marcaTextView"
+        android:layout_marginHorizontal="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Marca" />
+        android:text="Marca:"
+
+        />
 
 
     <TextView
         android:id="@+id/dataValidadeTextView"
+        android:layout_marginHorizontal="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Data de Validade" />
+        android:text="Data de Validade:" />
 
 
 </LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="3dp"
+    android:background="@drawable/list_layout"
+
+    >
+
+    <TextView
+        android:id="@+id/nomeIdosoTextView"
+        android:layout_marginHorizontal="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome:"
+        />
+
+    <TextView
+        android:id="@+id/cpfIdosoTextView"
+        android:layout_marginHorizontal="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CPF:"
+
+        />
+    <TextView
+        android:id="@+id/idadeTextView"
+        android:layout_marginHorizontal="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Idade:" />
+
+    <TextView
+        android:id="@+id/telefoneIdosoTextView"
+        android:layout_marginHorizontal="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Telefone:" />
+
+    <TextView
+        android:id="@+id/dataNascimentoIdosoTextView"
+        android:layout_marginHorizontal="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data de Nascimento:" />
+
+
+
+
+</LinearLayout>

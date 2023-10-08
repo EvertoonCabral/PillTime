@@ -6,8 +6,8 @@
     <string name="salvar">Salvar</string>
 
     <string-array name="opcoes_relatorio">
-        <item>Idoso</item>
         <item>Remédio</item>
+        <item>Idoso</item>
     </string-array>
 
 </resources>

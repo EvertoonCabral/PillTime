@@ -45,9 +45,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_margin="30dp"
-        android:background="#FFFFFF"/>
+        android:background="@drawable/list_layout"
+        />
 
     <Button
         android:layout_width="130dp"

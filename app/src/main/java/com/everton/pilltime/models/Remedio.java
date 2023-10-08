@@ -1,18 +1,20 @@
 package com.everton.pilltime.models;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Remedio {
 
     private Long id;
     private String nome;
-
     private String marca;
     private String massaVolume;
     private String dosagem;
     private String formaFarmaceutico;
     private Date dataValidade;
     private String obs;
+
 
 
     public Remedio(Long id,String marca, String nome, String massaVolume, String dosagem, String formaFarmaceutico, Date dataValidade, String obs) {
@@ -24,6 +26,18 @@ public class Remedio {
         this.dataValidade = dataValidade;
         this.obs = obs;
         this.marca = marca;
+    }
+
+    // Novo construtor que aceita String e converte para Date
+    public Remedio(String nome, String marca, String dataValidadeString) {
+        this.nome = nome;
+        this.marca = marca;
+        try {
+            this.dataValidade = new SimpleDateFormat("dd/MM/yyyy").parse(dataValidadeString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            this.dataValidade = null;
+        }
     }
 
 
