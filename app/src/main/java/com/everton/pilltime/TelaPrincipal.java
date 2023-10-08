@@ -83,15 +83,39 @@ public class TelaPrincipal extends AppCompatActivity {
 
     private void showPopupMenu(View view, int menuRes) {
         PopupMenu popupMenu = new PopupMenu(this, view);
+
         popupMenu.getMenuInflater().inflate(menuRes, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                // Trate os cliques dos itens do menu aqui
-                return true;
+                switch (item.getItemId()) {
+                    case R.id.action_MeuPerfil:
+                        Intent intent = new Intent(TelaPrincipal.this, TelaPerfilCuidador.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.action_edit_profile:
+                        Intent intent2 = new Intent(TelaPrincipal.this, TelaConfPerfilIdoso.class);
+                        startActivity(intent2);
+                        return true;
+                    case R.id.action_suporte:
+                        Intent intent3 = new Intent(TelaPrincipal.this, TelaSuporteUsuario.class);
+                        startActivity(intent3);
+                        return true;
+                    case R.id.action_Alterar_Remedio:
+                        // Faça algo quando "Alterar Remedio" for clicado
+                        Toast.makeText(TelaPrincipal.this, "Alterar Remédio selecionado!", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.action_logout:
+                        Intent intent5 = new Intent(TelaPrincipal.this, MainActivity.class);
+                        startActivity(intent5);
+                        return true;
+                    default:
+                        return false;
+                }
             }
         });
         popupMenu.show();
     }
+
 
 }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".TelaConfPerfilIdoso"
     android:orientation="vertical"
+    android:background="@color/azulTeste"
 
     >
 
@@ -192,6 +193,7 @@
             />
 
         <Button
+            android:id="@+id/btnSalvarEditPerfil"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

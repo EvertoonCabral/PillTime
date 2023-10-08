@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/email"
+        android:title="E-mail: suporte@seuapp.com"
+        android:icon="@drawable/email_icon" />
+    <item
+        android:id="@+id/phone"
+        android:title="Telefone: (11) 1234-5678"
+        android:icon="@drawable/wpp_icon" />
+</menu>
