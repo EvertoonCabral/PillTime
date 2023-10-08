@@ -1,31 +1,40 @@
 package com.everton.pilltime.models;
 
+import java.util.Date;
+
 public class Remedio {
 
-    private int id;
+    private Long id;
     private String nome;
-    private Double massaVolume;
-    private Double quantidade;
-    private Double valor;
+
+    private String marca;
+    private String massaVolume;
+    private String dosagem;
+    private String formaFarmaceutico;
+    private Date dataValidade;
     private String obs;
 
-    public Remedio(int id, String nome, Double massaVolume, Double quantidade, Double valor, String obs) {
+
+    public Remedio(Long id,String marca, String nome, String massaVolume, String dosagem, String formaFarmaceutico, Date dataValidade, String obs) {
         this.id = id;
         this.nome = nome;
         this.massaVolume = massaVolume;
-        this.quantidade = quantidade;
-        this.valor = valor;
+        this.dosagem = dosagem;
+        this.formaFarmaceutico = formaFarmaceutico;
+        this.dataValidade = dataValidade;
         this.obs = obs;
+        this.marca = marca;
     }
+
 
     public Remedio() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,28 +46,36 @@ public class Remedio {
         this.nome = nome;
     }
 
-    public Double getMassaVolume() {
+    public String getMassaVolume() {
         return massaVolume;
     }
 
-    public void setMassaVolume(Double massaVolume) {
+    public void setMassaVolume(String massaVolume) {
         this.massaVolume = massaVolume;
     }
 
-    public Double getQuantidade() {
-        return quantidade;
+    public String getDosagem() {
+        return dosagem;
     }
 
-    public void setQuantidade(Double quantidade) {
-        this.quantidade = quantidade;
+    public void setDosagem(String dosagem) {
+        this.dosagem = dosagem;
     }
 
-    public Double getValor() {
-        return valor;
+    public String getFormaFarmaceutico() {
+        return formaFarmaceutico;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
+    public void setFormaFarmaceutico(String formaFarmaceutico) {
+        this.formaFarmaceutico = formaFarmaceutico;
+    }
+
+    public Date getDataValidade() {
+        return dataValidade;
+    }
+
+    public void setDataValidade(Date dataValidade) {
+        this.dataValidade = dataValidade;
     }
 
     public String getObs() {
@@ -69,15 +86,11 @@ public class Remedio {
         this.obs = obs;
     }
 
-    @Override
-    public String toString() {
-        return "Remedio{" +
-                "identificador=" + id +
-                ", nome='" + nome + '\'' +
-                ", Massa ou Volume=" + massaVolume +
-                ", quantidade=" + quantidade +
-                ", valor=" + valor +
-                ", observações='" + obs + '\'' +
-                '}';
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 }

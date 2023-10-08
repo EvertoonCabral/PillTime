@@ -1,6 +1,5 @@
 package com.everton.pilltime.models;
 
-import com.everton.pilltime.models.enums.EnumSexo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,27 +8,26 @@ public class Cuidador {
 
     private String nome;
     private String email;
-    private String cpf;
-
-    private EnumSexo sexo;
     private String senha;
+    private String cpf;
     private Endereco endereco;
+    private String telefone;
     private List<Remedio> listaRemedios = new ArrayList<>();
     private List<Idoso> listaIdosos = new ArrayList<>();
 
-    public Cuidador(String nome) {
+    public Cuidador() {
 
     }
 
-    public Cuidador(String nome, String email, String cpf, String senha, Endereco endereco, List<Remedio> listaRemedios, List<Idoso> listaIdosos, EnumSexo sexo) {
+    public Cuidador(String nome, String email, String senha, String cpf, Endereco endereco, String telefone, List<Remedio> listaRemedios, List<Idoso> listaIdosos) {
         this.nome = nome;
         this.email = email;
-        this.cpf = cpf;
         this.senha = senha;
+        this.cpf = cpf;
         this.endereco = endereco;
+        this.telefone = telefone;
         this.listaRemedios = listaRemedios;
         this.listaIdosos = listaIdosos;
-        this.sexo = sexo;
     }
 
     public String getNome() {
@@ -88,25 +86,4 @@ public class Cuidador {
         this.cpf = cpf;
     }
 
-    public EnumSexo getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(EnumSexo sexo) {
-        this.sexo = sexo;
-    }
-
-    @Override
-    public String toString() {
-        return "Cuidador{" +
-                "nome='" + nome + '\'' +
-                ", sexo=" + sexo + '\'' +
-                ", email='" + email + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", senha='" + senha + '\'' +
-                ", endereço=" + endereco +
-                ", lista de remedios=" + listaRemedios +
-                ", lista de Responsabilidade=" + listaIdosos +
-                '}';
-    }
 }

@@ -33,7 +33,7 @@
         android:padding="10dp"
         />
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerRelatorio"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"

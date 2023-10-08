@@ -1,7 +1,5 @@
 package com.everton.pilltime.models;
 
-import com.everton.pilltime.models.enums.EnumtipoResidencia;
-
 public class Endereco {
 
     private String estado;
@@ -9,19 +7,17 @@ public class Endereco {
     private String bairro;
     private String rua;
     private int numeroResidencia;
-    private EnumtipoResidencia tipo;
     private String obs;
 
     public Endereco() {
     }
 
-    public Endereco(String estado, String cidade, String bairro, String rua, int numeroResidencia, EnumtipoResidencia tipo, String obs) {
+    public Endereco(String estado, String cidade, String bairro, String rua, int numeroResidencia, String obs) {
         this.estado = estado;
         this.cidade = cidade;
         this.bairro = bairro;
         this.rua = rua;
         this.numeroResidencia = numeroResidencia;
-        this.tipo = tipo;
         this.obs = obs;
     }
 
@@ -65,13 +61,6 @@ public class Endereco {
         this.numeroResidencia = numeroResidencia;
     }
 
-    public EnumtipoResidencia getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(EnumtipoResidencia tipo) {
-        this.tipo = tipo;
-    }
 
     public String getObs() {
         return obs;
@@ -81,16 +70,5 @@ public class Endereco {
         this.obs = obs;
     }
 
-    @Override
-    public String toString() {
-        return "Endereco{" +
-                "estado='" + estado + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", rua='" + rua + '\'' +
-                ", numeroResidencia=" + numeroResidencia +
-                ", tipo=" + tipo +
-                ", obs='" + obs + '\'' +
-                '}';
-    }
+
 }

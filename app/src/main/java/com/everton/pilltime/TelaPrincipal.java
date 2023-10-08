@@ -102,8 +102,9 @@ public class TelaPrincipal extends AppCompatActivity {
                         startActivity(intent3);
                         return true;
                     case R.id.action_Alterar_Remedio:
-                        // Faça algo quando "Alterar Remedio" for clicado
-                        Toast.makeText(TelaPrincipal.this, "Alterar Remédio selecionado!", Toast.LENGTH_SHORT).show();
+
+                        Intent intent4 = new Intent(TelaPrincipal.this, TelaAlterarRemedio.class);
+                        startActivity(intent4);
                         return true;
                     case R.id.action_logout:
                         Intent intent5 = new Intent(TelaPrincipal.this, MainActivity.class);

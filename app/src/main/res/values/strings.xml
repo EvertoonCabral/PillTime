@@ -4,4 +4,10 @@
     <string name="proximo">Próximo</string>
     <string name="confirmar">Confirmar</string>
     <string name="salvar">Salvar</string>
+
+    <string-array name="opcoes_relatorio">
+        <item>Idoso</item>
+        <item>Remédio</item>
+    </string-array>
+
 </resources>
