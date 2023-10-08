@@ -5,6 +5,10 @@ import android.content.Intent;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -30,16 +34,64 @@ public class TelaPrincipal extends AppCompatActivity {
                         startActivity(intent2);
                         return true;
 
-                    // Descomente e atualize o código abaixo quando tiver a atividade correspondente
-                    // case R.id.btnCadastroIdoso:
-                    //    Intent intent3 = new Intent(TelaPrincipal.this, NomeDaAtividade.class);
-                    //    startActivity(intent3);
-                    //    return true;
+                     case R.id.btnCadastroIdoso:
+                       Intent intent3 = new Intent(TelaPrincipal.this, TelaCadastroIdoso.class);
+                       startActivity(intent3);
+                       return true;
 
                     default:
                         return false;
                 }
             }
         });
+
+        ImageButton btnPerfil = findViewById(R.id.btnPerfil);
+        btnPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showPopupMenu(btnPerfil, R.menu.menu_perfil);
+
+            }
+        });
+
+        ImageButton btnHome = findViewById(R.id.btnHome);
+        // Listener para clique curto
+        // Listener para clique curto
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(TelaPrincipal.this, "Você já esta na tela principal!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Listener para clique longo
+        btnHome.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                Intent intent = new Intent(TelaPrincipal.this, MainActivity.class);
+                startActivity(intent);
+
+                Toast.makeText(TelaPrincipal.this, "Saindo!", Toast.LENGTH_SHORT).show();
+                return true; // Retorna true para indicar que o evento foi consumido
+            }
+        });
+
+
     }
+
+    private void showPopupMenu(View view, int menuRes) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        popupMenu.getMenuInflater().inflate(menuRes, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                // Trate os cliques dos itens do menu aqui
+                return true;
+            }
+        });
+        popupMenu.show();
+    }
+
 }

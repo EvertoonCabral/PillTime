@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CadastroCuidador"
+    android:orientation="vertical"
+    android:background="@color/azulTeste"
+
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:drawableRight="@drawable/ic_people_people"
+                android:text="Cadastro Idoso"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/logoCadastoIdoso"
+                style="@style/ContainerComponentes"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:src="@drawable/logoredondo"
+                android:textSize="30dp" />
+
+
+            <TextView
+                android:id="@+id/txtNomeCompletoCadastroIdoso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="Nome completo"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edNomeCadastroIdoso"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="text"
+
+                />
+
+            <TextView
+                android:id="@+id/txtEmailCadastroIdoso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="15dp"
+                android:text="Email"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edEmailCadastroIdoso"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:id="@+id/txtSenhaCadastroIdoso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="15dp"
+                android:text="Senha"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edSenhaCadastroIdoso"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="numberPassword"
+                android:drawableRight="@drawable/ic_eye"
+                />
+
+
+
+
+
+            <TextView
+                android:id="@+id/txtCPFCadastroIdoso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="CPF"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edCPFCadastroIdoso"
+                style="@style/Edit_Text"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/txtTelefoneCadastroIdoso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="Telefone"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edTelefoneCadastroIdoso"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:hint="(DD)12345-6789"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/txtDataNascCadastroIdoso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="Data de Nascimento"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edDataNascCadastroIdoso"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="date" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Endereço"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtCidadeCadastroIdoso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="estado"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edCidadeCadastroIdoso"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/txtEstadoCadastroIdoso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="Cidade"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edEstadoCadastroCuidador"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/txtBairroCadastroIdoso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="Bairro"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edBairroCadastroIdoso"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/txtRuaCadastroIdoso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="Rua"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edRuaCadastroIdoso"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/txtNumeroCadastroIdoso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="Nº"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edNumeroCadastroCuidador"
+                style="@style/Edit_Text"
+                android:layout_width="100dp"
+                android:layout_marginTop="5dp"
+                android:inputType="number" />
+
+
+            <Button
+                android:id="@+id/btSalvarCadastro"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="40dp"
+                android:drawableRight="@drawable/ic_arrow_next"
+                android:textSize="20dp"
+                android:backgroundTint="@color/light_green"
+                android:background="@drawable/container_components"
+                android:paddingRight="15dp"
+                android:text="@string/salvar"
+                android:textColor="@color/black" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

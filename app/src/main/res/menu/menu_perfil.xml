@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_MeuPerfil" android:title="Perfil" />
+    <item android:id="@+id/action_edit_profile" android:title="Configurações Perfil"/>
+    <item android:id="@+id/action_suporte" android:title="Suporte" />
+    <item android:id="@+id/action_Alterar_Remedio" android:title="Alterar Remedio" />
+    <item android:id="@+id/action_logout" android:title="Sair" />
+</menu>
