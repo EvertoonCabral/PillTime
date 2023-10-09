@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         //Metodo para eu ir da Tela de login para a tela principal
 
         Intent intent = new Intent(MainActivity.this,TelaPrincipal.class);
-        //Intent intent = new Intent(FormLogin.this,TelaPrincipal.class);
         startActivity(intent);
         finish();
     }

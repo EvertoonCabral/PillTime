@@ -14,6 +14,9 @@
         android:layout_marginHorizontal="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         android:text="Nome:"
         />
 
@@ -22,6 +25,9 @@
         android:layout_marginHorizontal="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         android:text="CPF:"
 
         />
@@ -30,6 +36,9 @@
         android:layout_marginHorizontal="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         android:text="Idade:" />
 
     <TextView
@@ -37,6 +46,9 @@
         android:layout_marginHorizontal="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         android:text="Telefone:" />
 
     <TextView
@@ -44,6 +56,9 @@
         android:layout_marginHorizontal="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         android:text="Data de Nascimento:" />
 
 
