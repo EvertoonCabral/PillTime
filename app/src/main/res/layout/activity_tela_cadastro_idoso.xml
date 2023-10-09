@@ -117,8 +117,9 @@
             <EditText
                 android:id="@+id/edCPFCadastroIdoso"
                 style="@style/Edit_Text"
-                android:textColor="@color/white"
-                android:layout_marginTop="10dp"                android:inputType="text" />
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/txtTelefoneCadastroIdoso"
@@ -172,16 +173,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:text="estado"
+                android:text="Estado"
                 android:textColor="@color/white"
                 android:layout_marginTop="10dp"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edCidadeCadastroIdoso"
+                android:id="@+id/edEstadoCadastroCuidador"
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
+                android:textAllCaps="true"
                 android:inputType="text" />
 
             <TextView
@@ -196,7 +198,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edEstadoCadastroCuidador"
+                android:id="@+id/edCidadeCadastroIdoso"
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
                 android:inputType="text" />
@@ -267,6 +269,45 @@
                 android:paddingRight="15dp"
                 android:text="@string/salvar"
                 android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <Button
+                    android:id="@+id/btLimparDadosUsuario"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="9dp"
+                    android:textSize="18dp"
+                    android:backgroundTint="@color/light_green"
+                    android:background="@drawable/container_components"
+                    android:paddingRight="15dp"
+                    android:text="Limpar Dados Usuário"
+                    android:textColor="@color/black" />
+
+                <!-- Botão Limpar Dados do Endereço -->
+                <Button
+                    android:id="@+id/btLimparDadosEndereco"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="9dp"
+                    android:textSize="18dp"
+                    android:backgroundTint="@color/light_green"
+                    android:background="@drawable/container_components"
+                    android:paddingRight="15dp"
+                    android:text="Limpar Dados Endereço"
+                    android:textColor="@color/black" />
+
+                </LinearLayout>
+
+
+
+
 
 
         </LinearLayout>
