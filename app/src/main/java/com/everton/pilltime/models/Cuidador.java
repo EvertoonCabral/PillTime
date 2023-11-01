@@ -4,7 +4,7 @@ package com.everton.pilltime.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cuidador {
+public class Cuidador extends Pessoa{
 
     private String nome;
     private String email;

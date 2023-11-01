@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class Idoso {
+public class Idoso extends Pessoa{
 
     private Long id;
     private String nome;

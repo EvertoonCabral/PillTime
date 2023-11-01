@@ -1,50 +1,27 @@
-package com.everton.pilltime.models;
+package com.everton.pilltime.dto;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Remedio {
-
-
-    private Long id;
+public class RemedioDTO {
 
     private String nome;
-
-    private Cuidador cuidador;
     private String marcaRemedio;
-
     private String dosagem;
-
     private String formaFarmaceutico;
-
-    private Date dataCadastro;
-
     private Date dataValidade;
     private String observacoes;
 
-    private boolean stAtivo = true;;
 
-
-    public Remedio(Long id, String nome, Cuidador cuidador, String marcaRemedio, String dosagem, String formaFarmaceutico, Date dataCadastro, Date dataValidade, String observacoes, boolean stAtivo) {
-        this.id = id;
+    public RemedioDTO(String nome, String marcaRemedio, String dosagem, String formaFarmaceutico, Date dataValidade, String observacoes) {
         this.nome = nome;
-        this.cuidador = cuidador;
         this.marcaRemedio = marcaRemedio;
         this.dosagem = dosagem;
         this.formaFarmaceutico = formaFarmaceutico;
-        this.dataCadastro = dataCadastro;
         this.dataValidade = dataValidade;
         this.observacoes = observacoes;
-        this.stAtivo = stAtivo;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public RemedioDTO() {
     }
 
     public String getNome() {
@@ -53,14 +30,6 @@ public class Remedio {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Cuidador getCuidador() {
-        return cuidador;
-    }
-
-    public void setCuidador(Cuidador cuidador) {
-        this.cuidador = cuidador;
     }
 
     public String getMarcaRemedio() {
@@ -87,14 +56,6 @@ public class Remedio {
         this.formaFarmaceutico = formaFarmaceutico;
     }
 
-    public Date getDataCadastro() {
-        return dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
     public Date getDataValidade() {
         return dataValidade;
     }
@@ -109,13 +70,5 @@ public class Remedio {
 
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
-    }
-
-    public boolean isStAtivo() {
-        return stAtivo;
-    }
-
-    public void setStAtivo(boolean stAtivo) {
-        this.stAtivo = stAtivo;
     }
 }
