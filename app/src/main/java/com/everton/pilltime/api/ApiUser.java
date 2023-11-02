@@ -1,5 +1,12 @@
 package com.everton.pilltime.api;
 
+import com.everton.pilltime.dto.UsuarioDTO;
+import com.everton.pilltime.user.AuthenticationDTO;
+import com.everton.pilltime.user.LoginResponseDTO;
+
+import java.util.List;
+
+import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;

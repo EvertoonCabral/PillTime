@@ -4,7 +4,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Retrofit {
 
-    public static final String BASE_URL_API = "http://10.0.2.2:8080/"
+    public static final String BASE_URL_API = "http://10.0.2.2:8080/";
 
     private static retrofit2.Retrofit retrofit = new retrofit2.Retrofit.Builder()
             .baseUrl(BASE_URL_API)
