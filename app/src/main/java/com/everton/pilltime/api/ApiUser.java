@@ -1,11 +1,14 @@
 package com.everton.pilltime.api;
 
+import com.everton.pilltime.dto.IdosoDTO;
 import com.everton.pilltime.dto.UsuarioDTO;
 import com.everton.pilltime.user.AuthenticationDTO;
 import com.everton.pilltime.user.LoginResponseDTO;
+import com.everton.pilltime.user.RegisterDTO;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -34,4 +37,15 @@ public interface ApiUser {
     @DELETE("usuario/{id}")
     Call<UsuarioDTO> DELETE_USUARIO(@Header("Authorization") String authorization, @Path("id") Long id);
 
+    @POST("register/idoso")
+    Call<ResponseBody> registerIdoso(@Body IdosoDTO idosoDTO);
+
+    @POST("register")
+    Call<String> registerCuidador(@Body RegisterDTO registerDTO);
+
+
+
 }
+
+
+
