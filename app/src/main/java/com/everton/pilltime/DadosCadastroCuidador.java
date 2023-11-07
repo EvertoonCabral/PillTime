@@ -22,6 +22,7 @@ import com.everton.pilltime.user.LoginResponseDTO;
 import com.everton.pilltime.user.RegisterDTO;
 import com.everton.pilltime.user.UserRole;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,6 +49,7 @@ public class DadosCadastroCuidador extends AppCompatActivity {
             public void onClick(View view) {
 
 
+
                 String nome = binding.edNomeCadastroCuidador.getText().toString().trim();
                 String senha = binding.edSenhaCadastroCuidador.getText().toString().trim();
                 String email = binding.edEmailCadastroCuidador.getText().toString().trim();
@@ -59,7 +61,7 @@ public class DadosCadastroCuidador extends AppCompatActivity {
                 String bairro = binding.edBairroCadastroCuidador.getText().toString().trim();
                 String rua = binding.edRuaCadastroCuidador.getText().toString().trim();
                 String numero = binding.edNumeroCadastroCuidador.getText().toString().trim();
-                String complemento = binding.edObservacaoCadastroCuidador.getFontFeatureSettings().toString().trim();
+                String complemento = binding.edObservacaoCadastroCuidador.getFontFeatureSettings();
 
                 Date dataNascimento = formataData(dataNascimentoString);
                 if (dataNascimento == null) {
@@ -101,28 +103,62 @@ public class DadosCadastroCuidador extends AppCompatActivity {
 
 
                 Call<String> call = apiUser.registerCuidador(registerDTO);
-                
+
+
+
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+
+                        if(response.isSuccessful()) {
+
+                            Toast.makeText(DadosCadastroCuidador.this, response.body(), Toast.LENGTH_LONG).show();
+                        } else {
+                            try {
+                                String errorMessage = response.errorBody() != null ? response.errorBody().string() : "Erro desconhecido";
+                                Toast.makeText(DadosCadastroCuidador.this, "Erro ao registrar: " + errorMessage, Toast.LENGTH_LONG).show();
+                            } catch (IOException e) {
+                                Toast.makeText(DadosCadastroCuidador.this, "Erro ao extrair mensagem de erro: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        // Este código é executado quando ocorre uma falha na requisição
+                        Toast.makeText(DadosCadastroCuidador.this, "Falha na comunicação: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
+
 
             }
-
-
-            private Date formataData(String data) {
-
-                String dateString = "dd/MM/yyyy"; // Defina o formato da data aqui
-
-                SimpleDateFormat formatter = new SimpleDateFormat(dateString, Locale.getDefault());
-                Date dataFormatada = null;
-
-                try {
-                    dataFormatada = formatter.parse(data);
-                } catch (ParseException e) {
-
-                    e.printStackTrace();
-                }
-
-                return dataFormatada;
-
-            }
+        });
 
 
         }
+
+
+
+    private Date formataData(String data) {
+
+        String dateString = "dd/MM/yyyy"; // Defina o formato da data aqui
+
+        SimpleDateFormat formatter = new SimpleDateFormat(dateString, Locale.getDefault());
+        Date dataFormatada = null;
+
+        try {
+            dataFormatada = formatter.parse(data);
+        } catch (ParseException e) {
+
+            e.printStackTrace();
+        }
+
+        return dataFormatada;
+
+    }
+
+
+
+}
