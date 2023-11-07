@@ -10,7 +10,7 @@ public class PessoaDTO {
     private String nome;
     private String email;
 
-    private java.util.Date dataNascimento;
+    private Date dataNascimento;
 
     private String cpf;
 

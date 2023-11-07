@@ -36,7 +36,7 @@ public class RemedioAdapter extends RecyclerView.Adapter<RemedioAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Remedio remedio = remedioList.get(position);
         holder.nomeTextView.setText(remedio.getNome());
-        holder.marcaTextView.setText(remedio.getMarca());
+        holder.marcaTextView.setText(remedio.getMarcaRemedio());
 
         // Convertendo Date para String
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());

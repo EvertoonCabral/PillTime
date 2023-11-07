@@ -1,5 +1,7 @@
 package com.everton.pilltime.dto;
 
+import com.everton.pilltime.models.Endereco;
+
 public class EnderecoDTO {
 
 
@@ -74,4 +76,27 @@ public class EnderecoDTO {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
+
+    public static Endereco fromDTO(EnderecoDTO dto) {
+        Endereco endereco = new Endereco();
+        endereco.setEstado(dto.getEstado());
+        endereco.setCidade(dto.getCidade());
+        endereco.setBairro(dto.getBairro());
+        endereco.setRua(dto.getRua());
+        endereco.setNumeroResidencia(dto.getNumeroResidencia());
+        endereco.setComplemento(dto.getComplemento());
+        // ID, dataCadastro, stAtivo podem ser configurados aqui se necessário, ou podem ser deixados para serem configurados em outra parte do código.
+        return endereco;
+    }
+    public static EnderecoDTO toDTO(Endereco endereco) {
+        return new EnderecoDTO(
+                endereco.getEstado(),
+                endereco.getCidade(),
+                endereco.getBairro(),
+                endereco.getRua(),
+                endereco.getNumeroResidencia(),
+                endereco.getComplemento());
+    }
+
+
 }

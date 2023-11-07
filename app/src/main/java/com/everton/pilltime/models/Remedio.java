@@ -25,6 +25,16 @@ public class Remedio {
 
     private boolean stAtivo = true;;
 
+    public Remedio(String nome,String marca,String validade) {
+
+        this.nome = nome;
+        this.marcaRemedio = marca;
+        this.dosagem = validade;
+
+    }
+
+    public Remedio() {
+    }
 
     public Remedio(Long id, String nome, Cuidador cuidador, String marcaRemedio, String dosagem, String formaFarmaceutico, Date dataCadastro, Date dataValidade, String observacoes, boolean stAtivo) {
         this.id = id;

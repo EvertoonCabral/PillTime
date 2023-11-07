@@ -39,6 +39,63 @@
                 android:src="@drawable/logoredondo"
                 android:textSize="30dp" />
 
+
+            <TextView
+                android:id="@+id/txtNomeCompletoCadastroCuidador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="Nome completo"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edNomeCadastroCuidador"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="text"
+
+                />
+
+            <TextView
+                android:id="@+id/txtEmailCadastroCuidador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="15dp"
+                android:text="Email"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edEmailCadastroCuidador"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:id="@+id/txtSenhaCadastroCuidador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="15dp"
+                android:text="Senha"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edSenhaCadastroCuidador"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="numberPassword"
+                android:drawableRight="@drawable/ic_eye"
+                />
+
+
+
             <TextView
                 android:id="@+id/txtCPFCadastroCuidador"
                 android:layout_width="wrap_content"
@@ -188,8 +245,25 @@
                 android:layout_marginTop="5dp"
                 android:inputType="number" />
 
+            <TextView
+                android:id="@+id/txtObservacaoCadastroCuidador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="Observações"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edObservacaoCadastroCuidador"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="text" />
 
             <Button
+                android:id="@+id/btnRegistrarCuidador"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

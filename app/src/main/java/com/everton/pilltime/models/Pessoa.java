@@ -14,13 +14,11 @@ public abstract class Pessoa {
 
     private String Telefone;
 
-
     private Endereco endereco;
 
     private boolean stAtivo;
 
     private String observacao;
-
 
     private Date dataCadastro;
 
