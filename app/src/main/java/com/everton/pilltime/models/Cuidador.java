@@ -2,16 +2,12 @@ package com.everton.pilltime.models;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Cuidador extends Pessoa{
 
-    private String nome;
-    private String email;
-    private String senha;
-    private String cpf;
-    private Endereco endereco;
-    private String telefone;
+
     private List<Remedio> listaRemedios = new ArrayList<>();
     private List<Idoso> listaIdosos = new ArrayList<>();
 
@@ -19,47 +15,10 @@ public class Cuidador extends Pessoa{
 
     }
 
-    public Cuidador(String nome, String email, String senha, String cpf, Endereco endereco, String telefone, List<Remedio> listaRemedios, List<Idoso> listaIdosos) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.cpf = cpf;
-        this.endereco = endereco;
-        this.telefone = telefone;
+    public Cuidador(Long id, String nome, String email, Date dataNascimento, String cpf, String telefone, Endereco endereco, boolean stAtivo, String observacao, Date dataCadastro, TipoUsuario tipoUsuario, List<Remedio> listaRemedios, List<Idoso> listaIdosos) {
+        super(id, nome, email, dataNascimento, cpf, telefone, endereco, stAtivo, observacao, dataCadastro, tipoUsuario);
         this.listaRemedios = listaRemedios;
         this.listaIdosos = listaIdosos;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
     }
 
     public List<Remedio> getListaRemedios() {
@@ -78,12 +37,6 @@ public class Cuidador extends Pessoa{
         this.listaIdosos = listaIdosos;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 
 }

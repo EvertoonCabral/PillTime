@@ -5,20 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.Toast;
 
 import com.everton.pilltime.api.ApiUser;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityDadosCadastroCuidadorBinding;
-import com.everton.pilltime.dto.CuidadorDTO;
 import com.everton.pilltime.dto.EnderecoDTO;
 import com.everton.pilltime.models.Cuidador;
 import com.everton.pilltime.models.Endereco;
-import com.everton.pilltime.models.Pessoa;
 import com.everton.pilltime.models.TipoUsuario;
-import com.everton.pilltime.user.LoginResponseDTO;
 import com.everton.pilltime.user.RegisterDTO;
 import com.everton.pilltime.user.UserRole;
 
@@ -61,7 +57,7 @@ public class DadosCadastroCuidador extends AppCompatActivity {
                 String bairro = binding.edBairroCadastroCuidador.getText().toString().trim();
                 String rua = binding.edRuaCadastroCuidador.getText().toString().trim();
                 String numero = binding.edNumeroCadastroCuidador.getText().toString().trim();
-                String complemento = binding.edObservacaoCadastroCuidador.getFontFeatureSettings();
+                String complemento = binding.edObservacaoCadastroCuidador.toString().trim();
 
                 Date dataNascimento = formataData(dataNascimentoString);
                 if (dataNascimento == null) {

@@ -39,7 +39,6 @@ public class IdosoAdapter extends RecyclerView.Adapter<IdosoAdapter.ViewHolder> 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String formattedDate = sdf.format(idoso.getDataNascimento());
         holder.dataNascimentoTextView.setText(formattedDate);
-        holder.idadeTextView.setText(String.valueOf(idoso.getIdade()) + " anos");
         holder.telefoneTextView.setText(idoso.getTelefone());
     }
     @Override
