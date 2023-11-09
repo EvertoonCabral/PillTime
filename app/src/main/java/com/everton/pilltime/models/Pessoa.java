@@ -18,14 +18,12 @@ public abstract class Pessoa {
 
     private boolean stAtivo;
 
-    private String observacao;
-
     private Date dataCadastro;
 
     private TipoUsuario tipoUsuario;
 
 
-    public Pessoa(Long id, String nome, String email, Date dataNascimento, String cpf, String telefone, Endereco endereco, boolean stAtivo, String observacao, Date dataCadastro, TipoUsuario tipoUsuario) {
+    public Pessoa(Long id, String nome, String email, Date dataNascimento, String cpf, String telefone, Endereco endereco, boolean stAtivo, Date dataCadastro, TipoUsuario tipoUsuario) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -34,7 +32,6 @@ public abstract class Pessoa {
         Telefone = telefone;
         this.endereco = endereco;
         this.stAtivo = stAtivo;
-        this.observacao = observacao;
         this.dataCadastro = dataCadastro;
         this.tipoUsuario = tipoUsuario;
     }
@@ -105,14 +102,6 @@ public abstract class Pessoa {
 
     public void setStAtivo(boolean stAtivo) {
         this.stAtivo = stAtivo;
-    }
-
-    public String getObservacao() {
-        return observacao;
-    }
-
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
     }
 
     public Date getDataCadastro() {

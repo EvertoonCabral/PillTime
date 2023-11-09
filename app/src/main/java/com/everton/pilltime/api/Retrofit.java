@@ -1,14 +1,22 @@
 package com.everton.pilltime.api;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Retrofit {
 
     public static final String BASE_URL_API = "http://10.0.2.2:8080/";
 
+    // Crie o Gson que será usado pelo Retrofit para a serialização e deserialização de datas
+    private static Gson gson = new GsonBuilder()
+            .setDateFormat("dd/MM/yyyy")
+            .create();
+
     private static retrofit2.Retrofit retrofit = new retrofit2.Retrofit.Builder()
             .baseUrl(BASE_URL_API)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build();
 
 

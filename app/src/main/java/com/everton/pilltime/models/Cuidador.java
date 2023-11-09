@@ -15,8 +15,8 @@ public class Cuidador extends Pessoa{
 
     }
 
-    public Cuidador(Long id, String nome, String email, Date dataNascimento, String cpf, String telefone, Endereco endereco, boolean stAtivo, String observacao, Date dataCadastro, TipoUsuario tipoUsuario, List<Remedio> listaRemedios, List<Idoso> listaIdosos) {
-        super(id, nome, email, dataNascimento, cpf, telefone, endereco, stAtivo, observacao, dataCadastro, tipoUsuario);
+    public Cuidador(Long id, String nome, String email, Date dataNascimento, String cpf, String telefone, Endereco endereco, boolean stAtivo, Date dataCadastro, TipoUsuario tipoUsuario, List<Remedio> listaRemedios, List<Idoso> listaIdosos) {
+        super(id, nome, email, dataNascimento, cpf, telefone, endereco, stAtivo, dataCadastro, tipoUsuario);
         this.listaRemedios = listaRemedios;
         this.listaIdosos = listaIdosos;
     }

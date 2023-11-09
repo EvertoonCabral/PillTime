@@ -2,10 +2,13 @@ package com.everton.pilltime;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.everton.pilltime.api.ApiUser;
@@ -19,8 +22,10 @@ import com.everton.pilltime.user.RegisterDTO;
 import com.everton.pilltime.user.UserRole;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -31,12 +36,33 @@ import retrofit2.Response;
 public class DadosCadastroCuidador extends AppCompatActivity {
 
     private ActivityDadosCadastroCuidadorBinding binding;
+    private DateFormat dateFormatter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityDadosCadastroCuidadorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+        binding.btnCalendario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showDatePickerDialog();
+
+            }
+        });
+
+        binding.edDataNascCadastroCuidador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showDatePickerDialog();
+
+            }
+        });
 
 
 
@@ -57,7 +83,7 @@ public class DadosCadastroCuidador extends AppCompatActivity {
                 String bairro = binding.edBairroCadastroCuidador.getText().toString().trim();
                 String rua = binding.edRuaCadastroCuidador.getText().toString().trim();
                 String numero = binding.edNumeroCadastroCuidador.getText().toString().trim();
-                String complemento = binding.edObservacaoCadastroCuidador.toString().trim();
+                String complemento = binding.edObservacaoCadastroCuidador.getText().toString().trim();
 
                 Date dataNascimento = formataData(dataNascimentoString);
                 if (dataNascimento == null) {
@@ -110,15 +136,19 @@ public class DadosCadastroCuidador extends AppCompatActivity {
 
                             Toast.makeText(DadosCadastroCuidador.this, response.body(), Toast.LENGTH_LONG).show();
                         } else {
+                            int statusCode = response.code();
+                            Log.e("CadastroCuidador", "Erro ao registrar, código de status HTTP: " + statusCode);
+                        }
+                        if (response.errorBody() != null) {
+                            String errorString;
                             try {
-                                String errorMessage = response.errorBody() != null ? response.errorBody().string() : "Erro desconhecido";
-                                Toast.makeText(DadosCadastroCuidador.this, "Erro ao registrar: " + errorMessage, Toast.LENGTH_LONG).show();
+                                errorString = response.errorBody().string();
+                                Log.e("CadastroCuidador", "Erro ao registrar: " + errorString);
                             } catch (IOException e) {
-                                Toast.makeText(DadosCadastroCuidador.this, "Erro ao extrair mensagem de erro: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                Log.e("CadastroCuidador", "Erro ao ler o corpo de erro", e);
                             }
                         }
                     }
-
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
                         // Este código é executado quando ocorre uma falha na requisição
@@ -152,6 +182,33 @@ public class DadosCadastroCuidador extends AppCompatActivity {
         }
 
         return dataFormatada;
+
+    }
+
+    private void showDatePickerDialog() {
+        Calendar newCalendar = Calendar.getInstance();
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                DadosCadastroCuidador.this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                        Calendar selectedCalendar = Calendar.getInstance();
+                        selectedCalendar.set(year, monthOfYear, dayOfMonth);
+                        String selectedDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(selectedCalendar.getTime());
+                        binding.edDataNascCadastroCuidador.setText(selectedDate);
+
+                    }
+                },
+
+                newCalendar.get(Calendar.YEAR),
+                newCalendar.get(Calendar.MONTH),
+                newCalendar.get(Calendar.DAY_OF_MONTH)
+        );
+
+
+
+        datePickerDialog.show();
 
     }
 

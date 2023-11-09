@@ -40,7 +40,7 @@ public interface ApiUser {
     @POST("register/idoso")
     Call<ResponseBody> registerIdoso(@Body IdosoDTO idosoDTO);
 
-    @POST("register")
+    @POST("auth/register")
     Call<String> registerCuidador(@Body RegisterDTO registerDTO);
 
 
