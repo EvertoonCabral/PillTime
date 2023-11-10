@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Retrofit {
 
-    public static final String BASE_URL_API = "http://10.0.2.2:8080/";
+    public static final String BASE_URL_API = "http://10.0.2.2:8081/";
 
     // Crie o Gson que será usado pelo Retrofit para a serialização e deserialização de datas
     private static Gson gson = new GsonBuilder()
@@ -30,6 +30,8 @@ public class Retrofit {
     public static ApiUser REGISTER_USER(){
         return retrofit.create(ApiUser.class);
     }
+
+    public static ApiUser REGISTER_IDOSO(){return  retrofit.create(ApiUser.class);}
 
     public static ApiUser GET_USUARIO(){
 

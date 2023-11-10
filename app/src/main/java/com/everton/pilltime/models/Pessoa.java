@@ -29,7 +29,7 @@ public abstract class Pessoa {
         this.email = email;
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;
-        Telefone = telefone;
+        this.Telefone = telefone;
         this.endereco = endereco;
         this.stAtivo = stAtivo;
         this.dataCadastro = dataCadastro;

@@ -8,27 +8,17 @@ import java.util.Date;
 public class IdosoDTO {
 
     private String nome;
-
-
     private String email;
+    private String login;
 
-
-    private Date dataNascimento;
+    private String senha;
 
     private String cpf;
 
     private String telefone;
-
-    private EnderecoDTO endereco;
-
+    private Date dataNascimento;
     private String observacao;
-
-
-    private String login;
-
-
-    private String senha;
-
+    private EnderecoDTO endereco;
     private UserRole role;
 
     private TipoUsuario tipoUsuario = TipoUsuario.I;

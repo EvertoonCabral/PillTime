@@ -37,7 +37,7 @@ public interface ApiUser {
     @DELETE("usuario/{id}")
     Call<UsuarioDTO> DELETE_USUARIO(@Header("Authorization") String authorization, @Path("id") Long id);
 
-    @POST("register/idoso")
+    @POST("auth/register/idoso")
     Call<ResponseBody> registerIdoso(@Body IdosoDTO idosoDTO);
 
     @POST("auth/register")
