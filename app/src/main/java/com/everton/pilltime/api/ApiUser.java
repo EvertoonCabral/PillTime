@@ -38,7 +38,7 @@ public interface ApiUser {
     Call<UsuarioDTO> DELETE_USUARIO(@Header("Authorization") String authorization, @Path("id") Long id);
 
     @POST("auth/register/idoso")
-    Call<ResponseBody> registerIdoso(@Body IdosoDTO idosoDTO);
+    Call<ResponseBody> REGISTER_IDOSO(@Body IdosoDTO idosoDTO);
 
     @POST("auth/register")
     Call<String> registerCuidador(@Body RegisterDTO registerDTO);

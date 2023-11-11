@@ -1,7 +1,9 @@
 package com.everton.pilltime.api;
 
 import com.everton.pilltime.dto.EnderecoDTO;
+import com.everton.pilltime.dto.RemedioDTO;
 import com.everton.pilltime.models.Endereco;
+import com.everton.pilltime.models.Remedio;
 
 import java.util.List;
 
@@ -17,16 +19,16 @@ import retrofit2.http.Path;
 public interface ApiRemedio {
 
     @Headers("Content-Type: application/json")
-    @POST("endereco")
-    Call<EnderecoDTO> REGISTER_ENDERECO(@Header("Authorization") String token, @Body Endereco endereco);
+    @POST("remedio")
+    Call<RemedioDTO> REGISTER_REMEDIO(@Header("Authorization") String token, @Body RemedioDTO remedioDTO);
 
-    @GET("endereco")
-    Call<List<EnderecoDTO>> GET_ALL_ENDERECO(@Header("Authorization") String authorization);
+    @GET("remedio")
+    Call<List<RemedioDTO>> GET_ALL_REMEDIO(@Header("Authorization") String authorization);
 
-    @GET("endereco/{id}")
-    Call<EnderecoDTO> GET_ENDERECO(@Header("Authorization") String authorization, @Path("id") Long id);
+    @GET("remedio/{id}")
+    Call<RemedioDTO> GET_REMEDIO(@Header("Authorization") String authorization, @Path("id") Long id);
 
-    @DELETE("endereco/{id}")
-    Call<EnderecoDTO> DELETAR_ENDERECO(@Header("Authorization") String authorization, @Path("id") Long id);
+    @DELETE("remedio/{id}")
+    Call<RemedioDTO> DELETAR_REMEDIO(@Header("Authorization") String authorization, @Path("id") Long id);
 
 }

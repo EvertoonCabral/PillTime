@@ -51,6 +51,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 style="@style/Edit_Text"
+                android:textSize="20dp"
+                android:textAllCaps="true"
                 android:layout_marginHorizontal="30dp"
                 android:padding="5dp" />
 
@@ -105,8 +107,8 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/spinnerFormaFarmaceutica"
+            <EditText
+                android:id="@+id/edFormaFarmaceutica"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 style="@style/Edit_Text"
@@ -123,15 +125,28 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/edValidadeRemedio"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                style="@style/Edit_Text"
-                android:layout_marginHorizontal="30dp"
-                android:hint="dd/mm/yyyy"
-                android:inputType="date"
-                android:padding="5dp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edDataValidadeRemedio"
+                    style="@style/Edit_Text"
+                    android:layout_width="200dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="____/_____/____"
+                    android:inputType="date"
+                    android:textAlignment="center" />
+
+                <ImageButton
+                    android:id="@+id/btnCalendario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_calendar" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -155,6 +170,7 @@
                 android:padding="5dp" />
 
             <Button
+                android:id="@+id/btnCadastroRemedio"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

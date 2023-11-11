@@ -107,6 +107,7 @@ public class DadosCadastroCuidador extends AppCompatActivity {
                 pessoa.setCpf(cpf);
                 pessoa.setTelefone(telefone);
                 pessoa.setDataNascimento(dataNascimento);
+                System.out.println("Aqui: "+telefone);
                 pessoa.setEndereco(endereco);
                 pessoa.setTipoUsuario(TipoUsuario.C);
 

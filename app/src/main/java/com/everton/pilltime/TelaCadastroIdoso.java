@@ -99,27 +99,28 @@ public class TelaCadastroIdoso extends AppCompatActivity {
                 SharedPreferences sharedPreferences = getSharedPreferences("MyToken", MODE_PRIVATE);
                 String token = sharedPreferences.getString("token", "");
 
-                Call<ResponseBody> call = apiUser.registerIdoso(idoso);
+                Call<ResponseBody> call = apiUser.REGISTER_IDOSO(idoso);
 
 
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+
                         if(response.isSuccessful()) {
 
-                            Toast.makeText(TelaCadastroIdoso.this, "Cadastro de Idoso Realizado", Toast.LENGTH_LONG).show();
+                            Toast.makeText(TelaCadastroIdoso.this, "Idoso cadastrado com sucesso!", Toast.LENGTH_LONG).show();
                         } else {
                             int statusCode = response.code();
-                            Log.e("CadastroCuidador", "Erro ao registrar, código de status HTTP: " + statusCode);
+                            Log.e("Cadastro Idoso", "Erro ao registrar, código de status HTTP: " + statusCode);
                         }
                         if (response.errorBody() != null) {
                             String errorString;
                             try {
                                 errorString = response.errorBody().string();
-                                Log.e("CadastroCuidador", "Erro ao registrar: " + errorString);
+                                Log.e("Cadastro Idoso", "Erro ao registrar: " + errorString);
                             } catch (IOException e) {
-                                Log.e("CadastroCuidador", "Erro ao ler o corpo de erro", e);
+                                Log.e("Cadastro Idoso", "Erro ao ler o corpo de erro", e);
                             }
                         }
                     }
@@ -189,7 +190,7 @@ public class TelaCadastroIdoso extends AppCompatActivity {
             return false;
         }
 
-        Toast.makeText(this, "Dados validados com sucesso!", Toast.LENGTH_SHORT).show();
+
         return true;
 
     }
