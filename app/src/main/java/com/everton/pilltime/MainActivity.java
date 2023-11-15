@@ -7,6 +7,7 @@
     import android.graphics.Color;
     import android.os.Bundle;
     import android.os.Handler;
+    import android.util.Log;
     import android.view.View;
 
     import com.everton.pilltime.api.ApiUser;
@@ -24,7 +25,7 @@
     public class MainActivity extends AppCompatActivity {
 
         private ActivityFormLoginBinding binding;
-        String [] mensagens = {"Preencha todos os campos","Logind efetuado com sucesso"};
+        String [] mensagens = {"Preencha todos os campos","Login efetuado com sucesso"};
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -82,10 +83,13 @@
                     if(response.isSuccessful()) {
                         LoginResponseDTO loginResponseDTO = response.body();
                         String token = loginResponseDTO.getToken();
+                        Long id = loginResponseDTO.getId();
+                        Log.e("", "ID usuario logado: "+id);
 
                         SharedPreferences sharedPreferences = getSharedPreferences("MyToken", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("token", token);
+                        editor.putLong("id", id);
                         editor.apply();
 
                         TelaPrincipal();

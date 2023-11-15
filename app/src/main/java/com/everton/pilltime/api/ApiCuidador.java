@@ -12,6 +12,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -37,7 +38,7 @@ public interface ApiCuidador {
 
     // Retorna um cuidador pelo ID
     @GET("cuidador/{id}")
-    Call<CuidadorDTO> findCuidadorById(@Path("id") Long id);
+    Call<CuidadorDTO> GET_CUIDADOR(@Header("Authorization") String token, @Path("id") Long id);
 
     // Obter um cuidador pelo nome
     @GET("cuidador/filter")

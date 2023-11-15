@@ -49,6 +49,10 @@ public class Retrofit {
 
     public static ApiRemedio REGISTER_REMEDIO(){return  retrofit.create(ApiRemedio.class);}
 
+    public static ApiPessoa GET_PESSOA(){ return retrofit.create(ApiPessoa.class);}
 
+
+
+    public static ApiCuidador GET_CUIDADOR(){ return retrofit.create(ApiCuidador.class);}
 
 }

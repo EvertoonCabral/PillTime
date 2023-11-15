@@ -17,7 +17,7 @@ import retrofit2.http.Query;
 public interface ApiPessoa {
 
     @POST("pessoa")
-    Call<Pessoa> inserirPessoa(@Header("Authorization") String token, @Body Pessoa pessoa);
+    Call<Pessoa> inserirPessoa(@Header("Authorization") String token , @Body Pessoa pessoa);
 
     @PUT("pessoa")
     Call<Pessoa> editarPessoa(@Header("Authorization") String token, @Body Pessoa pessoa);
@@ -29,7 +29,7 @@ public interface ApiPessoa {
     Call<List<Pessoa>> listarPessoas(@Header("Authorization") String token);
 
     @GET("pessoa/{id}")
-    Call<Pessoa> buscarPessoaPorId(@Header("Authorization") String token, @Path("id") Long id);
+    Call<Pessoa> GET_PESSOA(@Header("Authorization") String token, @Path("id") Long id);
 
     @GET("pessoa/filter")
     Call<List<Pessoa>> buscarPessoaPorNome(@Header("Authorization") String token, @Query("nome") String nome);
