@@ -45,14 +45,18 @@ public class Retrofit {
 
 
 
-    //ENDERECO
+    //REMEDIO
 
     public static ApiRemedio REGISTER_REMEDIO(){return  retrofit.create(ApiRemedio.class);}
 
+
+    //PESSOA
     public static ApiPessoa GET_PESSOA(){ return retrofit.create(ApiPessoa.class);}
 
 
 
+    //CUIDADOR
     public static ApiCuidador GET_CUIDADOR(){ return retrofit.create(ApiCuidador.class);}
+    public static ApiCuidador POST_REMEDIO_TO_CUIDADOR(){return  retrofit.create(ApiCuidador.class);}
 
 }

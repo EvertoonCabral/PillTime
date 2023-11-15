@@ -41,7 +41,6 @@
                 android:layout_marginVertical="15dp"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
-                android:inputType="text"
                 android:text="Nome Remédio"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -49,10 +48,9 @@
             <EditText
                 android:id="@+id/edNomeRemedio"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 style="@style/Edit_Text"
                 android:textSize="20dp"
-                android:textAllCaps="true"
                 android:layout_marginHorizontal="30dp"
                 android:padding="5dp" />
 
@@ -63,7 +61,6 @@
                 android:layout_marginVertical="15dp"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
-                android:inputType="text"
                 android:text="Marca Remédio"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -71,7 +68,7 @@
             <EditText
                 android:id="@+id/edMarcaRemedio"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
                 android:padding="5dp" />
@@ -110,7 +107,7 @@
             <EditText
                 android:id="@+id/edFormaFarmaceutica"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp" />
 

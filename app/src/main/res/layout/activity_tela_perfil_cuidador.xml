@@ -34,7 +34,7 @@
                 android:id="@+id/textViewNome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nome do Usuário"
+                android:text="Foto Cuidador"
                 android:textSize="25dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -42,16 +42,16 @@
                 android:layout_margin="15dp"/>
 
             <!-- Campo para CPF -->
+
             <EditText
-                android:id="@+id/editTextId"
+                android:id="@+id/edNome"
+                style="@style/Edit_Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ID"
-                android:inputType="number"
-                android:maxLength="11"
                 android:layout_marginBottom="8dp"
-                style="@style/Edit_Text"
-                />
+                android:hint="Nome"
+                android:inputType="number"
+                android:maxLength="11" />
 
             <EditText
                 android:id="@+id/editTextCPF"
@@ -66,10 +66,10 @@
 
 
             <EditText
-                android:id="@+id/editTextIdade"
+                android:id="@+id/edDataNascimento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Idade"
+                android:hint="Data de Nascimento"
                 android:inputType="number"
                 android:maxLength="3"
                 style="@style/Edit_Text"
@@ -93,14 +93,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="E-mail"
-                style="@style/Edit_Text"
-
-                />
-            <EditText
-                android:id="@+id/edNumResponsaveis"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:hint="Nº de Responsavis"
                 style="@style/Edit_Text"
 
                 />

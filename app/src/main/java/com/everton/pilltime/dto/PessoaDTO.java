@@ -9,11 +9,8 @@ public class PessoaDTO {
 
     private String nome;
     private String email;
-
     private Date dataNascimento;
-
     private String cpf;
-
     private String Telefone;
 
     private Endereco endereco;

@@ -50,7 +50,7 @@ public interface ApiCuidador {
 
     // Adicionar remédio ao cuidador
     @POST("cuidador/{cuidadorId}/adicionar-remedio")
-    Call<String> addRemedioToCuidador(@Path("cuidadorId") Long cuidadorId, @Body RemedioDTO remedioDTO);
+    Call<String> POST_REMEDIO_TO_CUIDADOR ( @Header("Authorization") String token, @Path("cuidadorId")Long cuidadorId, @Body RemedioDTO remedioDTO);
 
     // Listar todos os remédios de um cuidador específico
     @GET("cuidador/{cuidadorId}/remedios")

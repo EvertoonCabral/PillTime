@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import com.everton.pilltime.api.ApiCuidador;
 import com.everton.pilltime.api.ApiRemedio;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityTelaCadastroRemedioBinding;
@@ -44,6 +45,11 @@ public class TelaCadastroRemedio extends AppCompatActivity {
         dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
 
+        SharedPreferences sharedPreferences = getSharedPreferences("MyToken", MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", "");
+        Long id = sharedPreferences.getLong("id", 0);
+
+
 
         binding.btnCadastroRemedio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,11 +78,9 @@ public class TelaCadastroRemedio extends AppCompatActivity {
                 remedio.setObservacoes(observacoes);
 
                 ApiRemedio apiRemedio = Retrofit.REGISTER_REMEDIO();
+                ApiCuidador apiCuidador = Retrofit.POST_REMEDIO_TO_CUIDADOR();
 
-                SharedPreferences sharedPreferences = getSharedPreferences("MyToken", MODE_PRIVATE);
-                String token = sharedPreferences.getString("token", "");
-
-
+/*
                 Call<RemedioDTO> call = apiRemedio.REGISTER_REMEDIO(token, remedio);
 
 
@@ -85,7 +89,6 @@ public class TelaCadastroRemedio extends AppCompatActivity {
                     public void onResponse(Call<RemedioDTO> call, Response<RemedioDTO> response) {
 
                         if (response.isSuccessful()){
-                            Toast.makeText(TelaCadastroRemedio.this, "Remedio Cadastrado com Sucesso!", Toast.LENGTH_LONG).show();
                         }else{
                             int statusCode = response.code();
                             Log.e("Cadastro Remedio", "Erro ao registrar, código de status HTTP: " + statusCode);
@@ -109,9 +112,46 @@ public class TelaCadastroRemedio extends AppCompatActivity {
 
                     }
                 });
+*/
+                //adiciona a lista do cuidador
+
+                Call<String> call1 = apiCuidador.POST_REMEDIO_TO_CUIDADOR(token, id, remedio);
+
+                call1.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+
+                        if (response.isSuccessful()){
+                            Toast.makeText(TelaCadastroRemedio.this, "Remedio Cadastrado com Sucesso!", Toast.LENGTH_LONG).show();
+                        }else{
+                            int statusCode = response.code();
+                            Log.e("Cadastro Remedio", "Erro ao registrar, código de status HTTP: " + statusCode);
+                        }
+                        if (response.errorBody() != null) {
+                            String errorString;
+                            try {
+                                errorString = response.errorBody().string();
+                                Log.e("Cadastro Remedio", "Erro ao registrar: " + errorString);
+                            } catch (IOException e) {
+                                Log.e("Cadastro Remedio", "Erro ao ler o corpo de erro", e);
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                        Toast.makeText(TelaCadastroRemedio.this, "Remedio Cadastrado com Sucesso!", Toast.LENGTH_LONG).show();
+
+
+                    }
+                });
 
 
             }
+
         });
 
 

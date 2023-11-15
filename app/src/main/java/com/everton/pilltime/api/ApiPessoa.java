@@ -1,5 +1,7 @@
 package com.everton.pilltime.api;
 
+import com.everton.pilltime.dto.PessoaDTO;
+import com.everton.pilltime.dto.PessoaDTOGet;
 import com.everton.pilltime.models.Pessoa;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public interface ApiPessoa {
     Call<Pessoa> inserirPessoa(@Header("Authorization") String token , @Body Pessoa pessoa);
 
     @PUT("pessoa")
-    Call<Pessoa> editarPessoa(@Header("Authorization") String token, @Body Pessoa pessoa);
+    Call<PessoaDTO> editarPessoa(@Header("Authorization") String token, @Body Pessoa pessoa);
 
     @DELETE("pessoa/{id}")
     Call<Void> deletarPessoa(@Header("Authorization") String token, @Path("id") Long id);
@@ -28,8 +30,8 @@ public interface ApiPessoa {
     @GET("pessoa")
     Call<List<Pessoa>> listarPessoas(@Header("Authorization") String token);
 
-    @GET("pessoa/{id}")
-    Call<Pessoa> GET_PESSOA(@Header("Authorization") String token, @Path("id") Long id);
+    @GET("pessoa/id/{id}")
+    Call<PessoaDTOGet> GET_PESSOA(@Header("Authorization") String token, @Path("id") Long id);
 
     @GET("pessoa/filter")
     Call<List<Pessoa>> buscarPessoaPorNome(@Header("Authorization") String token, @Query("nome") String nome);

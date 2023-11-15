@@ -11,14 +11,17 @@ public class RemedioDTO {
     private Date dataValidade;
     private String observacoes;
 
+    private Long CuidadorID;
 
-    public RemedioDTO(String nome, String marcaRemedio, String dosagem, String formaFarmaceutico, Date dataValidade, String observacoes) {
+
+    public RemedioDTO(String nome, String marcaRemedio, String dosagem, String formaFarmaceutico, Date dataValidade, String observacoes, Long cuidadorID) {
         this.nome = nome;
         this.marcaRemedio = marcaRemedio;
         this.dosagem = dosagem;
         this.formaFarmaceutico = formaFarmaceutico;
         this.dataValidade = dataValidade;
         this.observacoes = observacoes;
+        CuidadorID = cuidadorID;
     }
 
     public RemedioDTO() {
@@ -70,5 +73,13 @@ public class RemedioDTO {
 
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
+    }
+
+    public Long getCuidadorID() {
+        return CuidadorID;
+    }
+
+    public void setCuidadorID(Long cuidadorID) {
+        CuidadorID = cuidadorID;
     }
 }
