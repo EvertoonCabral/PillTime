@@ -53,7 +53,6 @@ public class TelaCadastroIdoso extends AppCompatActivity {
                 validarCampos();
 
 
-
             String nome = binding.edNomeCadastroIdoso.getText().toString().trim();
             String email = binding.edEmailCadastroIdoso.getText().toString().trim();
             String senha = binding.edSenhaCadastroIdoso.getText().toString().trim();

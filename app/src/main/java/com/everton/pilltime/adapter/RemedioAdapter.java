@@ -38,12 +38,15 @@ public class RemedioAdapter extends RecyclerView.Adapter<RemedioAdapter.ViewHold
         holder.nomeTextView.setText(remedio.getNome());
         holder.marcaTextView.setText(remedio.getMarcaRemedio());
 
-        // Convertendo Date para String
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        String dataValidadeStr = simpleDateFormat.format(remedio.getDataValidade());
-
-        holder.dataValidadeTextView.setText(dataValidadeStr);
+        if (remedio.getDataValidade() != null) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            String dataValidadeStr = simpleDateFormat.format(remedio.getDataValidade());
+            holder.dataValidadeTextView.setText(dataValidadeStr);
+        } else {
+            holder.dataValidadeTextView.setText("Data não disponível"); // ou ""
+        }
     }
+
 
 
     @Override

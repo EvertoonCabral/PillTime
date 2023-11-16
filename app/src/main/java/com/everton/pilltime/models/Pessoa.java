@@ -2,7 +2,7 @@ package com.everton.pilltime.models;
 
 import java.util.Date;
 
-public abstract class Pessoa {
+public class Pessoa {
 
     private Long id;
     private String nome;
