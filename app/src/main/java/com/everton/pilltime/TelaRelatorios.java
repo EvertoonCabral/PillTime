@@ -23,10 +23,8 @@
     public class TelaRelatorios extends AppCompatActivity {
 
         private Spinner spinnerRelatorio;
-        private List    <Remedio> remedioList = new ArrayList<>(); // Declaração da lista de remédios
-        private List    <Idoso> idosoList = new ArrayList<>(); // Declaração da lista de iDOSOS.....
-
-
+        private List    <Remedio> remedioList = new ArrayList<>();
+        private List    <Idoso> idosoList = new ArrayList<>();
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
