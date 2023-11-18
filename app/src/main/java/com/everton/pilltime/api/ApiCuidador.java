@@ -54,7 +54,7 @@ public interface ApiCuidador {
 
     // Listar todos os remédios de um cuidador específico
     @GET("cuidador/{cuidadorId}/remedios")
-    Call<List<RemedioDTO>> GET_ALL_REMEDIO_CUIDADOR(@Path("cuidadorId") Long cuidadorId);
+    Call<List<RemedioDTO>> GET_ALL_REMEDIO_CUIDADOR( @Header("Authorization") String token, @Path("cuidadorId") Long cuidadorId);
 
 
     // Adicionar um alarme à lista de alarmes de um idoso

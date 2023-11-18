@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -49,9 +50,10 @@ public class TelaRelatorios extends AppCompatActivity {
 
                 SharedPreferences sharedPreferences = TelaRelatorios.this.getSharedPreferences("MyToken", Context.MODE_PRIVATE);
                 Long idCuidador = sharedPreferences.getLong("id", 0);
+                String token = sharedPreferences.getString("token", " ");
 
                 if (selectedOption.equals("Remédio")) {
-                    fetchRemediosFromApi(idCuidador);
+                    fetchRemediosFromApi(idCuidador, token);
                 }
                 // A lógica para "Idoso" pode ser implementada aqui quando estiver pronta
             }
@@ -63,29 +65,31 @@ public class TelaRelatorios extends AppCompatActivity {
         });
     }
 
-    private void fetchRemediosFromApi(Long idCuidador) {
-        ApiCuidador apiCuidador = Retrofit.GET_CUIDADOR();
-        Call<List<RemedioDTO>> call = apiCuidador.GET_ALL_REMEDIO_CUIDADOR(idCuidador);
+    private void fetchRemediosFromApi(Long idCuidador, String token) {
+        ApiCuidador apiCuidador = Retrofit.GET_ALL_REMEDIO_CUIDADOR();
+        Call<List<RemedioDTO>> call = apiCuidador.GET_ALL_REMEDIO_CUIDADOR(token, idCuidador);
 
         call.enqueue(new Callback<List<RemedioDTO>>() {
             @Override
             public void onResponse(Call<List<RemedioDTO>> call, Response<List<RemedioDTO>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     updateRecyclerView(response.body());
+                    Log.d("DEBUG", response.body().toString());
                 } else {
-                    // Trate o caso de resposta não bem-sucedida
+                    Log.d("DEBUG", "Deu erro");
                 }
             }
 
             @Override
             public void onFailure(Call<List<RemedioDTO>> call, Throwable t) {
-                // Trate o caso de falha na chamada da API
+                Log.d("DEBUG", "Falhou " + t.getMessage());
             }
         });
     }
 
     private void updateRecyclerView(List<RemedioDTO> remedioDtoList) {
         RemedioAdapter adapter = new RemedioAdapter(remedioDtoList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(TelaRelatorios.this));
         recyclerView.setAdapter(adapter);
     }
 }
