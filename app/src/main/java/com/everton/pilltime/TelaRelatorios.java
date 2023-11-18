@@ -13,9 +13,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.everton.pilltime.adapter.IdosoAdapter;
 import com.everton.pilltime.adapter.RemedioAdapter;
 import com.everton.pilltime.api.ApiCuidador;
 import com.everton.pilltime.api.Retrofit;
+import com.everton.pilltime.dto.IdosoDTO;
 import com.everton.pilltime.dto.RemedioDTO;
 
 import java.util.List;
@@ -52,10 +54,11 @@ public class TelaRelatorios extends AppCompatActivity {
                 Long idCuidador = sharedPreferences.getLong("id", 0);
                 String token = sharedPreferences.getString("token", " ");
 
-                if (selectedOption.equals("Remédio")) {
+                if (selectedOption.equals("Idoso")) {
+                    fetchIdososFromApi(idCuidador, token);
+                } else if (selectedOption.equals("Remédio")) {
                     fetchRemediosFromApi(idCuidador, token);
                 }
-                // A lógica para "Idoso" pode ser implementada aqui quando estiver pronta
             }
 
             @Override
@@ -87,9 +90,39 @@ public class TelaRelatorios extends AppCompatActivity {
         });
     }
 
+    private void fetchIdososFromApi(Long idCuidador, String token) {
+        ApiCuidador apiCuidador = Retrofit.GET_ALL_REMEDIO_CUIDADOR(); // Verifique se este método retorna a instância correta
+        Call<List<IdosoDTO>> call = apiCuidador.GET_ALL_IDOSOS_CUIDADOR(token, idCuidador);
+
+        call.enqueue(new Callback<List<IdosoDTO>>() {
+            @Override
+            public void onResponse(Call<List<IdosoDTO>> call, Response<List<IdosoDTO>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    updateIdososRecyclerView(response.body());
+                } else {
+                    // Trate o caso de resposta não bem-sucedida
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<IdosoDTO>> call, Throwable t) {
+                // Trate o caso de falha na chamada da API
+            }
+        });
+    }
+
+
+
     private void updateRecyclerView(List<RemedioDTO> remedioDtoList) {
         RemedioAdapter adapter = new RemedioAdapter(remedioDtoList);
         recyclerView.setLayoutManager(new LinearLayoutManager(TelaRelatorios.this));
         recyclerView.setAdapter(adapter);
     }
+
+    private void updateIdososRecyclerView(List<IdosoDTO> idosoDtoList) {
+        IdosoAdapter adapter = new IdosoAdapter(idosoDtoList);
+        recyclerView.setAdapter(adapter);
+    }
+
+
 }

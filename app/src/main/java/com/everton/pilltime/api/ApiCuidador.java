@@ -46,7 +46,7 @@ public interface ApiCuidador {
 
     // Retorna todos os Idosos da Lista do Cuidador
     @GET("cuidador/{cuidadorId}/idosos")
-    Call<List<IdosoDTO>> getIdososByCuidador(@Path("cuidadorId") Long cuidadorId);
+    Call<List<IdosoDTO>> GET_ALL_IDOSOS_CUIDADOR(@Header("Authorization") String token, @Path("cuidadorId") Long cuidadorId);
 
     // Adicionar remédio ao cuidador
     @POST("cuidador/{cuidadorId}/adicionar-remedio")

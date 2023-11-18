@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.everton.pilltime.R;
+import com.everton.pilltime.dto.IdosoDTO;
 import com.everton.pilltime.models.Idoso;
 
 import java.text.SimpleDateFormat;
@@ -16,9 +17,9 @@ import java.util.List;
 
 public class IdosoAdapter extends RecyclerView.Adapter<IdosoAdapter.ViewHolder> {
 
-    private List<Idoso> idosoList;
+    private List<IdosoDTO> idosoList;
 
-    public IdosoAdapter(List<Idoso> idosoList) {
+    public IdosoAdapter(List<IdosoDTO> idosoList) {
         this.idosoList = idosoList;
     }
 
@@ -31,15 +32,15 @@ public class IdosoAdapter extends RecyclerView.Adapter<IdosoAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Idoso idoso = idosoList.get(position);
-        holder.nomeTextView.setText(idoso.getNome());
-        holder.cpfTextView.setText(idoso.getCpf());
+        IdosoDTO idosoDTO = idosoList.get(position);
+        holder.nomeTextView.setText(idosoDTO.getNome());
+        holder.cpfTextView.setText(idosoDTO.getCpf());
 
         // Formate a data de nascimento
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String formattedDate = sdf.format(idoso.getDataNascimento());
+        String formattedDate = sdf.format(idosoDTO.getDataNascimento());
         holder.dataNascimentoTextView.setText(formattedDate);
-        holder.telefoneTextView.setText(idoso.getTelefone());
+        holder.telefoneTextView.setText(idosoDTO.getTelefone());
     }
     @Override
     public int getItemCount() {
@@ -58,10 +59,9 @@ public class IdosoAdapter extends RecyclerView.Adapter<IdosoAdapter.ViewHolder> 
             super(itemView);
             nomeTextView = itemView.findViewById(R.id.nomeIdosoTextView);
             cpfTextView = itemView.findViewById(R.id.cpfIdosoTextView);
-            idadeTextView = itemView.findViewById(R.id.idadeTextView); // Adicione esta linha
+            idadeTextView = itemView.findViewById(R.id.idadeTextView);
             telefoneTextView = itemView.findViewById(R.id.telefoneIdosoTextView);
             dataNascimentoTextView = itemView.findViewById(R.id.dataNascimentoIdosoTextView);
-            // ... inicializar outros campos, se necessário
         }
     }
 }
