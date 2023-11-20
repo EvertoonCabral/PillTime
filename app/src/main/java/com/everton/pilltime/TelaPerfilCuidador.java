@@ -3,9 +3,11 @@ package com.everton.pilltime;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.everton.pilltime.api.ApiError;
@@ -35,7 +37,6 @@ public class TelaPerfilCuidador extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         SharedPreferences sharedPreferences = TelaPerfilCuidador.this.getSharedPreferences("MyToken", Context.MODE_PRIVATE);
-        // Removido o espaço extra na chave "token "
         String token = sharedPreferences.getString("token", "");
         Long id = sharedPreferences.getLong("id", 0);
 
@@ -97,5 +98,18 @@ public class TelaPerfilCuidador extends AppCompatActivity {
                 Log.e("ERROR", "Falha na chamada da API: " + t.getMessage());
             }
         });
+
+
+        binding.btnVolarMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(TelaPerfilCuidador.this,TelaPrincipal.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+
     }
 }

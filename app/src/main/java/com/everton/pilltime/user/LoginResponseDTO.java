@@ -4,14 +4,14 @@ public class LoginResponseDTO {
 
     private String token;
 
-    private Long id;
+    private Long pessoaId;
 
     public LoginResponseDTO() {
     }
 
-    public LoginResponseDTO(String token, Long id) {
+    public LoginResponseDTO(String token, Long pessoaId) {
         this.token = token;
-        this.id = id;
+        this.pessoaId = pessoaId;
     }
 
     public String getToken() {
@@ -22,11 +22,11 @@ public class LoginResponseDTO {
         this.token = token;
     }
 
-    public Long getId() {
-        return id;
+    public Long getPessoaId() {
+        return pessoaId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPessoaId(Long pessoaId) {
+        this.pessoaId = pessoaId;
     }
 }

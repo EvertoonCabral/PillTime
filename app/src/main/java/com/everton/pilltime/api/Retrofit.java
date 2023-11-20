@@ -59,6 +59,9 @@ public class Retrofit {
     public static ApiCuidador GET_CUIDADOR(){ return retrofit.create(ApiCuidador.class);}
     public static ApiCuidador POST_REMEDIO_TO_CUIDADOR(){return  retrofit.create(ApiCuidador.class);}
     public static ApiCuidador GET_ALL_REMEDIO_CUIDADOR (){return  retrofit.create(ApiCuidador.class);}
-    
+
+    public static ApiCuidador GET_ALL_IDOSOS_CUIDADOR (){return  retrofit.create(ApiCuidador.class);}
+
+
 
 }

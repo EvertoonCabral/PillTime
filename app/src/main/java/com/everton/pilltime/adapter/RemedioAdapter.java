@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.everton.pilltime.R;
+import com.everton.pilltime.dto.RemedioDTO;
 import com.everton.pilltime.models.Remedio;
 
 import java.text.SimpleDateFormat;
@@ -17,9 +18,9 @@ import java.util.Locale;
 
 public class RemedioAdapter extends RecyclerView.Adapter<RemedioAdapter.ViewHolder> {
 
-    private List<Remedio> remedioList;
+    private List<RemedioDTO> remedioList;
 
-    public RemedioAdapter(List<Remedio> remedioList) {
+    public RemedioAdapter(List<RemedioDTO> remedioList) {
         this.remedioList = remedioList;
     }
 
@@ -27,14 +28,14 @@ public class RemedioAdapter extends RecyclerView.Adapter<RemedioAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-                                                                    //ta inflando o layout item_remedio criado no arquivo layout
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_remedio, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Remedio remedio = remedioList.get(position);
+        RemedioDTO remedio = remedioList.get(position);
         holder.nomeTextView.setText(remedio.getNome());
         holder.marcaTextView.setText(remedio.getMarcaRemedio());
 

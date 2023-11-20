@@ -6,7 +6,6 @@
     import android.content.SharedPreferences;
     import android.graphics.Color;
     import android.os.Bundle;
-    import android.os.Handler;
     import android.util.Log;
     import android.view.View;
 
@@ -16,7 +15,6 @@
     import com.everton.pilltime.user.AuthenticationDTO;
     import com.everton.pilltime.user.LoginResponseDTO;
     import com.google.android.material.snackbar.Snackbar;
-    import com.google.firebase.auth.FirebaseAuth;
 
     import retrofit2.Call;
     import retrofit2.Callback;
@@ -83,7 +81,7 @@
                     if(response.isSuccessful()) {
                         LoginResponseDTO loginResponseDTO = response.body();
                         String token = loginResponseDTO.getToken();
-                        Long id = loginResponseDTO.getId();
+                        Long id = loginResponseDTO.getPessoaId();
                         Log.e("", "ID usuario logado: "+id);
 
                         SharedPreferences sharedPreferences = getSharedPreferences("MyToken", MODE_PRIVATE);

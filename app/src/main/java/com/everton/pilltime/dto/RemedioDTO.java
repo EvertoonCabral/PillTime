@@ -24,6 +24,13 @@ public class RemedioDTO {
         CuidadorID = cuidadorID;
     }
 
+
+    public RemedioDTO(String nome, String marcaRemedio, Date DataValidade) {
+        this.nome = nome;
+        this.marcaRemedio = marcaRemedio;
+        this.dataValidade = dataValidade;
+    }
+
     public RemedioDTO() {
     }
 
