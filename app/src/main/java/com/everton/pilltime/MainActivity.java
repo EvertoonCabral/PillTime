@@ -12,6 +12,7 @@
     import com.everton.pilltime.api.ApiUser;
     import com.everton.pilltime.api.Retrofit;
     import com.everton.pilltime.databinding.ActivityFormLoginBinding;
+    import com.everton.pilltime.models.TipoUsuario;
     import com.everton.pilltime.user.AuthenticationDTO;
     import com.everton.pilltime.user.LoginResponseDTO;
     import com.google.android.material.snackbar.Snackbar;
@@ -82,16 +83,17 @@
                         LoginResponseDTO loginResponseDTO = response.body();
                         String token = loginResponseDTO.getToken();
                         Long id = loginResponseDTO.getPessoaId();
-                        Log.e("", "ID usuario logado: "+id);
+                        TipoUsuario tipoUsuario = loginResponseDTO.getTipoUsuario();
 
                         SharedPreferences sharedPreferences = getSharedPreferences("MyToken", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("token", token);
                         editor.putLong("id", id);
+                        editor.putString("tipoUsuario", tipoUsuario.name()); // Armazenar o tipo de usuário como String
                         editor.apply();
 
-                        TelaPrincipal();
-                    } else {
+                        redirecionarParaTelaCorreta(tipoUsuario);
+                        }else {
                         // Tratar caso a resposta não seja bem-sucedida
                         Snackbar snackbar = Snackbar.make(view, "Login falhou. Por favor, verifique suas credenciais.", Snackbar.LENGTH_LONG);
                         snackbar.setBackgroundTint(Color.WHITE);
@@ -115,13 +117,18 @@
 
 
 
-        private void TelaPrincipal(){
 
-            //Metodo para eu ir da Tela de login para a tela principal
 
-            Intent intent = new Intent(MainActivity.this,TelaPrincipal.class);
-            startActivity(intent);
-            finish();
-        }
+            private void redirecionarParaTelaCorreta(TipoUsuario tipoUsuario) {
+                Intent intent;
+                if (tipoUsuario == TipoUsuario.I) {
+                    intent = new Intent(MainActivity.this, TelaPrincipalIdoso.class);
+                } else {
+                    intent = new Intent(MainActivity.this, TelaPrincipal.class);
+                }
+                startActivity(intent);
+                finish();
+            }
+
 
     }
