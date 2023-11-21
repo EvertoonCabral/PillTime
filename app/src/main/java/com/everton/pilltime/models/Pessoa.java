@@ -12,7 +12,7 @@ public class Pessoa {
 
     private String cpf;
 
-    private String Telefone;
+    private String telefone;
 
     private Endereco endereco;
 
@@ -29,7 +29,7 @@ public class Pessoa {
         this.email = email;
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;
-        this.Telefone = telefone;
+        this.telefone = telefone;
         this.endereco = endereco;
         this.stAtivo = stAtivo;
         this.dataCadastro = dataCadastro;
@@ -81,11 +81,11 @@ public class Pessoa {
     }
 
     public String getTelefone() {
-        return Telefone;
+        return telefone;
     }
 
     public void setTelefone(String telefone) {
-        Telefone = telefone;
+        this.telefone = telefone;
     }
 
     public Endereco getEndereco() {

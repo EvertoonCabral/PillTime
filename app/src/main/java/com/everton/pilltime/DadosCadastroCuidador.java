@@ -76,7 +76,7 @@ public class DadosCadastroCuidador extends AppCompatActivity {
                 String senha = binding.edSenhaCadastroCuidador.getText().toString().trim();
                 String email = binding.edEmailCadastroCuidador.getText().toString().trim();
                 String cpf = binding.edCPFCadastroCuidador.getText().toString().trim();
-                String telefone = binding.edTelefoneCadastroCuidador.getText().toString().trim();
+                String telefone = binding.edTelefone.getText().toString();
                 String dataNascimentoString = binding.edDataNascCadastroCuidador.getText().toString().trim();
                 String estado = binding.edEstadoCadastroCuidador.getText().toString().trim();
                 String cidade = binding.edCidadeCadastroCuidador.getText().toString().trim();
@@ -135,10 +135,10 @@ public class DadosCadastroCuidador extends AppCompatActivity {
 
                         if(response.isSuccessful()) {
 
-                            Toast.makeText(DadosCadastroCuidador.this, response.body(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(DadosCadastroCuidador.this, "Cadastro realizado com Sucesso!!", Toast.LENGTH_LONG).show();
                         } else {
                             int statusCode = response.code();
-                            Log.e("CadastroCuidador", "Erro ao registrar, código de status HTTP: " + statusCode);
+                            Log.e("CadastroCuidador", "Erro ao registrar, código de status HTTP: " + statusCode + response.body());
                         }
                         if (response.errorBody() != null) {
                             String errorString;
