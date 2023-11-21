@@ -1,5 +1,6 @@
 package com.everton.pilltime;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -80,50 +81,20 @@ public class TelaCadastroRemedio extends AppCompatActivity {
                 ApiRemedio apiRemedio = Retrofit.REGISTER_REMEDIO();
                 ApiCuidador apiCuidador = Retrofit.POST_REMEDIO_TO_CUIDADOR();
 
-/*
-                Call<RemedioDTO> call = apiRemedio.REGISTER_REMEDIO(token, remedio);
-
-
-                call.enqueue(new Callback<RemedioDTO>() {
-                    @Override
-                    public void onResponse(Call<RemedioDTO> call, Response<RemedioDTO> response) {
-
-                        if (response.isSuccessful()){
-                        }else{
-                            int statusCode = response.code();
-                            Log.e("Cadastro Remedio", "Erro ao registrar, código de status HTTP: " + statusCode);
-                        }
-                        if (response.errorBody() != null) {
-                            String errorString;
-                            try {
-                                errorString = response.errorBody().string();
-                                Log.e("Cadastro Remedio", "Erro ao registrar: " + errorString);
-                            } catch (IOException e) {
-                                Log.e("Cadastro Remedio", "Erro ao ler o corpo de erro", e);
-                            }
-                        }
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<RemedioDTO> call, Throwable t) {
-
-                        Toast.makeText(TelaCadastroRemedio.this, "ERRO na API meu chapa!: " + t.getMessage(), Toast.LENGTH_LONG).show();
-
-                    }
-                });
-*/
-                //adiciona a lista do cuidador
 
                 Call<String> call1 = apiCuidador.POST_REMEDIO_TO_CUIDADOR(token, id, remedio);
 
                 call1.enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
-
                         if (response.isSuccessful()){
-                            Toast.makeText(TelaCadastroRemedio.this, "Remedio Cadastrado com Sucesso!", Toast.LENGTH_LONG).show();
-                        }else{
+                            // Criação do AlertDialog
+                            new AlertDialog.Builder(TelaCadastroRemedio.this)
+                                    .setTitle("Cadastro de Remédio")
+                                    .setMessage("Remédio cadastrado com sucesso!")
+                                    .setPositiveButton(android.R.string.ok, null)
+                                    .show();
+                        } else {
                             int statusCode = response.code();
                             Log.e("Cadastro Remedio", "Erro ao registrar, código de status HTTP: " + statusCode);
                         }
@@ -136,18 +107,14 @@ public class TelaCadastroRemedio extends AppCompatActivity {
                                 Log.e("Cadastro Remedio", "Erro ao ler o corpo de erro", e);
                             }
                         }
-
-
                     }
 
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
-
-                        Toast.makeText(TelaCadastroRemedio.this, "Remedio Cadastrado com Sucesso!", Toast.LENGTH_LONG).show();
-
-
+                        Log.e("Cadastro Remedio", "Falha ao registrar: " + t.getMessage());
                     }
                 });
+
 
 
             }

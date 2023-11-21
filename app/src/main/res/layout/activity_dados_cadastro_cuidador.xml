@@ -125,7 +125,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edTelefoneCadastroCuidador"
+                android:id="@+id/edTelefone"
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
                 android:hint="(DD)12345-6789"
