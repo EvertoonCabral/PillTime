@@ -56,6 +56,11 @@ public class TelaCadastroRemedio extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if (!validarCampos()) {
+                    Toast.makeText(TelaCadastroRemedio.this, "Por favor, preencha todos os campos corretamente.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 String nome = binding.edNomeRemedio.getText().toString().trim();
                 String marca = binding.edMarcaRemedio.getText().toString().trim();
                 String dosagem = binding.edDosagemRemedio.getText().toString().trim();
@@ -125,6 +130,38 @@ public class TelaCadastroRemedio extends AppCompatActivity {
 
 
 
+    }
+
+    private boolean validarCampos() {
+        String nome = binding.edNomeRemedio.getText().toString().trim();
+        String marca = binding.edMarcaRemedio.getText().toString().trim();
+        String dosagem = binding.edDosagemRemedio.getText().toString().trim();
+        String formaFarmaceutico = binding.edFormaFarmaceutica.getText().toString().trim();
+        String dataValidadeRemedioString = binding.edDataValidadeRemedio.getText().toString().trim();
+
+        if (nome.isEmpty() || marca.isEmpty() || dosagem.isEmpty() || formaFarmaceutico.isEmpty() || dataValidadeRemedioString.isEmpty()) {
+            Log.e("Validação", "Um ou mais campos estão vazios.");
+            return false;
+        }
+
+        if (!validarData(dataValidadeRemedioString)) {
+            Log.e("Validação", "Data de validade inválida.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validarData(String dataString) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        formatter.setLenient(false);
+        try {
+            formatter.parse(dataString);
+            return true;
+        } catch (ParseException e) {
+            Log.e("Validação", "Erro ao formatar a data: " + e.getMessage());
+            return false;
+        }
     }
 
     private Date formataData(String data) {

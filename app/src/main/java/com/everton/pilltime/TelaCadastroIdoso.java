@@ -1,24 +1,22 @@
 package com.everton.pilltime;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
-
 import com.everton.pilltime.api.ApiUser;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityTelaCadastroIdosoBinding;
 import com.everton.pilltime.dto.EnderecoDTO;
 import com.everton.pilltime.dto.IdosoDTO;
-import com.everton.pilltime.models.Cuidador;
-import com.everton.pilltime.models.Endereco;
 import com.everton.pilltime.models.TipoUsuario;
-import com.everton.pilltime.user.RegisterDTO;
 import com.everton.pilltime.user.UserRole;
 
 import java.io.IOException;
@@ -50,7 +48,10 @@ public class TelaCadastroIdoso extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                validarCampos();
+                if (!validarCampos()) {
+                    Toast.makeText(TelaCadastroIdoso.this, "Erro na validação dos campos. Verifique as informações e tente novamente.", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
 
             String nome = binding.edNomeCadastroIdoso.getText().toString().trim();
@@ -66,6 +67,7 @@ public class TelaCadastroIdoso extends AppCompatActivity {
             String numero = binding.edNumeroCadastroCuidador.getText().toString().trim();
             String complemento = binding.edComplementoCadastroIdoso.getText().toString().trim();
             String cpfCuidador = binding.edCPFCuidadorCadIdoso.getText().toString().trim();
+            String obsIdoso = binding.edObsIdoso.getText().toString().trim();
 
                 Date dataNascimento = formataData(dataNascimentoString);
                 if (dataNascimento == null) {
@@ -86,6 +88,7 @@ public class TelaCadastroIdoso extends AppCompatActivity {
                 idoso.setSenha(senha);
                 idoso.setEmail(email);
                 idoso.setCpf(cpf);
+                idoso.setObservacao(obsIdoso);
                 idoso.setTelefone(telefone);
                 idoso.setDataNascimento(dataNascimento);
                 idoso.setEndereco(enderecoDTO);
@@ -104,11 +107,11 @@ public class TelaCadastroIdoso extends AppCompatActivity {
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-
                         if(response.isSuccessful()) {
-
-                            Toast.makeText(TelaCadastroIdoso.this, "Idoso cadastrado com sucesso!", Toast.LENGTH_LONG).show();
+                            Log.d("Cadastro Idoso", "Idoso cadastrado com sucesso");
+                            showDialog("Cadastro Realizado", "Idoso cadastrado com sucesso!");
+                            limparDadosUsuario();
+                            limparDadosEndereco();
                         } else {
                             int statusCode = response.code();
                             Log.e("Cadastro Idoso", "Erro ao registrar, código de status HTTP: " + statusCode);
@@ -151,6 +154,8 @@ public class TelaCadastroIdoso extends AppCompatActivity {
 
 
     private boolean validarCampos() {
+        Log.d("CadastroIdoso", "Iniciando validação dos campos");
+
         String nome = binding.edNomeCadastroIdoso.getText().toString().trim();
         String senha = binding.edSenhaCadastroIdoso.getText().toString().trim();
         String cpf = binding.edCPFCadastroIdoso.getText().toString().trim();
@@ -158,42 +163,50 @@ public class TelaCadastroIdoso extends AppCompatActivity {
         String estado = binding.edEstadoCadastroCuidador.getText().toString().trim();
         String cidade = binding.edCidadeCadastroIdoso.getText().toString().trim();
 
+        // Validação do nome
         if (nome.length() < 3 || nome.length() > 50) {
+            Log.e("CadastroIdoso", "Erro na validação do nome");
             binding.edNomeCadastroIdoso.setError("O nome deve ter entre 2 e 50 caracteres.");
-            Toast.makeText(this, "O nome deve ter entre 2 e 50 caracteres.", Toast.LENGTH_SHORT).show();
             return false;
         }
 
+        // Validação da senha
         if (senha.length() < 6) {
+            Log.e("CadastroIdoso", "Erro na validação da senha");
             binding.edSenhaCadastroIdoso.setError("A senha deve ter mais de 6 caracteres.");
-            Toast.makeText(this, "A senha deve ter mais de 6 caracteres.", Toast.LENGTH_SHORT).show();
             return false;
         }
 
+        // Validação do CPF
         if (cpf.length() != 11) {
+            Log.e("CadastroIdoso", "Erro na validação do CPF");
             binding.edCPFCadastroIdoso.setError("O CPF deve ter 11 caracteres.");
-            Toast.makeText(this, "O CPF deve ter 11 caracteres.", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-
+        // Validação da cidade
         if (cidade.isEmpty()) {
+            Log.e("CadastroIdoso", "Erro na validação da cidade");
             binding.edCidadeCadastroIdoso.setError("Cidade não pode estar vazia.");
-            Toast.makeText(this, "Cidade não pode estar vazia.", Toast.LENGTH_SHORT).show();
             return false;
         }
 
+        // Validação do estado
         if (estado.length() != 2 || !estado.matches("[A-Z]{2}")) {
+            Log.e("CadastroIdoso", "Erro na validação do estado");
             binding.edEstadoCadastroCuidador.setError("Estado deve ser uma sigla válida (ex: PR)!");
-            Toast.makeText(this, "Estado deve ser uma sigla válida (ex: PR)!", Toast.LENGTH_SHORT).show();
             return false;
         }
 
+        // Validação da data de nascimento
+        if (!validarDataNascimento(dataNascimento)) {
+            Log.e("CadastroIdoso", "Erro na validação da data de nascimento");
+            return false;
+        }
 
+        Log.d("CadastroIdoso", "Validação dos campos concluída com sucesso");
         return true;
-
     }
-
     private boolean validarDataNascimento(String dataNascimento) {
         SimpleDateFormat sdf;
         if (dataNascimento.contains("/")) {
@@ -257,6 +270,20 @@ public class TelaCadastroIdoso extends AppCompatActivity {
 
         datePickerDialog.show();
 
+    }
+
+
+    private void showDialog(String title, String message) {
+        new AlertDialog.Builder(TelaCadastroIdoso.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .show();
     }
 
 
