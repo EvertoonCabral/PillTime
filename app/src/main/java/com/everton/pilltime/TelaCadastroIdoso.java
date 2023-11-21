@@ -297,6 +297,7 @@ public class TelaCadastroIdoso extends AppCompatActivity {
         binding.edCPFCadastroIdoso.setText("");
         binding.edTelefoneCadastroIdoso.setText("");
         binding.edDataNascCadastroIdoso.setText("");
+        binding.edObsIdoso.setText("");
     }
 
     private void limparDadosEndereco() {
