@@ -11,12 +11,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.everton.pilltime.api.ApiIdoso;
-import com.everton.pilltime.api.ApiPessoa; // Certifique-se de que você tem uma API assim
+import com.everton.pilltime.api.ApiPessoa;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityTelaPerfilIdosoBinding;
-import com.everton.pilltime.dto.CuidadorDTO;
 import com.everton.pilltime.dto.IdosoDTO;
-import com.everton.pilltime.dto.PessoaDTO; // Supondo que esta é a classe base
+import com.everton.pilltime.dto.PessoaDTO;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -28,6 +27,7 @@ import retrofit2.Response;
 public class telaPerfilIdoso extends AppCompatActivity {
 
     private ActivityTelaPerfilIdosoBinding binding;
+    private ApiPessoa apiPessoa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,24 +40,30 @@ public class telaPerfilIdoso extends AppCompatActivity {
         String token = sharedPreferences.getString("token", "");
         Long id = sharedPreferences.getLong("id", 0);
 
+        apiPessoa = Retrofit.GET_PESSOA();
         ApiIdoso apiIdoso = Retrofit.GET_IDOSO_BY_ID();
-        Call<IdosoDTO> call = apiIdoso.GET_IDOSO_BY_ID(token, id);
+        Call<IdosoDTO> callIdoso = apiIdoso.GET_IDOSO_BY_ID(token, id);
 
-        call.enqueue(new Callback<IdosoDTO>() {
+        callIdoso.enqueue(new Callback<IdosoDTO>() {
             @Override
             public void onResponse(Call<IdosoDTO> call, Response<IdosoDTO> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     IdosoDTO idosoDTO = response.body();
-                    updateUIWithIdosoData(idosoDTO, token);
+                    updateUIWithIdosoData(idosoDTO);
+                    String cpfCuidador = idosoDTO.getCpfCuidador();
+                    if (cpfCuidador != null && !cpfCuidador.isEmpty()) {
+                        fetchCuidadorData(cpfCuidador, token);
+                    } else {
+                        Log.d("telaPerfilIdoso", "Idoso não possui cuidador associado");
+                    }
                 } else {
-                    Toast.makeText(telaPerfilIdoso.this, "Erro ao buscar dados do idoso", Toast.LENGTH_SHORT).show();
+                    Log.e("telaPerfilIdoso", "Erro ao buscar dados do idoso");
                 }
             }
 
             @Override
             public void onFailure(Call<IdosoDTO> call, Throwable t) {
-                Log.e("ERROR", "Falha na chamada da API: " + t.getMessage());
-                Toast.makeText(telaPerfilIdoso.this, "Falha na comunicação com a API", Toast.LENGTH_SHORT).show();
+                Log.e("telaPerfilIdoso", "Falha na chamada da API: " + t.getMessage());
             }
         });
 
@@ -68,50 +74,37 @@ public class telaPerfilIdoso extends AppCompatActivity {
         });
     }
 
-    private void updateUIWithIdosoData(IdosoDTO idosoDTO, String token) {
-        // Atualizando o nome do idoso
-        binding.textViewNome.setText(idosoDTO.getNome() != null ? idosoDTO.getNome() : "Nome não disponível");
-
-        // Atualizando o CPF do idoso
-        binding.editTextCPF.setText(idosoDTO.getCpf() != null ? idosoDTO.getCpf() : "");
-
-        // Formatando e definindo a data de nascimento
+    private void updateUIWithIdosoData(IdosoDTO idosoDTO) {
+        binding.textViewNome.setText(idosoDTO.getNome());
+        binding.editTextCPF.setText(idosoDTO.getCpf());
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String dataNascimentoFormatada = idosoDTO.getDataNascimento() != null ? dateFormat.format(idosoDTO.getDataNascimento()) : "";
         binding.editTextIdade.setText(dataNascimentoFormatada);
-
-        // Buscando informações do cuidador associado
-        fetchPessoaData(idosoDTO.getCpfCuidador(), token);
     }
 
-    private void fetchPessoaData(String cpfCuidador, String token) {
-        ApiPessoa apiPessoa = Retrofit.GET_PESSOA();
-        Call<PessoaDTO> call = apiPessoa.getPessoaByCPF(token, cpfCuidador);
+    private void fetchCuidadorData(String cpfCuidador, String token) {
+        Call<PessoaDTO> callCuidador = apiPessoa.getPessoaByCPF(token, cpfCuidador);
 
-        call.enqueue(new Callback<PessoaDTO>() {
+        callCuidador.enqueue(new Callback<PessoaDTO>() {
             @Override
             public void onResponse(Call<PessoaDTO> call, Response<PessoaDTO> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     PessoaDTO pessoaDTO = response.body();
                     updateUICuidador(pessoaDTO);
                 } else {
-                    Log.e("ERROR", "Erro ao buscar dados do cuidador");
+                    Log.e("telaPerfilIdoso", "Erro ao buscar dados do cuidador");
                 }
             }
 
             @Override
             public void onFailure(Call<PessoaDTO> call, Throwable t) {
-                Log.e("ERROR", "Falha na chamada da API: " + t.getMessage());
+                Log.e("telaPerfilIdoso", "Falha ao buscar dados do cuidador: " + t.getMessage());
             }
         });
     }
 
     private void updateUICuidador(PessoaDTO pessoaDTO) {
-        // Aqui você precisa decidir como tratar PessoaDTO como CuidadorDTO
-        // Esta é uma abordagem genérica, supondo que CuidadorDTO estende PessoaDTO
-        binding.editTextNomeCuidador.setText(pessoaDTO.getNome() != null ? pessoaDTO.getNome() : "");
-        binding.edTelefoneCuidador.setText(pessoaDTO.getTelefone() != null ? pessoaDTO.getTelefone() : "");
-        // Atualizar outros campos conforme necessário
+        binding.editTextNomeCuidador.setText(pessoaDTO.getNome());
+        binding.edTelefoneCuidador.setText(pessoaDTO.getTelefone());
     }
-
 }
