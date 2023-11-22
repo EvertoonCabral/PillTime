@@ -44,7 +44,6 @@ public class TelaPerfilCuidador extends AppCompatActivity {
 
         ApiPessoa apiPessoa = Retrofit.GET_PESSOA();
 
-        // Removido a necessidade de token na chamada da API
         Call<PessoaDTOGet> call = apiPessoa.GET_PESSOA(token, id);
 
         call.enqueue(new Callback<PessoaDTOGet>() {

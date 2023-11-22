@@ -52,6 +52,8 @@ public class Retrofit {
 
     //PESSOA
     public static ApiPessoa GET_PESSOA(){ return retrofit.create(ApiPessoa.class);}
+    public static ApiPessoa GET_PESSOA_BY_CPF(){ return retrofit.create(ApiPessoa.class);}
+
 
 
 
@@ -60,8 +62,9 @@ public class Retrofit {
     public static ApiCuidador POST_REMEDIO_TO_CUIDADOR(){return  retrofit.create(ApiCuidador.class);}
     public static ApiCuidador GET_ALL_REMEDIO_CUIDADOR (){return  retrofit.create(ApiCuidador.class);}
 
-    public static ApiCuidador GET_ALL_IDOSOS_CUIDADOR (){return  retrofit.create(ApiCuidador.class);}
-
+    //IDOSO
+    public static ApiIdoso GET_ALL_IDOSOS (){return  retrofit.create(ApiIdoso.class);}
+    public static ApiIdoso GET_IDOSO_BY_ID (){return  retrofit.create(ApiIdoso.class);}
 
 
 }

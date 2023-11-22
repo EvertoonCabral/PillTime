@@ -57,9 +57,8 @@
                 android:id="@+id/editTextIdade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Idade"
+                android:hint="Data de Nascimento"
                 android:inputType="number"
-                android:maxLength="3"
                 style="@style/Edit_Text"
                 />
 
@@ -89,7 +88,7 @@
 
 
             <EditText
-                android:id="@+id/telefoneCuidador"
+                android:id="@+id/edTelefoneCuidador"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Telefone cuidador"
@@ -99,6 +98,7 @@
 
 
             <Button
+                android:id="@+id/btnVoltarTelaPrincipal"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

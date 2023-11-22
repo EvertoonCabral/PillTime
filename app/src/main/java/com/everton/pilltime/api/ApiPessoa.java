@@ -35,6 +35,10 @@ public interface ApiPessoa {
 
     @GET("pessoa/filter")
     Call<List<Pessoa>> buscarPessoaPorNome(@Header("Authorization") String token, @Query("nome") String nome);
+
+    @GET("pessoa/cpf/{cpf}")
+    Call<PessoaDTO> getPessoaByCPF(@Header("Authorization") String token, @Path("cpf") String cpf);
+
 }
 
 

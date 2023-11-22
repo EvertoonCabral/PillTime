@@ -34,12 +34,12 @@ public interface ApiIdoso {
     Call<Void> deletarIdoso(@Header("Authorization") String token, @Path("id") Long id);
 
     // Obter todos os idosos
-    @GET("idoso")
-    Call<List<Idoso>> obterTodosIdosos(@Header("Authorization") String token);
+        @GET("idoso")
+        Call<List<IdosoDTO>> GET_ALL_IDOSOS(@Header("Authorization") String token);
 
-    // Obter um idoso pelo ID
-    @GET("idoso/{id}")
-    Call<Idoso> obterIdosoPorId(@Header("Authorization") String token, @Path("id") Long id);
+        // Obter um idoso pelo ID
+        @GET("idoso/{id}")
+        Call<IdosoDTO> GET_IDOSO_BY_ID(@Header("Authorization") String token, @Path("id") Long id);
 
     // Obter idosos pelo nome
     @GET("idoso/filter")
