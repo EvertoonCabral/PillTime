@@ -94,8 +94,7 @@ public class RemedioDTO {
     @Override
     public String toString() {
         return
-                " Nome= " + nome  +
-                " Dosagem= '" + dosagem +
-                " FormaFarmaceutico ='" + formaFarmaceutico;
+                nome+" - "+marcaRemedio+" - "+observacoes;
+
     }
 }

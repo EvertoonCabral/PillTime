@@ -139,4 +139,10 @@ public class IdosoDTO {
     public void setCpfCuidador(String cpfCuidador) {
         this.cpfCuidador = cpfCuidador;
     }
+
+    @Override
+    public String toString() {
+        return nome +" - "+ cpf;
+
+    }
 }
