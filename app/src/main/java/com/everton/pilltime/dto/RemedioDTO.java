@@ -89,4 +89,13 @@ public class RemedioDTO {
     public void setCuidadorID(Long cuidadorID) {
         CuidadorID = cuidadorID;
     }
+
+
+    @Override
+    public String toString() {
+        return
+                " Nome= " + nome  +
+                " Dosagem= '" + dosagem +
+                " FormaFarmaceutico ='" + formaFarmaceutico;
+    }
 }

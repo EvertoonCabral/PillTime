@@ -18,6 +18,18 @@
         android:theme="@style/Theme.PillTime"
         tools:targetApi="31">
         <activity
+            android:name=".alarme.AlarmManagerService"
+            android:exported="false" />
+        <activity
+            android:name=".alarme.AlarmReceiver"
+            android:exported="false" />
+        <activity
+            android:name=".alarme.AlarmDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".alarme.AlarmeActivity"
+            android:exported="false" />
+        <activity
             android:name=".TelaPrincipalIdoso"
             android:exported="false" />
         <activity

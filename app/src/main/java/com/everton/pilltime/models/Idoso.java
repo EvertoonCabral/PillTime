@@ -1,8 +1,9 @@
 package com.everton.pilltime.models;
 
 
+import com.everton.pilltime.alarme.Alarme;
+
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 

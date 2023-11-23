@@ -7,15 +7,15 @@ import android.content.Intent;
 
 import com.everton.pilltime.adapter.AlarmeAdapter;
 
+import com.everton.pilltime.alarme.AlarmeActivity;
 import com.everton.pilltime.databinding.ActivityTelaPrincipalBinding;
-import com.everton.pilltime.models.Alarme;
+import com.everton.pilltime.alarme.Alarme;
 import com.everton.pilltime.models.Idoso;
 import com.everton.pilltime.models.Remedio;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -50,10 +50,9 @@ public class TelaPrincipal extends AppCompatActivity {
         binding.fabAddAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           //     Intent intent = new Intent(TelaPrincipal.this, TelaCadastroAlarme.class);
-             //   startActivity(intent);
+             Intent intent = new Intent(TelaPrincipal.this, AlarmeActivity.class);
+               startActivity(intent);
 
-                Toast.makeText(TelaPrincipal.this, "Feature em Desenvolvimento!", Toast.LENGTH_SHORT).show();
 
 
             }

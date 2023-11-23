@@ -1,7 +1,7 @@
 package com.everton.pilltime.api;
 
 import com.everton.pilltime.dto.AlarmeDTO;
-import com.everton.pilltime.models.Alarme;
+import com.everton.pilltime.alarme.Alarme;
 
 import java.util.List;
 

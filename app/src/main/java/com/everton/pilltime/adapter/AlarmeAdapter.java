@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.everton.pilltime.R;
-import com.everton.pilltime.models.Alarme;
+import com.everton.pilltime.alarme.Alarme;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;

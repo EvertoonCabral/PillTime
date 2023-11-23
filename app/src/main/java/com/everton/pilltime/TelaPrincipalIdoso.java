@@ -11,14 +11,10 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.everton.pilltime.adapter.AlarmeAdapter;
-import com.everton.pilltime.databinding.ActivityTelaPrincipalBinding;
 import com.everton.pilltime.databinding.ActivityTelaPrincipalIdosoBinding;
-import com.everton.pilltime.models.Alarme;
+import com.everton.pilltime.alarme.Alarme;
 import com.everton.pilltime.models.Idoso;
 import com.everton.pilltime.models.Remedio;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

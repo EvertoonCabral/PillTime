@@ -1,4 +1,7 @@
-package com.everton.pilltime.models;
+package com.everton.pilltime.alarme;
+
+import com.everton.pilltime.models.Idoso;
+import com.everton.pilltime.models.Remedio;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -10,7 +13,7 @@ public class Alarme {
     private Long id;
     private String titulo;
     private String Descricao;
-    private Date dtCadastrado;
+    private Date dtCadastrado; // hora do alarme
     private Idoso idoso;
     private List<Remedio> RemediosIdosos;
     private LocalDateTime alarme;
