@@ -2,36 +2,48 @@ package com.everton.pilltime.alarme;
 
 import com.everton.pilltime.models.Idoso;
 import com.everton.pilltime.models.Remedio;
-
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 public class Alarme {
 
-
     private Long id;
     private String titulo;
-    private String Descricao;
-    private Date dtCadastrado; // hora do alarme
+    private String descricao;
+    private LocalDateTime horarioAlarme;
     private Idoso idoso;
-    private List<Remedio> RemediosIdosos;
-    private LocalDateTime alarme;
+    private Remedio remedio;
     private boolean statusAlarme;
 
 
-    public Alarme(Long id, String titulo, String descricao, Date dtCadastrado, Idoso idoso, List<Remedio> remediosIdosos, LocalDateTime alarme, boolean statusAlarme) {
+    public Alarme(Long id, String titulo, String descricao, LocalDateTime horarioAlarme, Idoso idoso, Remedio remedio, boolean statusAlarme) {
         this.id = id;
         this.titulo = titulo;
-        Descricao = descricao;
-        this.dtCadastrado = dtCadastrado;
+        this.descricao = descricao;
+        this.horarioAlarme = horarioAlarme;
         this.idoso = idoso;
-        RemediosIdosos = remediosIdosos;
-        this.alarme = alarme;
+        this.remedio = remedio;
         this.statusAlarme = statusAlarme;
     }
 
     public Alarme() {
+    }
+
+
+
+    public LocalDateTime getHorarioAlarme() {
+        return horarioAlarme;
+    }
+
+    public void setHorarioAlarme(LocalDateTime horarioAlarme) {
+        this.horarioAlarme = horarioAlarme;
+    }
+
+    public Remedio getRemedio() {
+        return remedio;
+    }
+
+    public void setRemedio(Remedio remedio) {
+        this.remedio = remedio;
     }
 
     public Long getId() {
@@ -51,19 +63,11 @@ public class Alarme {
     }
 
     public String getDescricao() {
-        return Descricao;
+        return descricao;
     }
 
     public void setDescricao(String descricao) {
-        Descricao = descricao;
-    }
-
-    public Date getDtCadastrado() {
-        return dtCadastrado;
-    }
-
-    public void setDtCadastrado(Date dtCadastrado) {
-        this.dtCadastrado = dtCadastrado;
+        this.descricao = descricao;
     }
 
     public Idoso getIdoso() {
@@ -74,22 +78,6 @@ public class Alarme {
         this.idoso = idoso;
     }
 
-    public List<Remedio> getRemediosIdosos() {
-        return RemediosIdosos;
-    }
-
-    public void setRemediosIdosos(List<Remedio> remediosIdosos) {
-        RemediosIdosos = remediosIdosos;
-    }
-
-    public LocalDateTime getAlarme() {
-        return alarme;
-    }
-
-    public void setAlarme(LocalDateTime alarme) {
-        this.alarme = alarme;
-    }
-
     public boolean isStatusAlarme() {
         return statusAlarme;
     }
@@ -98,4 +86,3 @@ public class Alarme {
         this.statusAlarme = statusAlarme;
     }
 }
-

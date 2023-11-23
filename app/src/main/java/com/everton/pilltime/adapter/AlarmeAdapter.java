@@ -34,12 +34,12 @@ public class AlarmeAdapter extends RecyclerView.Adapter<AlarmeAdapter.AlarmeView
     public void onBindViewHolder(@Nonnull AlarmeViewHolder holder, int position) {
         Alarme alarme = listaAlarmes.get(position);
         holder.tvNomeIdoso.setText(alarme.getIdoso().getNome());
-        holder.tvNomeRemedio.setText(alarme.getRemediosIdosos().get(0).getNome()); // Supondo que você pegue o primeiro remédio da lista
+      //  holder.tvNomeRemedio.setText(alarme.getRemediosIdosos().get(0).getNome()); // Supondo que você pegue o primeiro remédio da lista
 
         // Formatação da data e hora usando LocalDateTime
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
-        String formattedDate = alarme.getAlarme().format(formatter);
-        holder.tvHora.setText(formattedDate);
+       // String formattedDate = alarme.getAlarme().format(formatter);
+        // holder.tvHora.setText(formattedDate);
     }
 
     @Override

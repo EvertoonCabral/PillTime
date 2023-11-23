@@ -16,9 +16,13 @@ import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityAlarmeBinding;
 import com.everton.pilltime.dto.IdosoDTO;
 import com.everton.pilltime.dto.RemedioDTO;
+import com.everton.pilltime.models.Idoso;
+import com.everton.pilltime.models.Remedio;
+import com.everton.pilltime.utils.ModelConvertUtil;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 
@@ -43,7 +47,7 @@ public class AlarmeActivity extends AppCompatActivity {
 
         calendar = Calendar.getInstance();
 
-        binding.buttonTimePicker.setOnClickListener(view -> {
+        binding.btnSelecionarHora.setOnClickListener(view -> {
             Log.d(TAG, "Botão 'Selecionar Hora' pressionado.");
             showTimePicker();
         });
@@ -56,7 +60,17 @@ public class AlarmeActivity extends AppCompatActivity {
         loadRemedios();
         loadIdosos();
 
+        binding.btnSalvarAlarme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Alarme novoAlarme = coletarDadosFormulario();
+                    //salvarAlarme(novoAlarme);
+            }
+        });
     }
+
+
+
 
     private void loadRemedios() {
         Log.d(TAG, "Carregando remédios...");
@@ -170,6 +184,45 @@ public class AlarmeActivity extends AppCompatActivity {
         });
     }
 
+    private Alarme coletarDadosFormulario() {
+        Log.d(TAG, "Coletando dados do formulário.");
+
+        String titulo = binding.editTextTitle.getText().toString();
+        String descricao = binding.editTextDescription.getText().toString();
+        Log.d(TAG, "Título: " + titulo + ", Descrição: " + descricao);
+
+        RemedioDTO remedioSelecionadoDTO = (RemedioDTO) binding.spinnerRemedios.getSelectedItem();
+        IdosoDTO idosoSelecionadoDTO = (IdosoDTO) binding.spinnerIdoso.getSelectedItem();
+        Log.d(TAG, "Remédio Selecionado DTO: " + remedioSelecionadoDTO.toString());
+        Log.d(TAG, "Idoso Selecionado DTO: " + idosoSelecionadoDTO.toString());
+
+        LocalDateTime horarioAlarme = LocalDateTime.of(
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH) + 1,
+                calendar.get(Calendar.DAY_OF_MONTH),
+                picker.getHour(),
+                picker.getMinute());
+        Log.d(TAG, "Horário do Alarme: " + horarioAlarme.toString());
+
+        Alarme novoAlarme = new Alarme();
+        novoAlarme.setTitulo(titulo);
+        novoAlarme.setDescricao(descricao);
+        novoAlarme.setHorarioAlarme(horarioAlarme);
+
+        Remedio remedio = ModelConvertUtil.converterParaModeloRemedio(remedioSelecionadoDTO);
+        Idoso idoso = ModelConvertUtil.converterParaModeloIdoso(idosoSelecionadoDTO);
+        Log.d(TAG, "Remédio Convertido: " + (remedio != null ? remedio.getNome() : "null"));
+        Log.d(TAG, "Idoso Convertido: " + (idoso != null ? idoso.getNome() : "null"));
+
+        novoAlarme.setRemedio(remedio);
+        novoAlarme.setIdoso(idoso);
+
+        return novoAlarme;
+    }
+
+
 
 
 }
+
+

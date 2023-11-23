@@ -152,7 +152,7 @@ public class TelaPrincipal extends AppCompatActivity {
             Alarme alarme = new Alarme();
             alarme.setTitulo("Alarme " + i);
             alarme.setDescricao("Descrição do alarme " + i);
-            alarme.setDtCadastrado(new Date());
+       //     alarme.setDtCadastrado(new Date());
 
             Idoso idoso = new Idoso();
             idoso.setNome("Idoso " + i);
@@ -162,9 +162,9 @@ public class TelaPrincipal extends AppCompatActivity {
             remedio.setNome("Remédio " + i);
             List<Remedio> remedios = new ArrayList<>();
             remedios.add(remedio);
-            alarme.setRemediosIdosos(remedios);
+         //   alarme.setRemediosIdosos(remedios);
 
-            alarme.setAlarme(LocalDateTime.now().plusHours(i)); // Adicionando horas para diferenciar
+           // alarme.setAlarme(LocalDateTime.now().plusHours(i)); // Adicionando horas para diferenciar
 
             alarmes.add(alarme);
         }

@@ -55,4 +55,12 @@ public class Idoso extends Pessoa{
     public void setListaAlarme(List<Alarme> listaAlarme) {
         this.listaAlarme = listaAlarme;
     }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
 }
