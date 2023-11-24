@@ -59,7 +59,9 @@ public interface ApiCuidador {
 
     // Adicionar um alarme à lista de alarmes de um idoso
     @POST("cuidador/{cuidadorId}/idoso/{idosoId}/alarme")
-    Call<String> addAlarmeToIdoso(@Path("cuidadorId") Long cuidadorId, @Path("idosoId") Long idosoId, @Body AlarmeDTOInsert alarmeDtoInsert);
+    Call<String> POST_ALARME_TO_IDOSO_LIST(@Header("Authorization")String token, @Path("cuidadorId") Long cuidadorId, @Path("idosoId") Long idosoId, @Body AlarmeDTOInsert alarmeDtoInsert);
+
+
 
 
 }

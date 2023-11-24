@@ -1,5 +1,6 @@
 package com.everton.pilltime.alarme;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,8 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.everton.pilltime.api.ApiCuidador;
+import com.everton.pilltime.api.ApiIdoso;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityAlarmeBinding;
+import com.everton.pilltime.dto.AlarmeDTOInsert;
 import com.everton.pilltime.dto.IdosoDTO;
 import com.everton.pilltime.dto.RemedioDTO;
 import com.everton.pilltime.models.Idoso;
@@ -39,6 +42,8 @@ public class AlarmeActivity extends AppCompatActivity {
     private String token;
     private Long idCuidador;
 
+    private String  idosoCpfSelecionado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,25 +51,87 @@ public class AlarmeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         calendar = Calendar.getInstance();
+        Log.d(TAG, "Activity criada. Inicializando componentes.");
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyToken", Context.MODE_PRIVATE);
+        token = sharedPreferences.getString("token", "");
+        idCuidador = sharedPreferences.getLong("id", 0);
 
         binding.btnSelecionarHora.setOnClickListener(view -> {
             Log.d(TAG, "Botão 'Selecionar Hora' pressionado.");
             showTimePicker();
         });
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MyToken", Context.MODE_PRIVATE);
-        token = sharedPreferences.getString("token", "");
-        idCuidador = sharedPreferences.getLong("id", 0);
-        Log.d(TAG, "SharedPreferences: Token = " + token + ", ID do Cuidador = " + idCuidador);
-
         loadRemedios();
         loadIdosos();
 
-        binding.btnSalvarAlarme.setOnClickListener(new View.OnClickListener() {
+        binding.btnSalvarAlarme.setOnClickListener(v -> {
+            Alarme novoAlarme = coletarDadosFormulario();
+            getIdosoCpf(novoAlarme.getIdoso().getCpf(), novoAlarme);
+        });
+    }
+
+
+    private void salvarAlarme(Alarme alarme) {
+        Log.d(TAG, "Iniciando processo para salvar o alarme.");
+
+        ApiCuidador apiCuidador = Retrofit.POST_REMEDIO_TO_CUIDADOR();
+        AlarmeDTOInsert alarmeDTO = new AlarmeDTOInsert(alarme.getTitulo(), alarme.getDescricao(), alarme.getHorarioAlarme());
+
+        Call<String> call = apiCuidador.POST_ALARME_TO_IDOSO_LIST("Bearer " + token, idCuidador, alarme.getIdoso().getId(), alarmeDTO);
+
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onClick(View v) {
-                Alarme novoAlarme = coletarDadosFormulario();
-                    //salvarAlarme(novoAlarme);
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "Alarme salvo com sucesso");
+                    exibirMensagemSucesso();
+                } else {
+                    Log.e(TAG, "Erro ao salvar o alarme: " + response.code());
+                    // Tratar erro
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.e(TAG, "Falha ao tentar salvar o alarme: " + t.getMessage());
+                // Tratar falha
+            }
+        });
+    }
+
+
+    private void getIdosoCpf(String cpf, Alarme alarme) {
+        ApiIdoso apiIdoso = Retrofit.GET_IDOSO_BY_CPF();
+        SharedPreferences sharedPreferences = getSharedPreferences("MyToken", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", "");
+
+        Log.d(TAG, "Enviando requisição para buscar idoso com CPF: " + cpf);
+
+        Call<Idoso> call = apiIdoso.GET_IDOSO_BY_CPF("Bearer " + token, cpf);
+
+        call.enqueue(new Callback<Idoso>() {
+            @Override
+            public void onResponse(Call<Idoso> call, Response<Idoso> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Idoso idoso = response.body();
+                    Long idosoId = idoso.getId();
+
+                    Log.d(TAG, "Idoso encontrado. ID: " + idosoId);
+
+                    // Atualize o ID do idoso no objeto Alarme
+                    alarme.getIdoso().setId(idosoId);
+
+                    // Agora, chame o método salvarAlarme
+                    salvarAlarme(alarme);
+                } else {
+                    Log.e(TAG, "Erro na busca do idoso. Código de resposta: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Idoso> call, Throwable t) {
+                Log.e(TAG, "Falha na busca do idoso. Erro: " + t.getMessage());
             }
         });
     }
@@ -72,8 +139,9 @@ public class AlarmeActivity extends AppCompatActivity {
 
 
 
+
     private void loadRemedios() {
-        Log.d(TAG, "Carregando remédios...");
+        Log.d(TAG, "Carregando lista de remédios...");
         ApiCuidador apiCuidador = Retrofit.GET_ALL_REMEDIO_CUIDADOR();
         Call<List<RemedioDTO>> call = apiCuidador.GET_ALL_REMEDIO_CUIDADOR("Bearer " + token, idCuidador);
 
@@ -175,13 +243,12 @@ public class AlarmeActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 IdosoDTO selectedIdoso = (IdosoDTO) parent.getItemAtPosition(position);
-                Log.d(TAG, "Idoso selecionado: " + selectedIdoso.getNome());
-            }
-
+                idosoCpfSelecionado = selectedIdoso.getCpf(); }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
     }
 
     private Alarme coletarDadosFormulario() {
@@ -196,13 +263,20 @@ public class AlarmeActivity extends AppCompatActivity {
         Log.d(TAG, "Remédio Selecionado DTO: " + remedioSelecionadoDTO.toString());
         Log.d(TAG, "Idoso Selecionado DTO: " + idosoSelecionadoDTO.toString());
 
-        LocalDateTime horarioAlarme = LocalDateTime.of(
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH) + 1,
-                calendar.get(Calendar.DAY_OF_MONTH),
-                picker.getHour(),
-                picker.getMinute());
-        Log.d(TAG, "Horário do Alarme: " + horarioAlarme.toString());
+        LocalDateTime horarioAlarme = null;
+        if (picker != null) {
+            horarioAlarme = LocalDateTime.of(
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH) + 1,
+                    calendar.get(Calendar.DAY_OF_MONTH),
+                    picker.getHour(),
+                    picker.getMinute());
+            Log.d(TAG, "Horário do Alarme: " + horarioAlarme.toString());
+        } else {
+            // Trate o caso em que o picker é null (por exemplo, exibindo uma mensagem ao usuário)
+            Log.e(TAG, "Picker é null. Horário do alarme não definido.");
+            return null; // Retorne null ou lance uma exceção, dependendo da sua lógica de negócios
+        }
 
         Alarme novoAlarme = new Alarme();
         novoAlarme.setTitulo(titulo);
@@ -218,6 +292,16 @@ public class AlarmeActivity extends AppCompatActivity {
         novoAlarme.setIdoso(idoso);
 
         return novoAlarme;
+    }
+
+
+    private void exibirMensagemSucesso() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(AlarmeActivity.this);
+        builder.setTitle("Sucesso");
+        builder.setMessage("Alarme cadastrado com sucesso!");
+        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 

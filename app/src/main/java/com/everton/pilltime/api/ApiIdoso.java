@@ -45,6 +45,9 @@ public interface ApiIdoso {
     @GET("idoso/filter")
     Call<List<Idoso>> obterIdososPorNome(@Header("Authorization") String token, @Query("nome") String nome);
 
+    @GET("idosos/cpf/{cpf}")
+    Call<Idoso> GET_IDOSO_BY_CPF(@Header("Authorization") String token, @Path("cpf") String cpf);
+
     // Obter alarmes de um idoso específico
     @GET("idoso/{id}/alarmes")
     Call<List<AlarmeDTOInsert>> obterAlarmesDeIdoso(@Header("Authorization") String token, @Path("id") Long id);

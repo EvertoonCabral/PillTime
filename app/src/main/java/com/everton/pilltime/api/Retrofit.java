@@ -9,7 +9,7 @@ public class Retrofit {
 
     public static final String BASE_URL_API = "http://10.0.2.2:8080/";
 
-    // Crie o Gson que será usado pelo Retrofit para a serialização e deserialização de datas
+
     private static Gson gson = new GsonBuilder()
             .setDateFormat("dd/MM/yyyy")
             .create();
@@ -62,9 +62,14 @@ public class Retrofit {
     public static ApiCuidador POST_REMEDIO_TO_CUIDADOR(){return  retrofit.create(ApiCuidador.class);}
     public static ApiCuidador GET_ALL_REMEDIO_CUIDADOR (){return  retrofit.create(ApiCuidador.class);}
 
+    public static ApiCuidador POST_ALARME_TO_IDOSO_LIST (){return  retrofit.create(ApiCuidador.class);}
+
+
     //IDOSO
     public static ApiIdoso GET_ALL_IDOSOS (){return  retrofit.create(ApiIdoso.class);}
     public static ApiIdoso GET_IDOSO_BY_ID (){return  retrofit.create(ApiIdoso.class);}
+
+    public static ApiIdoso GET_IDOSO_BY_CPF() {return retrofit.create(ApiIdoso.class);}
 
 
 }
