@@ -93,12 +93,7 @@ public class TelaCadastroRemedio extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         if (response.isSuccessful()){
-                            // Criação do AlertDialog
-                            new AlertDialog.Builder(TelaCadastroRemedio.this)
-                                    .setTitle("Cadastro de Remédio")
-                                    .setMessage("Remédio cadastrado com sucesso!")
-                                    .setPositiveButton(android.R.string.ok, null)
-                                    .show();
+
                         } else {
                             int statusCode = response.code();
                             Log.e("Cadastro Remedio", "Erro ao registrar, código de status HTTP: " + statusCode);
@@ -116,7 +111,13 @@ public class TelaCadastroRemedio extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
-                        Log.e("Cadastro Remedio", "Falha ao registrar: " + t.getMessage());
+                        // Criação do AlertDialog
+                        new AlertDialog.Builder(TelaCadastroRemedio.this)
+                                .setTitle("Cadastro de Remédio")
+                                .setMessage("Remédio cadastrado com sucesso!")
+                                .setPositiveButton(android.R.string.ok, null)
+                                .show();
+
                     }
                 });
 
@@ -183,32 +184,6 @@ public class TelaCadastroRemedio extends AppCompatActivity {
     }
 
 
-    private void showDatePickerDialog() {
-        Calendar newCalendar = Calendar.getInstance();
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                TelaCadastroRemedio.this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
-                        Calendar selectedCalendar = Calendar.getInstance();
-                        selectedCalendar.set(year, monthOfYear, dayOfMonth);
-                        String selectedDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(selectedCalendar.getTime());
-                        binding.edDataValidadeRemedio.setText(selectedDate);
-
-                    }
-                },
-
-                newCalendar.get(Calendar.YEAR),
-                newCalendar.get(Calendar.MONTH),
-                newCalendar.get(Calendar.DAY_OF_MONTH)
-        );
-
-
-
-        datePickerDialog.show();
-
-    }
 
 
 }

@@ -8,11 +8,11 @@ public class AlarmeDTO {
     private  String titulo;
     private String descricao;
     private IdosoDTO idoso;
-    private List<RemedioDTO> RemediosIdosos;
+    private RemedioDTO RemediosIdosos;
     private LocalDateTime alarme;
 
 
-    public AlarmeDTO(String titulo, String descricao, IdosoDTO idoso, List<RemedioDTO> remediosIdosos, LocalDateTime alarme) {
+    public AlarmeDTO(String titulo, String descricao, IdosoDTO idoso, RemedioDTO remediosIdosos, LocalDateTime alarme) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.idoso = idoso;
@@ -47,11 +47,11 @@ public class AlarmeDTO {
         this.idoso = idoso;
     }
 
-    public List<RemedioDTO> getRemediosIdosos() {
+    public RemedioDTO getRemediosIdosos() {
         return RemediosIdosos;
     }
 
-    public void setRemediosIdosos(List<RemedioDTO> remediosIdosos) {
+    public void setRemediosIdosos(RemedioDTO remediosIdosos) {
         RemediosIdosos = remediosIdosos;
     }
 

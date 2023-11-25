@@ -17,6 +17,7 @@ import com.everton.pilltime.api.ApiIdoso;
 import com.everton.pilltime.api.ApiPessoa;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityAlarmeBinding;
+import com.everton.pilltime.dto.AlarmeDTO;
 import com.everton.pilltime.dto.AlarmeDTOInsert;
 import com.everton.pilltime.dto.IdosoDTO;
 import com.everton.pilltime.dto.PessoaDTO;
@@ -27,8 +28,11 @@ import com.everton.pilltime.models.Remedio;
 import com.everton.pilltime.utils.ModelConvertUtil;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 
@@ -69,39 +73,38 @@ public class AlarmeActivity extends AppCompatActivity {
         loadIdosos();
 
         binding.btnSalvarAlarme.setOnClickListener(v -> {
-            Alarme novoAlarme = coletarDadosFormulario();
+            AlarmeDTOInsert novoAlarme = coletarDadosFormulario();
             salvarAlarme(novoAlarme);
         });
     }
 
 
 
-    private void salvarAlarme(Alarme alarme) {
+    private void salvarAlarme(AlarmeDTOInsert alarme) {
         Log.d(TAG, "Iniciando processo para salvar o alarme.");
 
-        ApiCuidador apiCuidador = Retrofit.POST_REMEDIO_TO_CUIDADOR();
-        AlarmeDTOInsert alarmeDTO = new AlarmeDTOInsert(alarme.getTitulo(), alarme.getDescricao(), alarme.getHorarioAlarme());
+        ApiCuidador apiCuidador = Retrofit.POST_ALARME_TO_IDOSO_LIST();
+        String cpfIdoso = idosoCpfSelecionado;
 
-        String cpfIdoso = idosoCpfSelecionado; // CPF do idoso selecionado
-        Log.d(TAG, "CPF do idoso selecionado: " + cpfIdoso);
+        Gson gson = new Gson();
+        String json = gson.toJson(alarme);
+        Log.d(TAG, "JSON enviado: " + json);
 
-        Call<String> call = apiCuidador.POST_ALARME_TO_IDOSO_LIST("Bearer " + token, idCuidador, cpfIdoso, alarmeDTO);
-        Log.d(TAG, "Chamada API iniciada");
+
+        Call<String> call = apiCuidador.POST_ALARME_TO_IDOSO_LIST("Bearer " + token, idCuidador, cpfIdoso, alarme);
 
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
-                    Log.d(TAG, "Resposta da API bem-sucedida. Código: " + response.code());
-                    Log.d(TAG, "Resposta da API: " + response.body());
-
-
-
+                    Log.d(TAG, "Alarme salvo com sucesso. Resposta: " + response.body());
                 } else {
                     Log.e(TAG, "Resposta da API com erro. Código: " + response.code());
-                    Log.e(TAG, "Mensagem de erro: " + response.message());
-                    Log.d(TAG, "Resposta da API: " + response.errorBody().toString());
-                    Log.d(TAG, "Resposta da API: " + response.message().toString());
+                    try {
+                        Log.e(TAG, "Erro no corpo da resposta: " + response.errorBody().string());
+                    } catch (IOException e) {
+                        Log.e(TAG, "Erro ao ler o corpo da resposta de erro", e);
+                    }
                 }
             }
 
@@ -111,13 +114,6 @@ public class AlarmeActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-
-
-
 
 
 
@@ -232,47 +228,41 @@ public class AlarmeActivity extends AppCompatActivity {
 
     }
 
-    private Alarme coletarDadosFormulario() {
+    private AlarmeDTOInsert coletarDadosFormulario() {
         Log.d(TAG, "Coletando dados do formulário.");
 
         String titulo = binding.editTextTitle.getText().toString();
         String descricao = binding.editTextDescription.getText().toString();
+
         Log.d(TAG, "Título: " + titulo + ", Descrição: " + descricao);
 
-        RemedioDTO remedioSelecionadoDTO = (RemedioDTO) binding.spinnerRemedios.getSelectedItem();
-        IdosoDTO idosoSelecionadoDTO = (IdosoDTO) binding.spinnerIdoso.getSelectedItem();
-        Log.d(TAG, "Remédio Selecionado DTO: " + remedioSelecionadoDTO.toString());
-        Log.d(TAG, "Idoso Selecionado DTO: " + idosoSelecionadoDTO.toString());
-
-        LocalDateTime horarioAlarme = null;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        String formattedDateTime = "";
         if (picker != null) {
-            horarioAlarme = LocalDateTime.of(
+            LocalDateTime horarioAlarme = LocalDateTime.of(
                     calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH) + 1,
                     calendar.get(Calendar.DAY_OF_MONTH),
                     picker.getHour(),
                     picker.getMinute());
-            Log.d(TAG, "Horário do Alarme: " + horarioAlarme.toString());
+            formattedDateTime = horarioAlarme.format(formatter);
+            Log.d(TAG, "Horário formatado do Alarme: " + formattedDateTime);
         } else {
-            // Trate o caso em que o picker é null (por exemplo, exibindo uma mensagem ao usuário)
             Log.e(TAG, "Picker é null. Horário do alarme não definido.");
-            return null; // Retorne null ou lance uma exceção, dependendo da sua lógica de negócios
+            return null; // ou lidar com isso de maneira apropriada
         }
 
-        Alarme novoAlarme = new Alarme();
+        AlarmeDTOInsert novoAlarme = new AlarmeDTOInsert();
         novoAlarme.setTitulo(titulo);
         novoAlarme.setDescricao(descricao);
-        novoAlarme.setHorarioAlarme(horarioAlarme);
+        novoAlarme.setAlarme(formattedDateTime);
 
-        Remedio remedio = ModelConvertUtil.converterParaModeloRemedio(remedioSelecionadoDTO);
-        novoAlarme.setRemedio(remedio);
-        Log.d(TAG, "Remédio Convertido: " + (remedio != null ? remedio.getNome() : "null"));
-
-
-        novoAlarme.setRemedio(remedio);
+        // Tratar o campo Remedioalarme conforme necessário
 
         return novoAlarme;
     }
+
+
 
 
     private void exibirMensagemSucesso() {
