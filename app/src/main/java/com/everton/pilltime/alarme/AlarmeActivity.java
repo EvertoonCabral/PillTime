@@ -14,12 +14,15 @@ import android.widget.Toast;
 
 import com.everton.pilltime.api.ApiCuidador;
 import com.everton.pilltime.api.ApiIdoso;
+import com.everton.pilltime.api.ApiPessoa;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityAlarmeBinding;
 import com.everton.pilltime.dto.AlarmeDTOInsert;
 import com.everton.pilltime.dto.IdosoDTO;
+import com.everton.pilltime.dto.PessoaDTO;
 import com.everton.pilltime.dto.RemedioDTO;
 import com.everton.pilltime.models.Idoso;
+import com.everton.pilltime.models.Pessoa;
 import com.everton.pilltime.models.Remedio;
 import com.everton.pilltime.utils.ModelConvertUtil;
 import com.google.android.material.timepicker.MaterialTimePicker;
@@ -67,9 +70,10 @@ public class AlarmeActivity extends AppCompatActivity {
 
         binding.btnSalvarAlarme.setOnClickListener(v -> {
             Alarme novoAlarme = coletarDadosFormulario();
-            getIdosoCpf(novoAlarme.getIdoso().getCpf(), novoAlarme);
+            salvarAlarme(novoAlarme);
         });
     }
+
 
 
     private void salvarAlarme(Alarme alarme) {
@@ -78,63 +82,40 @@ public class AlarmeActivity extends AppCompatActivity {
         ApiCuidador apiCuidador = Retrofit.POST_REMEDIO_TO_CUIDADOR();
         AlarmeDTOInsert alarmeDTO = new AlarmeDTOInsert(alarme.getTitulo(), alarme.getDescricao(), alarme.getHorarioAlarme());
 
-        Call<String> call = apiCuidador.POST_ALARME_TO_IDOSO_LIST("Bearer " + token, idCuidador, alarme.getIdoso().getId(), alarmeDTO);
+        String cpfIdoso = idosoCpfSelecionado; // CPF do idoso selecionado
+        Log.d(TAG, "CPF do idoso selecionado: " + cpfIdoso);
+
+        Call<String> call = apiCuidador.POST_ALARME_TO_IDOSO_LIST("Bearer " + token, idCuidador, cpfIdoso, alarmeDTO);
+        Log.d(TAG, "Chamada API iniciada");
 
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
-                    Log.d(TAG, "Alarme salvo com sucesso");
-                    exibirMensagemSucesso();
+                    Log.d(TAG, "Resposta da API bem-sucedida. Código: " + response.code());
+                    Log.d(TAG, "Resposta da API: " + response.body());
+
+
+
                 } else {
-                    Log.e(TAG, "Erro ao salvar o alarme: " + response.code());
-                    // Tratar erro
+                    Log.e(TAG, "Resposta da API com erro. Código: " + response.code());
+                    Log.e(TAG, "Mensagem de erro: " + response.message());
+                    Log.d(TAG, "Resposta da API: " + response.errorBody().toString());
+                    Log.d(TAG, "Resposta da API: " + response.message().toString());
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Log.e(TAG, "Falha ao tentar salvar o alarme: " + t.getMessage());
-                // Tratar falha
+                Log.e(TAG, "Falha na chamada da API. Erro: " + t.getMessage());
             }
         });
     }
 
 
-    private void getIdosoCpf(String cpf, Alarme alarme) {
-        ApiIdoso apiIdoso = Retrofit.GET_IDOSO_BY_CPF();
-        SharedPreferences sharedPreferences = getSharedPreferences("MyToken", Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString("token", "");
 
-        Log.d(TAG, "Enviando requisição para buscar idoso com CPF: " + cpf);
 
-        Call<Idoso> call = apiIdoso.GET_IDOSO_BY_CPF("Bearer " + token, cpf);
 
-        call.enqueue(new Callback<Idoso>() {
-            @Override
-            public void onResponse(Call<Idoso> call, Response<Idoso> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    Idoso idoso = response.body();
-                    Long idosoId = idoso.getId();
-
-                    Log.d(TAG, "Idoso encontrado. ID: " + idosoId);
-
-                    // Atualize o ID do idoso no objeto Alarme
-                    alarme.getIdoso().setId(idosoId);
-
-                    // Agora, chame o método salvarAlarme
-                    salvarAlarme(alarme);
-                } else {
-                    Log.e(TAG, "Erro na busca do idoso. Código de resposta: " + response.code());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Idoso> call, Throwable t) {
-                Log.e(TAG, "Falha na busca do idoso. Erro: " + t.getMessage());
-            }
-        });
-    }
 
 
 
@@ -284,12 +265,11 @@ public class AlarmeActivity extends AppCompatActivity {
         novoAlarme.setHorarioAlarme(horarioAlarme);
 
         Remedio remedio = ModelConvertUtil.converterParaModeloRemedio(remedioSelecionadoDTO);
-        Idoso idoso = ModelConvertUtil.converterParaModeloIdoso(idosoSelecionadoDTO);
+        novoAlarme.setRemedio(remedio);
         Log.d(TAG, "Remédio Convertido: " + (remedio != null ? remedio.getNome() : "null"));
-        Log.d(TAG, "Idoso Convertido: " + (idoso != null ? idoso.getNome() : "null"));
+
 
         novoAlarme.setRemedio(remedio);
-        novoAlarme.setIdoso(idoso);
 
         return novoAlarme;
     }

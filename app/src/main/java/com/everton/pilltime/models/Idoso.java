@@ -16,7 +16,7 @@ public class Idoso extends Pessoa{
     private Cuidador cuidador;
     private String observacao;
 
-    private List<Alarme> listaAlarme = new ArrayList<>();
+
 
 
     public Idoso() {
@@ -24,12 +24,11 @@ public class Idoso extends Pessoa{
     }
 
 
-    public Idoso(Long id, String nome, String email, Date dataNascimento, String cpf, String telefone, Endereco endereco, boolean stAtivo, Date dataCadastro, TipoUsuario tipoUsuario, List<Alarme> alarmesIdoso, Cuidador cuidador, String observacao, List<Alarme> listaAlarme) {
+    public Idoso(Long id, String nome, String email, Date dataNascimento, String cpf, String telefone, Endereco endereco, boolean stAtivo, Date dataCadastro, TipoUsuario tipoUsuario, List<Alarme> alarmesIdoso, Cuidador cuidador, String observacao) {
         super(id, nome, email, dataNascimento, cpf, telefone, endereco, stAtivo, dataCadastro, tipoUsuario);
         this.alarmesIdoso = alarmesIdoso;
         this.cuidador = cuidador;
         this.observacao = observacao;
-        this.listaAlarme = listaAlarme;
     }
 
     public List<Alarme> getAlarmesIdoso() {
@@ -48,13 +47,7 @@ public class Idoso extends Pessoa{
         this.cuidador = cuidador;
     }
 
-    public List<Alarme> getListaAlarme() {
-        return listaAlarme;
-    }
 
-    public void setListaAlarme(List<Alarme> listaAlarme) {
-        this.listaAlarme = listaAlarme;
-    }
 
     public String getObservacao() {
         return observacao;

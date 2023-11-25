@@ -54,6 +54,11 @@ public class Retrofit {
     public static ApiPessoa GET_PESSOA(){ return retrofit.create(ApiPessoa.class);}
     public static ApiPessoa GET_PESSOA_BY_CPF(){ return retrofit.create(ApiPessoa.class);}
 
+    public static ApiPessoa findPessoaBy_Cpf(){ return retrofit.create(ApiPessoa.class);}
+
+
+
+
 
 
 

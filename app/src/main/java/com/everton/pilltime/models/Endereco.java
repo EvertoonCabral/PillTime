@@ -128,7 +128,20 @@ public class Endereco {
                 endereco.getComplemento());
     }
 
-
+    @Override
+    public String toString() {
+        return "Endereco{" +
+                "id=" + id +
+                ", estado='" + estado + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", rua='" + rua + '\'' +
+                ", numeroResidencia=" + numeroResidencia +
+                ", complemento='" + complemento + '\'' +
+                ", dataCadastro=" + dataCadastro +
+                ", stAtivo=" + stAtivo +
+                '}';
+    }
 }
 
 

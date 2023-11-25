@@ -39,6 +39,9 @@ public interface ApiPessoa {
     @GET("pessoa/cpf/{cpf}")
     Call<PessoaDTO> getPessoaByCPF(@Header("Authorization") String token, @Path("cpf") String cpf);
 
+    @GET("pessoa/cpf/{cpf}")
+    Call<Pessoa> findBy_Cpf(@Header("Authorization") String token, @Path("cpf") String cpf);
+
 }
 
 
