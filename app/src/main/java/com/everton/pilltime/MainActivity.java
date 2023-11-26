@@ -2,9 +2,12 @@
 
     import androidx.appcompat.app.AppCompatActivity;
 
+    import android.app.NotificationChannel;
+    import android.app.NotificationManager;
     import android.content.Intent;
     import android.content.SharedPreferences;
     import android.graphics.Color;
+    import android.os.Build;
     import android.os.Bundle;
     import android.util.Log;
     import android.view.View;
@@ -31,6 +34,9 @@
             super.onCreate(savedInstanceState);
             binding = ActivityFormLoginBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
+
+
+            createNotificationChannel();
 
             binding.txtCadastro.setOnClickListener(view -> {
 
@@ -129,6 +135,22 @@
                 startActivity(intent);
                 finish();
             }
+
+
+        private void createNotificationChannel() {
+            // Verifica se a versão do Android é Oreo (API 26) ou mais recente, pois canais de notificação são obrigatórios nessas versões
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                CharSequence nomeCanal = "Meu Canal de Notificação";
+                String descricaoCanal = "Descrição do Canal de Notificação";
+                int importancia = NotificationManager.IMPORTANCE_DEFAULT;
+                NotificationChannel canal = new NotificationChannel("CHANNEL_ID", nomeCanal, importancia);
+                canal.setDescription(descricaoCanal);
+
+                // Registra o canal no sistema
+                NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                notificationManager.createNotificationChannel(canal);
+            }
+        }
 
 
     }
