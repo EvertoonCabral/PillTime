@@ -68,7 +68,7 @@ public class telaPerfilIdoso extends AppCompatActivity {
         });
 
         binding.btnVoltarTelaPrincipal.setOnClickListener(view -> {
-            Intent intent = new Intent(telaPerfilIdoso.this, TelaPrincipal.class);
+            Intent intent = new Intent(telaPerfilIdoso.this, TelaPrincipalIdoso.class);
             startActivity(intent);
             finish();
         });

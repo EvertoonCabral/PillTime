@@ -48,7 +48,7 @@
             <EditText
                 android:id="@+id/edNomeRemedioConfig"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:drawableRight="@drawable/ic_config_black"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
@@ -70,7 +70,7 @@
             <EditText
                 android:id="@+id/edMarcaRemedioConfig"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:drawableRight="@drawable/ic_config_black"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
@@ -91,7 +91,7 @@
             <EditText
                 android:id="@+id/edDosagemRemedioConfig"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:drawableRight="@drawable/ic_config_black"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
@@ -113,7 +113,7 @@
             <Spinner
                 android:id="@+id/spinnerFormaFarmaceuticaConfig"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp" />
 
@@ -132,7 +132,7 @@
             <EditText
                 android:id="@+id/edValidadeRemedioConfig"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:drawableRight="@drawable/ic_config_black"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"

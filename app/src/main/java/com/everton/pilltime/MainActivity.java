@@ -1,16 +1,21 @@
     package com.everton.pilltime;
 
     import androidx.appcompat.app.AppCompatActivity;
+    import androidx.core.app.ActivityCompat;
+    import androidx.core.content.ContextCompat;
 
     import android.app.NotificationChannel;
     import android.app.NotificationManager;
     import android.content.Intent;
     import android.content.SharedPreferences;
+    import android.content.pm.PackageManager;
     import android.graphics.Color;
     import android.os.Build;
     import android.os.Bundle;
     import android.util.Log;
     import android.view.View;
+    import android.Manifest;
+
 
     import com.everton.pilltime.api.ApiUser;
     import com.everton.pilltime.api.Retrofit;
@@ -20,6 +25,8 @@
     import com.everton.pilltime.user.LoginResponseDTO;
     import com.google.android.material.snackbar.Snackbar;
 
+    import javax.annotation.Nonnull;
+
     import retrofit2.Call;
     import retrofit2.Callback;
     import retrofit2.Response;
@@ -27,7 +34,13 @@
     public class MainActivity extends AppCompatActivity {
 
         private ActivityFormLoginBinding binding;
-        String [] mensagens = {"Preencha todos os campos","Login efetuado com sucesso"};
+        String[] mensagens = {"Preencha todos os campos", "Login efetuado com sucesso"};
+
+        private static final int PERMISSIONS_REQUEST_CODE = 100;
+
+        private static final String[] PERMISSIONS_REQUIRED = {
+                Manifest.permission.RECORD_AUDIO,
+                Manifest.permission.READ_EXTERNAL_STORAGE };
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -35,31 +48,32 @@
             binding = ActivityFormLoginBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
 
+            requestPermissionsIfNeeded();
+
+
 
             createNotificationChannel();
 
             binding.txtCadastro.setOnClickListener(view -> {
 
-                startActivity(new Intent(   this, DadosCadastroCuidador.class));
+                startActivity(new Intent(this, DadosCadastroCuidador.class));
 
             });
 
 
             binding.btEntrarlogin.setOnClickListener(view -> {
 
-            String email = binding.edLogin.getText().toString().trim();
-            String senha = binding.edSenha.getText().toString().trim();
+                String email = binding.edLogin.getText().toString().trim();
+                String senha = binding.edSenha.getText().toString().trim();
 
-                if(email.isEmpty() || senha.isEmpty()){
+                if (email.isEmpty() || senha.isEmpty()) {
                     Snackbar snackbar = Snackbar.make(view, mensagens[0], Snackbar.LENGTH_LONG);
                     snackbar.setBackgroundTint(Color.WHITE);
                     snackbar.setTextColor(Color.BLACK);
                     snackbar.show();
-                }else{
+                } else {
                     AutenticarUsuario(view);
                 }
-
-
 
 
             });
@@ -85,7 +99,7 @@
                     // Esconder a barra de progresso após receber a resposta
                     binding.progressBarLogin.setVisibility(View.GONE);
 
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         LoginResponseDTO loginResponseDTO = response.body();
                         String token = loginResponseDTO.getToken();
                         Long id = loginResponseDTO.getPessoaId();
@@ -99,7 +113,7 @@
                         editor.apply();
 
                         redirecionarParaTelaCorreta(tipoUsuario);
-                        }else {
+                    } else {
                         // Tratar caso a resposta não seja bem-sucedida
                         Snackbar snackbar = Snackbar.make(view, "Login falhou. Por favor, verifique suas credenciais.", Snackbar.LENGTH_LONG);
                         snackbar.setBackgroundTint(Color.WHITE);
@@ -122,19 +136,16 @@
         }
 
 
-
-
-
-            private void redirecionarParaTelaCorreta(TipoUsuario tipoUsuario) {
-                Intent intent;
-                if (tipoUsuario == TipoUsuario.I) {
-                    intent = new Intent(MainActivity.this, TelaPrincipalIdoso.class);
-                } else {
-                    intent = new Intent(MainActivity.this, TelaPrincipal.class);
-                }
-                startActivity(intent);
-                finish();
+        private void redirecionarParaTelaCorreta(TipoUsuario tipoUsuario) {
+            Intent intent;
+            if (tipoUsuario == TipoUsuario.I) {
+                intent = new Intent(MainActivity.this, TelaPrincipalIdoso.class);
+            } else {
+                intent = new Intent(MainActivity.this, TelaPrincipal.class);
             }
+            startActivity(intent);
+            finish();
+        }
 
 
         private void createNotificationChannel() {
@@ -153,4 +164,39 @@
         }
 
 
+        private void requestPermissionsIfNeeded() {
+            // Verificar se as permissões já foram concedidas
+            boolean allPermissionsGranted = true;
+            for (String permission : PERMISSIONS_REQUIRED) {
+                if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                    allPermissionsGranted = false;
+                    break;
+                }
+            }
+
+            // Se as permissões não foram todas concedidas, solicitar ao usuário
+            if (!allPermissionsGranted) {
+                ActivityCompat.requestPermissions(this, PERMISSIONS_REQUIRED, PERMISSIONS_REQUEST_CODE);
+            }
+        }
+
+
+
+        @Override
+        public void onRequestPermissionsResult(int requestCode, @Nonnull String[] permissions, @Nonnull int[] grantResults) {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            if (requestCode == PERMISSIONS_REQUEST_CODE) {
+                if (grantResults.length > 0) {
+                    for (int i = 0; i < permissions.length; i++) {
+                        if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                            Log.i("Permissions", "Permissão concedida: " + permissions[i]);
+                        } else {
+                            Log.i("Permissions", "Permissão negada: " + permissions[i]);
+                            // Aqui você pode desabilitar funcionalidades ou alertar o usuário
+                        }
+                    }
+                }
+            }
+        }
     }

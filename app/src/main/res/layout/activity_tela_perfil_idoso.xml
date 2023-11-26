@@ -75,17 +75,16 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="15dp"/>
 
+
             <EditText
                 android:id="@+id/editTextNomeCuidador"
+                style="@style/Edit_Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:hint="Nome Cuidador"
                 android:inputType="number"
-                android:maxLength="11"
-                android:layout_marginBottom="8dp"
-                style="@style/Edit_Text"
-                />
-
+                android:maxLength="11" />
 
             <EditText
                 android:id="@+id/edTelefoneCuidador"
@@ -99,7 +98,7 @@
 
             <Button
                 android:id="@+id/btnVoltarTelaPrincipal"
-                android:layout_width="130dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="30dp"

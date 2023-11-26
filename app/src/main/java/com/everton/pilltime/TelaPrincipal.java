@@ -63,27 +63,6 @@ public class TelaPrincipal extends AppCompatActivity {
         Log.d("TelaPrincipal", "SharedPreferences: idosoId = " + idosoId + ", token = " + token);
 
 
-        ApiAlarme apiAlarme = Retrofit.GET_ALARME_IDOSO();
-
-        Call<List<AlarmeDTOInsert>> call = apiAlarme.GET_ALARME_IDOSO("Bearer " + token, idosoId);
-        call.enqueue(new Callback<List<AlarmeDTOInsert>>() {
-            @Override
-            public void onResponse(Call<List<AlarmeDTOInsert>> call, Response<List<AlarmeDTOInsert>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    List<AlarmeDTOInsert> listaAlarmesDTO = response.body();
-                    Log.d("TelaPrincipal", "Alarmes recebidos: " + listaAlarmesDTO.size());
-                    agendarAlarmes(listaAlarmesDTO);
-                } else {
-                    Log.e("TelaPrincipal", "Falha ao obter alarmes. Código de resposta: " + response.code());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<AlarmeDTOInsert>> call, Throwable t) {
-                Log.e("TelaPrincipal", "Falha na chamada da API", t);
-            }
-        });
-
         List<Alarme> listaDeAlarmes = gerarAlarmesFicticios();
         AlarmeAdapterCuidador alarmeAdapterCuidador = new AlarmeAdapterCuidador(listaDeAlarmes);
         binding.recyclerViewAlarmes.setAdapter(alarmeAdapterCuidador);
@@ -187,35 +166,7 @@ public class TelaPrincipal extends AppCompatActivity {
     }
 
 
-    public void agendarAlarmes(List<AlarmeDTOInsert> listaAlarmes) {
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        int requestCode = 0; // Um identificador único para cada PendingIntent
-        try {
-            for (AlarmeDTOInsert alarme : listaAlarmes) {
-                // Converte a string de horário para Calendar
-                LocalDateTime dateTime = LocalDateTime.parse(alarme.getAlarme(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(dateTime.getYear(), dateTime.getMonthValue() - 1, dateTime.getDayOfMonth(),
-                        dateTime.getHour(), dateTime.getMinute(), dateTime.getSecond());
 
-                Log.d("TelaPrincipal", "Agendando alarme: " + alarme.getTitulo() + " para " + calendar.getTime());
-
-                Intent intent = new Intent(this, AlarmReceiver.class);
-                intent.putExtra("TITULO", alarme.getTitulo());
-                intent.putExtra("DESCRICAO", alarme.getDescricao());
-
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(this, requestCode++, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-                if (alarmManager != null) {
-                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-                }
-            }
-        }
-            catch(Exception e){
-                Log.e("TelaPrincipal", "Erro ao agendar alarme", e);
-
-            }
-        }
 
 
     private List<Alarme> gerarAlarmesFicticios() {

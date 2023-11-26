@@ -97,16 +97,16 @@
 
             <Button
                 android:id="@+id/btnVolarMenu"
-                android:layout_width="130dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="30dp"
+                android:background="@drawable/container_components"
                 android:backgroundTint="@color/light_green"
-                android:text="Voltar"
                 android:drawableRight="@drawable/btnhome"
                 android:padding="15dp"
+                android:text="Voltar"
                 android:textSize="18dp"
-                android:background="@drawable/container_components"
 
                 />
         </LinearLayout>

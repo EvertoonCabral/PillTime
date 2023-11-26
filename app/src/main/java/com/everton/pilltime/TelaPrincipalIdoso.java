@@ -3,10 +3,13 @@ package com.everton.pilltime;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 
 import com.everton.pilltime.adapter.AlarmeAdapter;
 import com.everton.pilltime.adapter.AlarmeAdapterCuidador;
+import com.everton.pilltime.alarme.AlarmReceiver;
 import com.everton.pilltime.api.ApiAlarme;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityTelaPrincipalIdosoBinding;
@@ -22,7 +26,10 @@ import com.everton.pilltime.dto.AlarmeDTOInsert;
 import com.everton.pilltime.models.Idoso;
 import com.everton.pilltime.models.Remedio;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -46,17 +53,12 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
         String token = sharedPreferences.getString("token", " ");
 
 
-        carregarAlarmesDoIdoso(id);
-
+        carregarAlarmesDoIdoso(id, token);
 
 
         List<Alarme> listaDeAlarmes = gerarAlarmesFicticios();
         AlarmeAdapterCuidador alarmeAdapterCuidador = new AlarmeAdapterCuidador(listaDeAlarmes);
         binding.recyclerViewAlarmes.setAdapter(alarmeAdapterCuidador);
-
-
-
-
 
 
         binding.fabAddAlarm.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +71,6 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
 
             }
         });
-
 
 
         binding.btnPerfil.setOnClickListener(new View.OnClickListener() {
@@ -100,22 +101,17 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
     }
 
 
-    private void carregarAlarmesDoIdoso(Long idosoId) {
-
+    private void carregarAlarmesDoIdoso(Long idosoId, String token) {
         ApiAlarme apiAlarme = Retrofit.GET_ALARME_IDOSO();
-
-        SharedPreferences sharedPreferences = TelaPrincipalIdoso.this.getSharedPreferences("MyToken", Context.MODE_PRIVATE);
-        Long id = sharedPreferences.getLong("id", 0);
-        String token = sharedPreferences.getString("token", " ");
-
         Call<List<AlarmeDTOInsert>> call = apiAlarme.GET_ALARME_IDOSO("Bearer " + token, idosoId);
         call.enqueue(new Callback<List<AlarmeDTOInsert>>() {
             @Override
             public void onResponse(Call<List<AlarmeDTOInsert>> call, Response<List<AlarmeDTOInsert>> response) {
-                if (response.isSuccessful()) {
-                    List<AlarmeDTOInsert> alarmes = response.body();
-                    AlarmeAdapter alarmeAdapter = new AlarmeAdapter(alarmes);
+                if (response.isSuccessful() && response.body() != null) {
+                    List<AlarmeDTOInsert> alarmesDTO = response.body();
+                    AlarmeAdapter alarmeAdapter = new AlarmeAdapter(alarmesDTO);
                     binding.recyclerViewAlarmes.setAdapter(alarmeAdapter);
+                    agendarAlarmes(alarmesDTO);
                 } else {
                     // Tratar erros de resposta
                 }
@@ -127,7 +123,6 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
             }
         });
     }
-
 
 
     private void showPopupMenu(View view, int menuRes) {
@@ -165,6 +160,37 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
         popupMenu.show();
     }
 
+
+    public void agendarAlarmes(List<AlarmeDTOInsert> listaAlarmes) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        int requestCode = 0;
+        try {
+            for (AlarmeDTOInsert alarme : listaAlarmes) {
+                LocalDateTime dateTime = LocalDateTime.parse(alarme.getAlarme(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(dateTime.getYear(), dateTime.getMonthValue() - 1, dateTime.getDayOfMonth(), dateTime.getHour(), dateTime.getMinute(), dateTime.getSecond());
+
+                Log.d("TelaPrincipal", "Agendando alarme: " + alarme.getTitulo() + " para " + calendar.getTime());
+
+
+                Intent intent = new Intent(this, AlarmReceiver.class);
+                intent.putExtra("TITULO", alarme.getTitulo());
+                intent.putExtra("DESCRICAO", alarme.getDescricao());
+
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(this, requestCode++, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                if (alarmManager != null) {
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                }
+            }
+        } catch (Exception e) {
+            Log.e("TelaPrincipal", "Erro ao agendar alarme", e);
+
+        }
+
+    }
+
+
     private List<Alarme> gerarAlarmesFicticios() {
         List<Alarme> alarmes = new ArrayList<>();
 
@@ -172,7 +198,7 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
             Alarme alarme = new Alarme();
             alarme.setTitulo("Alarme " + i);
             alarme.setDescricao("Descrição do alarme " + i);
-         //   alarme.setDtCadastrado(new Date());
+            //   alarme.setDtCadastrado(new Date());
 
             Idoso idoso = new Idoso();
             idoso.setNome("Idoso " + i);
@@ -182,16 +208,15 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
             remedio.setNome("Remédio " + i);
             List<Remedio> remedios = new ArrayList<>();
             remedios.add(remedio);
-         //   alarme.setRemediosIdosos(remedios);
+            //   alarme.setRemediosIdosos(remedios);
 //
-         //   alarme.setAlarme(LocalDateTime.now().plusHours(i)); // Adicionando horas para diferenciar
+            //   alarme.setAlarme(LocalDateTime.now().plusHours(i)); // Adicionando horas para diferenciar
 
             alarmes.add(alarme);
         }
 
         return alarmes;
     }
-
 
 
 }
