@@ -8,43 +8,63 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.everton.pilltime.R;
-import com.everton.pilltime.alarme.Alarme;
+import com.everton.pilltime.dto.AlarmeDTOInsert;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 import javax.annotation.Nonnull;
 
 public class AlarmeAdapter extends RecyclerView.Adapter<AlarmeAdapter.AlarmeViewHolder> {
 
-    private List<Alarme> listaAlarmes;
+    private List<AlarmeDTOInsert> alarmes;
 
-    public AlarmeAdapter(List<Alarme> listaAlarmes) {
-        this.listaAlarmes = listaAlarmes;
+    public AlarmeAdapter(List<AlarmeDTOInsert> listaAlarmes) {
+        this.alarmes = listaAlarmes; // Correção aqui
     }
 
     @Nonnull
     @Override
     public AlarmeViewHolder onCreateViewHolder(@Nonnull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_alarme, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_alarme_idoso, parent, false);
         return new AlarmeViewHolder(view);
     }
-
     @Override
-    public void onBindViewHolder(@Nonnull AlarmeViewHolder holder, int position) {
-        Alarme alarme = listaAlarmes.get(position);
-        holder.tvNomeIdoso.setText(alarme.getIdoso().getNome());
-      //  holder.tvNomeRemedio.setText(alarme.getRemediosIdosos().get(0).getNome()); // Supondo que você pegue o primeiro remédio da lista
+    public void onBindViewHolder(@Nonnull AlarmeAdapter.AlarmeViewHolder holder, int position) {
+        AlarmeDTOInsert alarme = alarmes.get(position);
 
-        // Formatação da data e hora usando LocalDateTime
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
-       // String formattedDate = alarme.getAlarme().format(formatter);
-        // holder.tvHora.setText(formattedDate);
+        if (alarme.getDescricao() != null) {
+            holder.tvNomeRemedio.setText(alarme.getDescricao().toString());
+        } else {
+            holder.tvNomeRemedio.setText("Remédio desconhecido");
+        }
+
+        if (alarme.getAlarme() != null && !alarme.getAlarme().isEmpty()) {
+
+            DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+            LocalDateTime dateTime;
+            try {
+                dateTime = LocalDateTime.parse(alarme.getAlarme(), formatter);
+
+                formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                String formattedDate = dateTime.format(formatter);
+                holder.tvHora.setText(formattedDate);
+            } catch (DateTimeParseException e) {
+                holder.tvHora.setText("Formato de data inválido");
+            }
+        } else {
+            holder.tvHora.setText("Horário não definido");
+        }
     }
+
+
+
 
     @Override
     public int getItemCount() {
-        return listaAlarmes.size();
+        return alarmes.size();
     }
 
     public static class AlarmeViewHolder extends RecyclerView.ViewHolder {

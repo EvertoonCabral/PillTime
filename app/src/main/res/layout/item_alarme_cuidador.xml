@@ -39,8 +39,6 @@
             android:text="Horario"/>
     </LinearLayout>
 
-    <!-- Ícone ic_timer no canto superior direito -->
-    <!-- Ícone ic_clock no canto superior direito -->
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"

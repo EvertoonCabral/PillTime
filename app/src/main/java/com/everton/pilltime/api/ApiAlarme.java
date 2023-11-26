@@ -2,6 +2,7 @@ package com.everton.pilltime.api;
 
 import com.everton.pilltime.dto.AlarmeDTO;
 import com.everton.pilltime.alarme.Alarme;
+import com.everton.pilltime.dto.AlarmeDTOInsert;
 
 import java.util.List;
 
@@ -16,6 +17,10 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiAlarme {
+
+
+    @GET("idoso/{id}/alarmes")
+    Call<List<AlarmeDTOInsert>> GET_ALARME_IDOSO(@Header("Authorization") String token, @Path("id") Long idosoId);
 
     // Registrar um novo alarme
     @Headers("Content-Type: application/json")

@@ -9,7 +9,6 @@ public class AlarmeDTOInsert {
     private  String titulo;
     private String descricao;
     private String alarme;
-
     private RemedioDTO remedioalarme;
 
     public AlarmeDTOInsert(String titulo, String descricao, String alarme, RemedioDTO remedioalarme) {

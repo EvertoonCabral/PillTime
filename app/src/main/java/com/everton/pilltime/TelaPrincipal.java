@@ -3,17 +3,28 @@ package com.everton.pilltime;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 
-import com.everton.pilltime.adapter.AlarmeAdapter;
+import com.everton.pilltime.adapter.AlarmeAdapterCuidador;
 
+import com.everton.pilltime.alarme.AlarmReceiver;
 import com.everton.pilltime.alarme.AlarmeActivity;
+import com.everton.pilltime.api.ApiAlarme;
+import com.everton.pilltime.api.ApiIdoso;
+import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityTelaPrincipalBinding;
 import com.everton.pilltime.alarme.Alarme;
+import com.everton.pilltime.dto.AlarmeDTOInsert;
 import com.everton.pilltime.models.Idoso;
 import com.everton.pilltime.models.Remedio;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -22,9 +33,14 @@ import android.widget.Toast;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TelaPrincipal extends AppCompatActivity {
 
@@ -33,18 +49,44 @@ public class TelaPrincipal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("TelaPrincipal", "onCreate iniciado");
 
-        // Inicializando o view  binding
+
         binding = ActivityTelaPrincipalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        // Configuração do RecyclerView
         binding.recyclerViewAlarmes.setLayoutManager(new LinearLayoutManager(this));
 
-        // Gerando para testes....
+        SharedPreferences sharedPreferences = getSharedPreferences("MyToken", Context.MODE_PRIVATE);
+        Long idosoId = sharedPreferences.getLong("id_idoso", 0);
+        String token = sharedPreferences.getString("token", "");
+
+        Log.d("TelaPrincipal", "SharedPreferences: idosoId = " + idosoId + ", token = " + token);
+
+
+        ApiAlarme apiAlarme = Retrofit.GET_ALARME_IDOSO();
+
+        Call<List<AlarmeDTOInsert>> call = apiAlarme.GET_ALARME_IDOSO("Bearer " + token, idosoId);
+        call.enqueue(new Callback<List<AlarmeDTOInsert>>() {
+            @Override
+            public void onResponse(Call<List<AlarmeDTOInsert>> call, Response<List<AlarmeDTOInsert>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<AlarmeDTOInsert> listaAlarmesDTO = response.body();
+                    Log.d("TelaPrincipal", "Alarmes recebidos: " + listaAlarmesDTO.size());
+                    agendarAlarmes(listaAlarmesDTO);
+                } else {
+                    Log.e("TelaPrincipal", "Falha ao obter alarmes. Código de resposta: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<AlarmeDTOInsert>> call, Throwable t) {
+                Log.e("TelaPrincipal", "Falha na chamada da API", t);
+            }
+        });
+
         List<Alarme> listaDeAlarmes = gerarAlarmesFicticios();
-        AlarmeAdapter alarmeAdapter= new AlarmeAdapter(listaDeAlarmes);
-        binding.recyclerViewAlarmes.setAdapter(alarmeAdapter);
+        AlarmeAdapterCuidador alarmeAdapterCuidador = new AlarmeAdapterCuidador(listaDeAlarmes);
+        binding.recyclerViewAlarmes.setAdapter(alarmeAdapterCuidador);
 
 
         binding.fabAddAlarm.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +185,38 @@ public class TelaPrincipal extends AppCompatActivity {
         });
         popupMenu.show();
     }
+
+
+    public void agendarAlarmes(List<AlarmeDTOInsert> listaAlarmes) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        int requestCode = 0; // Um identificador único para cada PendingIntent
+        try {
+            for (AlarmeDTOInsert alarme : listaAlarmes) {
+                // Converte a string de horário para Calendar
+                LocalDateTime dateTime = LocalDateTime.parse(alarme.getAlarme(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(dateTime.getYear(), dateTime.getMonthValue() - 1, dateTime.getDayOfMonth(),
+                        dateTime.getHour(), dateTime.getMinute(), dateTime.getSecond());
+
+                Log.d("TelaPrincipal", "Agendando alarme: " + alarme.getTitulo() + " para " + calendar.getTime());
+
+                Intent intent = new Intent(this, AlarmReceiver.class);
+                intent.putExtra("TITULO", alarme.getTitulo());
+                intent.putExtra("DESCRICAO", alarme.getDescricao());
+
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(this, requestCode++, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                if (alarmManager != null) {
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                }
+            }
+        }
+            catch(Exception e){
+                Log.e("TelaPrincipal", "Erro ao agendar alarme", e);
+
+            }
+        }
+
 
     private List<Alarme> gerarAlarmesFicticios() {
         List<Alarme> alarmes = new ArrayList<>();

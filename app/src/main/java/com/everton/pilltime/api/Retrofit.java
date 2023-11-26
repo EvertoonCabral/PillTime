@@ -1,5 +1,6 @@
 package com.everton.pilltime.api;
 
+import com.everton.pilltime.dto.AlarmeDTOInsert;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -57,8 +58,7 @@ public class Retrofit {
     public static ApiPessoa findPessoaBy_Cpf(){ return retrofit.create(ApiPessoa.class);}
 
 
-
-
+    public static ApiAlarme GET_ALARME_IDOSO(){return  retrofit.create(ApiAlarme.class);}
 
 
 
@@ -73,7 +73,6 @@ public class Retrofit {
     //IDOSO
     public static ApiIdoso GET_ALL_IDOSOS (){return  retrofit.create(ApiIdoso.class);}
     public static ApiIdoso GET_IDOSO_BY_ID (){return  retrofit.create(ApiIdoso.class);}
-
     public static ApiIdoso GET_IDOSO_BY_CPF() {return retrofit.create(ApiIdoso.class);}
 
 
