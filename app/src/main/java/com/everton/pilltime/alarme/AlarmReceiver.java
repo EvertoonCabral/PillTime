@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
@@ -15,6 +16,9 @@ import com.everton.pilltime.R;
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+        Log.d("AlarmReceiver", "Alarme recebido");
+
+
         String titulo = intent.getStringExtra("TITULO");
         String descricao = intent.getStringExtra("DESCRICAO");
 

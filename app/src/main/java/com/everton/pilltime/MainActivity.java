@@ -40,7 +40,9 @@
 
         private static final String[] PERMISSIONS_REQUIRED = {
                 Manifest.permission.RECORD_AUDIO,
-                Manifest.permission.READ_EXTERNAL_STORAGE };
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.SET_ALARM
+        };
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -148,20 +150,6 @@
         }
 
 
-        private void createNotificationChannel() {
-            // Verifica se a versão do Android é Oreo (API 26) ou mais recente, pois canais de notificação são obrigatórios nessas versões
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                CharSequence nomeCanal = "Meu Canal de Notificação";
-                String descricaoCanal = "Descrição do Canal de Notificação";
-                int importancia = NotificationManager.IMPORTANCE_DEFAULT;
-                NotificationChannel canal = new NotificationChannel("CHANNEL_ID", nomeCanal, importancia);
-                canal.setDescription(descricaoCanal);
-
-                // Registra o canal no sistema
-                NotificationManager notificationManager = getSystemService(NotificationManager.class);
-                notificationManager.createNotificationChannel(canal);
-            }
-        }
 
 
         private void requestPermissionsIfNeeded() {
@@ -193,10 +181,24 @@
                             Log.i("Permissions", "Permissão concedida: " + permissions[i]);
                         } else {
                             Log.i("Permissions", "Permissão negada: " + permissions[i]);
-                            // Aqui você pode desabilitar funcionalidades ou alertar o usuário
                         }
                     }
                 }
             }
         }
+
+        private void createNotificationChannel() {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                CharSequence name = "Nome do Canal";
+                String description = "Descrição do Canal";
+                int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                NotificationChannel channel = new NotificationChannel("CHANNEL_ID", name, importance);
+                channel.setDescription(description);
+                // Registra o canal no sistema
+                NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
+
+
     }

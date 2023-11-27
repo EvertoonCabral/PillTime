@@ -110,6 +110,7 @@ public class AlarmeActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
+                exibirMensagemSucesso();
                 Log.e(TAG, "Falha na chamada da API. Erro: " + t.getMessage());
             }
         });
