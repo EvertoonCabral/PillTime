@@ -191,7 +191,7 @@
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 CharSequence name = "Nome do Canal";
                 String description = "Descrição do Canal";
-                int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                int importance = NotificationManager.IMPORTANCE_HIGH;
                 NotificationChannel channel = new NotificationChannel("CHANNEL_ID", name, importance);
                 channel.setDescription(description);
                 // Registra o canal no sistema

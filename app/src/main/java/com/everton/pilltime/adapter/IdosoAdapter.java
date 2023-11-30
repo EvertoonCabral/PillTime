@@ -59,7 +59,6 @@ public class IdosoAdapter extends RecyclerView.Adapter<IdosoAdapter.ViewHolder> 
             super(itemView);
             nomeTextView = itemView.findViewById(R.id.nomeIdosoTextView);
             cpfTextView = itemView.findViewById(R.id.cpfIdosoTextView);
-            idadeTextView = itemView.findViewById(R.id.idadeTextView);
             telefoneTextView = itemView.findViewById(R.id.telefoneIdosoTextView);
             dataNascimentoTextView = itemView.findViewById(R.id.dataNascimentoIdosoTextView);
         }

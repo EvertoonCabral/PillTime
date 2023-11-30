@@ -5,12 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.everton.pilltime.adapter.IdosoAdapter;
@@ -28,8 +30,11 @@ import retrofit2.Response;
 
 public class TelaRelatorios extends AppCompatActivity {
 
+
     private Spinner spinnerRelatorio;
     private RecyclerView recyclerView;
+
+    private Button botaoVoltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,8 @@ public class TelaRelatorios extends AppCompatActivity {
         spinnerRelatorio = findViewById(R.id.spinnerRelatorio);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        botaoVoltar = findViewById(R.id.btnVolarTelaRelatorio);
+
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.opcoes_relatorio, android.R.layout.simple_spinner_item);
@@ -66,6 +73,21 @@ public class TelaRelatorios extends AppCompatActivity {
                 // Implementar se necessário
             }
         });
+
+
+        botaoVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(TelaRelatorios.this,TelaPrincipal.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+
+
+
     }
 
     private void fetchRemediosFromApi(Long idCuidador, String token) {

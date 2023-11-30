@@ -1,5 +1,6 @@
 package com.everton.pilltime;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import com.everton.pilltime.alarme.AlarmeActivity;
 import com.everton.pilltime.api.ApiUser;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityDadosCadastroCuidadorBinding;
@@ -135,7 +137,8 @@ public class DadosCadastroCuidador extends AppCompatActivity {
 
                         if(response.isSuccessful()) {
 
-                            Toast.makeText(DadosCadastroCuidador.this, "Cadastro realizado com Sucesso!!", Toast.LENGTH_LONG).show();
+                            exibirMensagemSucesso();
+
                         } else {
                             int statusCode = response.code();
                             Log.e("CadastroCuidador", "Erro ao registrar, código de status HTTP: " + statusCode + response.body());
@@ -211,6 +214,16 @@ public class DadosCadastroCuidador extends AppCompatActivity {
 
         datePickerDialog.show();
 
+    }
+
+
+    private void exibirMensagemSucesso() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(DadosCadastroCuidador.this);
+        builder.setTitle("Sucesso");
+        builder.setMessage("Você foi cadastrado com sucesso!");
+        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 
