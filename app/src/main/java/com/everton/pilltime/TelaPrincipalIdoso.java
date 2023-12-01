@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -47,6 +50,8 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
         binding = ActivityTelaPrincipalIdosoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.recyclerViewAlarmes.setLayoutManager(new LinearLayoutManager(this));
+
+        createNotificationChannel();
 
         SharedPreferences sharedPreferences = TelaPrincipalIdoso.this.getSharedPreferences("MyToken", Context.MODE_PRIVATE);
         Long id = sharedPreferences.getLong("id", 0);
@@ -221,6 +226,20 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
         }
 
         return alarmes;
+    }
+
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Nome do Canal";
+            String description = "Descrição do Canal";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("CHANNEL_ID", name, importance);
+            channel.setDescription(description);
+            // Registra o canal no sistema
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 
