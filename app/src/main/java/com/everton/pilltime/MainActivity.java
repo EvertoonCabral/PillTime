@@ -41,7 +41,8 @@
         private static final String[] PERMISSIONS_REQUIRED = {
                 Manifest.permission.RECORD_AUDIO,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.SET_ALARM
+                Manifest.permission.SET_ALARM,
+                Manifest.permission.VIBRATE
         };
 
         @Override
