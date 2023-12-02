@@ -25,7 +25,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:drawableRight="@drawable/ic_people_people"
                 android:text="Cadastro cuidador"
                 android:textAlignment="center"
                 android:textAllCaps="true"

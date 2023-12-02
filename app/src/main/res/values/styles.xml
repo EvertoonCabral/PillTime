@@ -23,6 +23,19 @@
 
     </style>
 
+    <style name="New_EditText">
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/new_edit_text</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginRight">40dp</item>
+        <item name="android:layout_marginTop">13dp</item>
+        <item name="android:maxLength">25</item>
+
+    </style>
+
     <style name="ContainerComponentesCadastro">
         <item name="android:layout_width">300dp</item>
         <item name="android:layout_height">700dp</item>
