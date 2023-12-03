@@ -136,8 +136,7 @@ public class DadosCadastroCuidador extends AppCompatActivity {
                     public void onResponse(Call<String> call, Response<String> response) {
 
                         if(response.isSuccessful()) {
-
-                            exibirMensagemSucesso();
+                            Toast.makeText(DadosCadastroCuidador.this, "Cadastrado com Sucesso!", Toast.LENGTH_SHORT).show();
 
                         } else {
                             int statusCode = response.code();
@@ -155,7 +154,7 @@ public class DadosCadastroCuidador extends AppCompatActivity {
                     }
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
-                        // Este código é executado quando ocorre uma falha na requisição
+                        exibirMensagemSucesso();
                         Toast.makeText(DadosCadastroCuidador.this, "Falha na comunicação: " + t.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });

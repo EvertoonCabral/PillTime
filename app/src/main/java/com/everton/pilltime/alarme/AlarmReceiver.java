@@ -13,13 +13,14 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         String titulo = intent.getStringExtra("TITULO");
         String descricao = intent.getStringExtra("DESCRICAO");
+        Long fotoId = intent.getLongExtra("FOTO_ID", 0L); // Supondo que você já tenha o FOTO_ID
 
         Intent alarmIntent = new Intent(context, AlarmDetailsActivity.class);
-
+        alarmIntent.putExtra("FOTO_ID", fotoId); // Passe o ID da foto
         alarmIntent.putExtra("TITULO", titulo);
         alarmIntent.putExtra("DESCRICAO", descricao);
-
         alarmIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(alarmIntent);
+
     }
 }
