@@ -8,9 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Retrofit {
 
-    //  public static final String BASE_URL_API = "http://10.0.2.2:8080/";
-    public static final String BASE_URL_API = "https://c355-177-66-109-22.ngrok.io";
-    //  https://c355-177-66-109-22.ngrok.io
+  //   public static final String BASE_URL_API = "http://10.0.2.2:8080/";
+    public static final String BASE_URL_API = "https://5ece-177-66-109-22.ngrok.io";
 
     private static Gson gson = new GsonBuilder()
             .setDateFormat("dd/MM/yyyy")
@@ -75,6 +74,11 @@ public class Retrofit {
     public static ApiIdoso GET_ALL_IDOSOS (){return  retrofit.create(ApiIdoso.class);}
     public static ApiIdoso GET_IDOSO_BY_ID (){return  retrofit.create(ApiIdoso.class);}
     public static ApiIdoso GET_IDOSO_BY_CPF() {return retrofit.create(ApiIdoso.class);}
+
+    //FOTO
+    public static ApiFoto UPLOAD_FOTO() {return retrofit.create(ApiFoto.class);}
+
+
 
 
 }

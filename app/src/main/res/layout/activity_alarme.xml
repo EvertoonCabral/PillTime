@@ -58,6 +58,52 @@
         android:hint="Descrição do Alarme"
         android:enabled="false" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+
+        >
+        <Button
+            android:id="@+id/btnTirarFoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="15dp"
+            android:text=" CAMERA"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+
+            />
+
+        <Button
+            android:id="@+id/btnUploudFoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="15dp"
+            android:text="Upload"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+
+
+            />
+
+
+
+
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/fotoAlarme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter" />
+
+
 
     <Button
         android:id="@+id/btnSalvarAlarme"
@@ -66,6 +112,7 @@
         android:layout_gravity="center"
         android:layout_marginVertical="15dp"
         android:text="Salvar Alarme" />
+
 
 
 </LinearLayout>

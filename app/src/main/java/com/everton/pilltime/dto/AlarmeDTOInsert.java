@@ -1,21 +1,19 @@
 package com.everton.pilltime.dto;
 
-import com.everton.pilltime.models.Remedio;
-
-import java.time.LocalDateTime;
 
 public class AlarmeDTOInsert {
 
     private  String titulo;
     private String descricao;
     private String alarme;
-    private RemedioDTO remedioalarme;
+    private  Long idFoto;
 
-    public AlarmeDTOInsert(String titulo, String descricao, String alarme, RemedioDTO remedioalarme) {
+
+    public AlarmeDTOInsert(String titulo, String descricao, String alarme, Long idFoto) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.alarme = alarme;
-        this.remedioalarme = remedioalarme;
+        this.idFoto = idFoto;
     }
 
     public AlarmeDTOInsert() {
@@ -45,12 +43,13 @@ public class AlarmeDTOInsert {
         this.alarme = alarme;
     }
 
-    public RemedioDTO getRemedioalarme() {
-        return remedioalarme;
+
+    public Long getIdFoto() {
+        return idFoto;
     }
 
-    public void setRemedioalarme(RemedioDTO remedioalarme) {
-        this.remedioalarme = remedioalarme;
+    public void setIdFoto(Long idFoto) {
+        this.idFoto = idFoto;
     }
 
     @Override
@@ -58,8 +57,8 @@ public class AlarmeDTOInsert {
         return "AlarmeDTOInsert{" +
                 "titulo='" + titulo + '\'' +
                 ", descricao='" + descricao + '\'' +
-                ", alarme=" + alarme +
-                ", remedioalarme=" + remedioalarme +
+                ", alarme='" + alarme + '\'' +
+                ", idFoto=" + idFoto +
                 '}';
     }
 }

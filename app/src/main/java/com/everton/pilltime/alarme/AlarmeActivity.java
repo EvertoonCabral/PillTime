@@ -1,11 +1,24 @@
 package com.everton.pilltime.alarme;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.TimePickerDialog;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,29 +26,32 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.everton.pilltime.api.ApiCuidador;
-import com.everton.pilltime.api.ApiIdoso;
-import com.everton.pilltime.api.ApiPessoa;
+import com.everton.pilltime.api.ApiFoto;
+
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityAlarmeBinding;
-import com.everton.pilltime.dto.AlarmeDTO;
 import com.everton.pilltime.dto.AlarmeDTOInsert;
 import com.everton.pilltime.dto.IdosoDTO;
-import com.everton.pilltime.dto.PessoaDTO;
 import com.everton.pilltime.dto.RemedioDTO;
-import com.everton.pilltime.models.Idoso;
-import com.everton.pilltime.models.Pessoa;
-import com.everton.pilltime.models.Remedio;
-import com.everton.pilltime.utils.ModelConvertUtil;
+import com.everton.pilltime.dto.ResponseFotoDTO;
+import com.everton.pilltime.models.Foto;
+
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.google.gson.Gson;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,6 +64,14 @@ public class AlarmeActivity extends AppCompatActivity {
     private Calendar calendar;
     private String token;
     private Long idCuidador;
+
+    private Long idFoto;
+
+
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_CAMERA_PERMISSION = 1;
+
+    private static final int CODIGO_REQUISICAO_ANEXO = 1002;
 
     private String  idosoCpfSelecionado;
 
@@ -76,6 +100,161 @@ public class AlarmeActivity extends AppCompatActivity {
             AlarmeDTOInsert novoAlarme = coletarDadosFormulario();
             salvarAlarme(novoAlarme);
         });
+
+        binding.btnTirarFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                if (ContextCompat.checkSelfPermission(AlarmeActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(AlarmeActivity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+                } else {
+                    dispatchTakePictureIntent();
+                }
+
+
+            }
+        });
+
+
+    }
+
+
+
+
+
+    private void dispatchTakePictureIntent() {
+        Log.d(TAG, "Iniciando Intent da Câmera");
+
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(AlarmeActivity.this.getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CAMERA_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                dispatchTakePictureIntent();
+            } else {
+                Toast.makeText(AlarmeActivity.this, "Permissão da câmera negada", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                Bundle extras = data.getExtras();
+                if (extras != null) {
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    if (imageBitmap != null) {
+                        Log.d(TAG, "Imagem capturada com sucesso");
+                        InputStream inputStream = convertBitmapToInputStream(imageBitmap);
+                        enviarAnexoParaAPI(inputStream);
+                    }
+                }
+            }
+        } else if (requestCode == CODIGO_REQUISICAO_ANEXO && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
+            Uri selectedFileUri = data.getData();
+            try {
+                InputStream inputStream = AlarmeActivity.this.getContentResolver().openInputStream(selectedFileUri);
+                enviarAnexoParaAPI(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.e("DEBUG", "Erro ao ler arquivo", e);
+            }
+        } else {
+            Log.d("DEBUG", "Não passou nas condições esperadas");
+        }
+    }
+
+
+    private void enviarAnexoParaAPI(InputStream inputStream) {
+        ApiFoto apiFoto = Retrofit.UPLOAD_FOTO();
+
+        Log.d("DEBUG", "Chamou a rota nova");
+
+
+
+        try {
+
+
+            byte[] fileBytes = getBytesFromInputStream(inputStream);
+
+            Log.d(TAG, "Tamanho dos bytes da imagem: " + fileBytes.length);
+
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), fileBytes);
+
+            MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "arquivo_selecionado", requestFile);
+
+            SharedPreferences sharedPreferences = AlarmeActivity.this.getSharedPreferences("MyToken", Context.MODE_PRIVATE);
+            token = sharedPreferences.getString("token", "");
+
+            Call <ResponseFotoDTO> call = apiFoto.UPLOAD_FOTO(token, filePart);
+
+            call.enqueue(new Callback<ResponseFotoDTO>() {
+                @Override
+                public void onResponse(Call<ResponseFotoDTO> call, Response<ResponseFotoDTO> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        idFoto = response.body().getIdFoto();
+                        if (response.isSuccessful()) {
+                            Log.d(TAG, "Upload de foto bem-sucedido, ID da Foto: " + idFoto);
+                        } else {
+                            Log.e(TAG, "Upload de foto falhou, código de resposta: " + response.code());
+                        }
+
+                    } else {
+                        Log.e(TAG, "Resposta não bem-sucedida: " + response.code());
+                        if (response.errorBody() != null) {
+
+                            Log.e(TAG, "Erro no corpo da resposta: " + response.errorBody().toString());
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call <ResponseFotoDTO> call, Throwable t) {
+                    Log.e("UPLOAD_API", "Falha na chamada à API", t);
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("UPLOAD_API", "Erro durante o upload", e);
+        }
+    }
+
+    private void carregarAnexo(Foto body) {
+
+        byte[] conteudoBytes = Base64.decode(body.getArquivo(), Base64.DEFAULT);
+        Log.e("", "vazio" + body);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(conteudoBytes, 0, conteudoBytes.length);
+        binding.fotoAlarme.setImageBitmap(bitmap);
+
+    }
+
+
+    private byte[] getBytesFromInputStream(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len;
+        while ((len = inputStream.read(buffer)) != -1) {
+            byteBuffer.write(buffer, 0, len);
+        }
+        return byteBuffer.toByteArray();
+    }
+    private InputStream convertBitmapToInputStream(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        int quality = 80;
+        bitmap.compress(Bitmap.CompressFormat.PNG, quality, byteArrayOutputStream);
+        return new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
     }
 
 
@@ -91,12 +270,21 @@ public class AlarmeActivity extends AppCompatActivity {
         Log.d(TAG, "JSON enviado: " + json);
 
 
+        Log.d(TAG, "Id da Foto"+ idFoto);
+
+       alarme.setIdFoto(idFoto);
+
+
         Call<String> call = apiCuidador.POST_ALARME_TO_IDOSO_LIST("Bearer " + token, idCuidador, cpfIdoso, alarme);
 
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
+
+                    exibirMensagemSucesso();
+
+
                     Log.d(TAG, "Alarme salvo com sucesso. Resposta: " + response.body());
                 } else {
                     Log.e(TAG, "Resposta da API com erro. Código: " + response.code());
@@ -110,7 +298,6 @@ public class AlarmeActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                exibirMensagemSucesso();
                 Log.e(TAG, "Falha na chamada da API. Erro: " + t.getMessage());
             }
         });
@@ -257,8 +444,8 @@ public class AlarmeActivity extends AppCompatActivity {
         novoAlarme.setTitulo(titulo);
         novoAlarme.setDescricao(descricao);
         novoAlarme.setAlarme(formattedDateTime);
+        novoAlarme.setIdFoto(idFoto);
 
-        // Tratar o campo Remedioalarme conforme necessário
 
         return novoAlarme;
     }

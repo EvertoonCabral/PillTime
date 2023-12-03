@@ -41,6 +41,9 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         binding.btnDeny.setOnClickListener(v -> {
             mediaPlayer.stop();
 
+            //criar requisiçao para negar o alarme.
+
+
         });
 
         mediaPlayer = MediaPlayer.create(this, R.raw.som_alarme_1);
@@ -54,7 +57,6 @@ public class AlarmDetailsActivity extends AppCompatActivity {
             vibrator.vibrate(pattern, -1);
         }
 
-        // Demais configurações da Activity...
     }
 
     @Override
