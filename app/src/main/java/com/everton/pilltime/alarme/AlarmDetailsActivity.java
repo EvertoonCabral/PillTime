@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -28,6 +30,7 @@ public class AlarmDetailsActivity extends AppCompatActivity {
     private ActivityAlarmDetailsBinding binding;
     private MediaPlayer mediaPlayer;
     private Vibrator vibrator;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,23 +80,36 @@ public class AlarmDetailsActivity extends AppCompatActivity {
 
     }
 
+    private String recuperarTokenAutenticacao() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyToken", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("token", "");
+    }
+
     private void buscarFoto(Long fotoId) {
+        String token = recuperarTokenAutenticacao(); // Recuperando o token
+        if (token.isEmpty()) {
+            Log.e("AlarmDetails", "Token de autenticação não encontrado.");
+            return;
+        }
+
         Log.d("AlarmDetails", "Buscando foto com ID: " + fotoId);
 
-        ApiFoto apiFoto = Retrofit.UPLOAD_FOTO();
-        apiFoto.getFotoById(fotoId).enqueue(new Callback<Foto>() {
+        ApiFoto apiFoto = Retrofit.getFotoById();
+        apiFoto.getFotoById(token, fotoId).enqueue(new Callback<Foto>() {
             @Override
             public void onResponse(Call<Foto> call, Response<Foto> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Log.d("AlarmDetails", "Resposta da API bem-sucedida e com corpo não nulo.");
                     Foto foto = response.body();
-                    Log.d("AlarmDetails", "Tamanho do arquivo da foto: " + foto.getArquivo().length);
-                    Bitmap bitmap = BitmapFactory.decodeByteArray(foto.getArquivo(), 0, foto.getArquivo().length);
+
+                    // Decodificando a string Base64 para um array de bytes e em seguida para um Bitmap
+                    byte[] decodedString = Base64.decode(foto.getArquivo(), Base64.DEFAULT);
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
                     binding.imgAlarme.setImageBitmap(bitmap);
                 } else {
                     Log.e("AlarmDetails", "Resposta da API não bem-sucedida. Código: " + response.code());
                     if (response.errorBody() != null) {
-                        // Tente ler o corpo do erro se disponível
                         String errorBody = response.errorBody().toString();
                         Log.e("AlarmDetails", "Corpo do erro: " + errorBody);
                     }

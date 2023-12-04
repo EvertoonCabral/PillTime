@@ -14,8 +14,10 @@ public class Alarme {
     private Remedio remedio;
     private boolean statusAlarme;
 
+    private Long idFoto;
 
-    public Alarme(Long id, String titulo, String descricao, LocalDateTime horarioAlarme, Idoso idoso, Remedio remedio, boolean statusAlarme) {
+
+    public Alarme(Long id, String titulo, String descricao, LocalDateTime horarioAlarme, Idoso idoso, Remedio remedio, boolean statusAlarme, Long idFoto) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -23,12 +25,11 @@ public class Alarme {
         this.idoso = idoso;
         this.remedio = remedio;
         this.statusAlarme = statusAlarme;
+        this.idFoto = idFoto;
     }
 
     public Alarme() {
     }
-
-
 
     public LocalDateTime getHorarioAlarme() {
         return horarioAlarme;
@@ -84,5 +85,13 @@ public class Alarme {
 
     public void setStatusAlarme(boolean statusAlarme) {
         this.statusAlarme = statusAlarme;
+    }
+
+    public Long getIdFoto() {
+        return idFoto;
+    }
+
+    public void setIdFoto(Long idFoto) {
+        this.idFoto = idFoto;
     }
 }

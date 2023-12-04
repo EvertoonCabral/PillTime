@@ -13,7 +13,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         String titulo = intent.getStringExtra("TITULO");
         String descricao = intent.getStringExtra("DESCRICAO");
-        Long fotoId = intent.getLongExtra("FOTO_ID", 0L); // Supondo que você já tenha o FOTO_ID
+        Long fotoId = intent.getLongExtra("FOTO_ID", 0L);
+        Log.d("AlarmReceiver", "Alarme recebido com ID da Foto: " + fotoId); // Log adicionado
 
         Intent alarmIntent = new Intent(context, AlarmDetailsActivity.class);
         alarmIntent.putExtra("FOTO_ID", fotoId); // Passe o ID da foto

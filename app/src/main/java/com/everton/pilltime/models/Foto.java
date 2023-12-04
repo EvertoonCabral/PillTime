@@ -8,13 +8,12 @@ public class Foto {
         private Long id;
 
 
-        private byte[] arquivo;
+        private String arquivo;
 
 
         private Alarme alarme;
 
-
-    public Foto(Long id, byte[] arquivo, Alarme alarme) {
+    public Foto(Long id, String arquivo, Alarme alarme) {
         this.id = id;
         this.arquivo = arquivo;
         this.alarme = alarme;
@@ -31,11 +30,11 @@ public class Foto {
         this.id = id;
     }
 
-    public byte[] getArquivo() {
+    public String getArquivo() {
         return arquivo;
     }
 
-    public void setArquivo(byte[] arquivo) {
+    public void setArquivo(String arquivo) {
         this.arquivo = arquivo;
     }
 

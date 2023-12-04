@@ -29,7 +29,7 @@ public interface ApiFoto {
     );
 
     @GET("/fotos/{id}")
-    Call<Foto> getFotoById(@Path("id") Long id);
+    Call<Foto> getFotoById(@Header("Authorization") String token, @Path("id") Long id);
 
     @GET("/fotos")
     Call<List<Foto>> getAllFotos();

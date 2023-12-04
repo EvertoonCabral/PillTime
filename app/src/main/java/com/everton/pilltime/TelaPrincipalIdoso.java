@@ -187,6 +187,9 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
             Intent intent = new Intent(this, AlarmReceiver.class);
             intent.putExtra("TITULO", ultimoAlarme.getTitulo());
             intent.putExtra("DESCRICAO", ultimoAlarme.getDescricao());
+            intent.putExtra("FOTO_ID", ultimoAlarme.getIdFoto());
+            Log.d("TelaPrincipal", "Agendando alarme com ID da Foto: " + ultimoAlarme.getIdFoto()); // Log adicionado
+
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 

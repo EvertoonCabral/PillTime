@@ -202,8 +202,10 @@ public class AlarmeActivity extends AppCompatActivity {
             call.enqueue(new Callback<ResponseFotoDTO>() {
                 @Override
                 public void onResponse(Call<ResponseFotoDTO> call, Response<ResponseFotoDTO> response) {
+
                     if (response.isSuccessful() && response.body() != null) {
                         idFoto = response.body().getIdFoto();
+                        Log.d(TAG, "Upload de foto feito, ID da Foto: " + idFoto);
                         if (response.isSuccessful()) {
                             Log.d(TAG, "Upload de foto bem-sucedido, ID da Foto: " + idFoto);
                         } else {
@@ -272,7 +274,8 @@ public class AlarmeActivity extends AppCompatActivity {
 
         Log.d(TAG, "Id da Foto"+ idFoto);
 
-       alarme.setIdFoto(idFoto);
+        alarme.setIdFoto(idFoto);
+        Log.d(TAG, "Salvando alarme com ID da Foto: " + idFoto);
 
 
         Call<String> call = apiCuidador.POST_ALARME_TO_IDOSO_LIST("Bearer " + token, idCuidador, cpfIdoso, alarme);
