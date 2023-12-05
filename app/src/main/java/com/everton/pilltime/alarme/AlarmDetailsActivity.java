@@ -15,7 +15,9 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.everton.pilltime.MainActivity;
 import com.everton.pilltime.R;
+import com.everton.pilltime.TelaPrincipal;
 import com.everton.pilltime.api.ApiFoto;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityAlarmDetailsBinding;
@@ -65,10 +67,19 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         binding.btnAccept.setOnClickListener(v -> {
 
             mediaPlayer.stop();
+            vibrator.cancel();
+
+
+            Intent intent1;
+            intent1 = new Intent(AlarmDetailsActivity.this, TelaPrincipal.class);
+            startActivity(intent1);
+
+
         });
 
         binding.btnDeny.setOnClickListener(v -> {
             mediaPlayer.stop();
+            vibrator.cancel();
 
             final Long finalIdosoId = getIntent().getLongExtra("IDOSO_ID", 0L);
             if (finalIdosoId != 0) {
