@@ -170,43 +170,50 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
     }
 
 
-    public void agendarAlarmes(List<AlarmeDTOInsert> listaAlarmes, Long idosoId){
+    public void agendarAlarmes(List<AlarmeDTOInsert> listaAlarmes, Long idosoId) {
         if (listaAlarmes == null || listaAlarmes.isEmpty()) {
             Log.d("TelaPrincipal", "Nenhum alarme para agendar.");
             return;
         }
 
-        AlarmeDTOInsert ultimoAlarme = listaAlarmes.get(listaAlarmes.size() - 1); // Pega o último alarme
+        SharedPreferences sharedPreferences = getSharedPreferences("AlarmeStatus", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        int requestCode = (int) System.currentTimeMillis();
+        AlarmeDTOInsert ultimoAlarme = listaAlarmes.get(listaAlarmes.size() - 1);
+        boolean alarmeDisparado = sharedPreferences.getBoolean("AlarmeDisparado_" + ultimoAlarme.getTitulo(), false);
 
-        try {
-            LocalDateTime dateTime = LocalDateTime.parse(ultimoAlarme.getAlarme(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(dateTime.getYear(), dateTime.getMonthValue() - 1, dateTime.getDayOfMonth(), dateTime.getHour(), dateTime.getMinute(), dateTime.getSecond());
+        if (!alarmeDisparado) {
+            try {
+                LocalDateTime dateTime = LocalDateTime.parse(ultimoAlarme.getAlarme(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(dateTime.getYear(), dateTime.getMonthValue() - 1, dateTime.getDayOfMonth(), dateTime.getHour(), dateTime.getMinute(), dateTime.getSecond());
 
-            Log.d("TelaPrincipal", "Agendando último alarme: " + ultimoAlarme.getTitulo() + " para " + calendar.getTime());
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                int requestCode = (int) System.currentTimeMillis();
 
-            Intent intent = new Intent(this, AlarmReceiver.class);
-            intent.putExtra("TITULO", ultimoAlarme.getTitulo());
-            intent.putExtra("DESCRICAO", ultimoAlarme.getDescricao());
-            intent.putExtra("FOTO_ID", ultimoAlarme.getIdFoto());
-            Log.d("TelaPrincipal", "Agendando alarme com ID da Foto: " + ultimoAlarme.getIdFoto()); // Log adicionado
-            intent.putExtra("IDOSO_ID", idosoId);
+                Intent intent = new Intent(this, AlarmReceiver.class);
+                intent.putExtra("TITULO", ultimoAlarme.getTitulo());
+                intent.putExtra("DESCRICAO", ultimoAlarme.getDescricao());
+                intent.putExtra("FOTO_ID", ultimoAlarme.getIdFoto());
+                intent.putExtra("IDOSO_ID", idosoId);
 
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-            if (alarmManager != null) {
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                if (alarmManager != null) {
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                    editor.putBoolean("AlarmeDisparado_" + ultimoAlarme.getTitulo(), true);
+                    editor.apply();
+                    Log.d("TelaPrincipal", "Alarme agendado: " + ultimoAlarme.getTitulo());
+                }
+            } catch (Exception e) {
+                Log.e("TelaPrincipal", "Erro ao agendar alarme", e);
             }
-        }
-        catch(Exception e){
-            Log.e("TelaPrincipal", "Erro ao agendar alarme", e);
+        } else {
+            Log.d("TelaPrincipal", "Alarme já disparado: " + ultimoAlarme.getTitulo());
         }
     }
+
+
 
 
 

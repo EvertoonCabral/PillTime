@@ -54,11 +54,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewAlarmes"
-            android:layout_width="230dp"
-            android:layout_height="327dp"
+            android:layout_width="353dp"
+            android:layout_height="443dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/list_layout"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
