@@ -40,6 +40,11 @@ public interface ApiCuidador {
     @GET("cuidador/{id}")
     Call<CuidadorDTO> GET_CUIDADOR(@Header("Authorization") String token, @Path("id") Long id);
 
+    // Em ApiCuidador
+    @GET("cuidador/full/{id}")
+    Call<Cuidador> GET_CUIDADOR_FULL_BY_ID(@Header("Authorization") String token, @Path("id") Long id);
+
+
     // Obter um cuidador pelo nome
     @GET("cuidador/filter")
     Call<List<Cuidador>> findCuidadorByFilters(@Query("nome") String nome);

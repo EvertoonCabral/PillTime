@@ -31,6 +31,12 @@ public class Idoso extends Pessoa{
         this.observacao = observacao;
     }
 
+    public Idoso(List<Alarme> alarmesIdoso, Cuidador cuidador, String observacao) {
+        this.alarmesIdoso = alarmesIdoso;
+        this.cuidador = cuidador;
+        this.observacao = observacao;
+    }
+
     public List<Alarme> getAlarmesIdoso() {
         return alarmesIdoso;
     }
@@ -46,8 +52,6 @@ public class Idoso extends Pessoa{
     public void setCuidador(Cuidador cuidador) {
         this.cuidador = cuidador;
     }
-
-
 
     public String getObservacao() {
         return observacao;

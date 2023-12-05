@@ -57,6 +57,10 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
         Long id = sharedPreferences.getLong("id", 0);
         String token = sharedPreferences.getString("token", " ");
 
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong("IdosoId", id);
+        editor.apply();
+
 
         carregarAlarmesDoIdoso(id, token);
 
@@ -116,7 +120,7 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
                     List<AlarmeDTOInsert> alarmesDTO = response.body();
                     AlarmeAdapter alarmeAdapter = new AlarmeAdapter(alarmesDTO);
                     binding.recyclerViewAlarmes.setAdapter(alarmeAdapter);
-                    agendarAlarmes(alarmesDTO);
+                    agendarAlarmes(alarmesDTO, idosoId);
                 } else {
                     // Tratar erros de resposta
                 }
@@ -166,7 +170,7 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
     }
 
 
-    public void agendarAlarmes(List<AlarmeDTOInsert> listaAlarmes) {
+    public void agendarAlarmes(List<AlarmeDTOInsert> listaAlarmes, Long idosoId){
         if (listaAlarmes == null || listaAlarmes.isEmpty()) {
             Log.d("TelaPrincipal", "Nenhum alarme para agendar.");
             return;
@@ -189,6 +193,8 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
             intent.putExtra("DESCRICAO", ultimoAlarme.getDescricao());
             intent.putExtra("FOTO_ID", ultimoAlarme.getIdFoto());
             Log.d("TelaPrincipal", "Agendando alarme com ID da Foto: " + ultimoAlarme.getIdFoto()); // Log adicionado
+            intent.putExtra("IDOSO_ID", idosoId);
+
 
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);

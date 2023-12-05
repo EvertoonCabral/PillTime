@@ -19,7 +19,11 @@ import com.everton.pilltime.R;
 import com.everton.pilltime.api.ApiFoto;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityAlarmDetailsBinding;
+import com.everton.pilltime.models.Cuidador;
+import com.everton.pilltime.models.EmailRequest;
 import com.everton.pilltime.models.Foto;
+import com.everton.pilltime.models.Idoso;
+import com.everton.pilltime.models.Pessoa;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,6 +48,9 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         String titulo = intent.getStringExtra("TITULO");
         String descricao = intent.getStringExtra("DESCRICAO");
         Long fotoId = intent.getLongExtra("FOTO_ID", 0L); // Aqui você recebe o ID da foto
+        Long idosoId = getIntent().getLongExtra("IDOSO_ID", 0L); // Recuperando ID do idoso
+        Log.d("AlarmDetailsActivity", "Idoso ID: " + idosoId); // Adicionando log para verificar o ID
+
 
         binding.tvAlarmTitle.setText(titulo);
         binding.tvAlarmDescription.setText(descricao);
@@ -62,10 +69,14 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         binding.btnDeny.setOnClickListener(v -> {
             mediaPlayer.stop();
 
-            //criar requisiçao para negar o alarme.
-
-
+            final Long finalIdosoId = getIntent().getLongExtra("IDOSO_ID", 0L);
+            if (finalIdosoId != 0) {
+                buscarInformacoesIdosoEEnviarEmail(finalIdosoId);
+            } else {
+                Log.e("AlarmDetailsActivity", "Idoso ID inválido.");
+            }
         });
+
 
         mediaPlayer = MediaPlayer.create(this, R.raw.som_alarme_1);
         mediaPlayer.start();
@@ -82,6 +93,7 @@ public class AlarmDetailsActivity extends AppCompatActivity {
 
     private String recuperarTokenAutenticacao() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyToken", Context.MODE_PRIVATE);
+
         return sharedPreferences.getString("token", "");
     }
 
@@ -122,6 +134,82 @@ public class AlarmDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    // Método para buscar informações do idoso e enviar e-mail
+    private void buscarInformacoesIdosoEEnviarEmail(Long idosoId) {
+        String token = recuperarTokenAutenticacao();
+        if (token.isEmpty()) {
+            Log.e("AlarmDetailsActivity", "Token de autenticação não encontrado.");
+            return;
+        }
+
+        // Fazendo a chamada à API para buscar informações completas do idoso
+        Retrofit.GET_FULL_IDOSO_BY_ID().GET_FULL_IDOSO_BY_ID("Bearer " + token, idosoId).enqueue(new Callback<Idoso>() {
+            @Override
+            public void onResponse(Call<Idoso> call, Response<Idoso> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Idoso idoso = response.body();
+                    // Agora você tem o objeto completo do idoso
+                    buscarInformacoesCuidadorEEnviarEmail(idoso.getCuidador().getId());
+                } else {
+                    Log.e("AlarmDetailsActivity", "Falha ao buscar informações do idoso. Código: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Idoso> call, Throwable t) {
+                Log.e("AlarmDetailsActivity", "Falha na chamada da API.", t);
+            }
+        });
+    }
+
+    private void buscarInformacoesCuidadorEEnviarEmail(Long cuidadorId) {
+        String token = recuperarTokenAutenticacao();
+        if (token.isEmpty()) {
+            Log.e("AlarmDetailsActivity", "Token de autenticação não encontrado.");
+            return;
+        }
+
+        Retrofit.GET_FULL_CUIDADOR().GET_CUIDADOR_FULL_BY_ID("Bearer " + token, cuidadorId).enqueue(new Callback<Cuidador>() {
+            @Override
+            public void onResponse(Call<Cuidador> call, Response<Cuidador> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Cuidador cuidador = response.body();
+                    enviarEmail(cuidador.getEmail(), "Assunto do E-mail", "Corpo do E-mail");
+                } else {
+                    Log.e("AlarmDetailsActivity", "Falha ao buscar informações do cuidador. Código: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Cuidador> call, Throwable t) {
+                Log.e("AlarmDetailsActivity", "Falha na chamada da API.", t);
+            }
+        });
+
+    }
+
+    private void enviarEmail(String emailDestinatario, String assunto, String corpoEmail) {
+        EmailRequest emailRequest = new EmailRequest(emailDestinatario, assunto, corpoEmail);
+        Retrofit.GET_EMAIL_SERVICE().enviarEmail(emailRequest).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()) {
+                    Log.d("EmailService", "Email enviado com sucesso");
+                } else {
+                    Log.e("EmailService", "Falha ao enviar email. Código: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.e("EmailService", "Erro na chamada da API.", t);
+            }
+        });
+    }
+
+
 
 
     @Override
