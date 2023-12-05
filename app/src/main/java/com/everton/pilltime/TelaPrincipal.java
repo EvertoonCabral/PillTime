@@ -3,24 +3,18 @@ package com.everton.pilltime;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
-import com.everton.pilltime.adapter.AlarmeAdapterCuidador;
-
-import com.everton.pilltime.alarme.AlarmReceiver;
+import com.everton.pilltime.adapter.AlarmeDTOAdapter;
 import com.everton.pilltime.alarme.AlarmeActivity;
-import com.everton.pilltime.api.ApiAlarme;
-import com.everton.pilltime.api.ApiIdoso;
-import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityTelaPrincipalBinding;
 import com.everton.pilltime.alarme.Alarme;
 import com.everton.pilltime.dto.AlarmeDTOInsert;
 import com.everton.pilltime.models.Idoso;
 import com.everton.pilltime.models.Remedio;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -32,15 +26,9 @@ import android.widget.Toast;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.Map;
 
 public class TelaPrincipal extends AppCompatActivity {
 
@@ -63,9 +51,6 @@ public class TelaPrincipal extends AppCompatActivity {
         Log.d("TelaPrincipal", "SharedPreferences: idosoId = " + idosoId + ", token = " + token);
 
 
-        List<Alarme> listaDeAlarmes = gerarAlarmesFicticios();
-        AlarmeAdapterCuidador alarmeAdapterCuidador = new AlarmeAdapterCuidador(listaDeAlarmes);
-        binding.recyclerViewAlarmes.setAdapter(alarmeAdapterCuidador);
 
 
         binding.fabAddAlarm.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +115,14 @@ public class TelaPrincipal extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        List<AlarmeDTOInsert> alarmes = carregarAlarmesDeSharedPreferences();
+        AlarmeDTOAdapter alarmeDTOAdapter = new AlarmeDTOAdapter(alarmes);
+        binding.recyclerViewAlarmes.setAdapter(alarmeDTOAdapter);
+    }
+
     private void showPopupMenu(View view, int menuRes) {
         PopupMenu popupMenu = new PopupMenu(this, view);
         popupMenu.getMenuInflater().inflate(menuRes, popupMenu.getMenu());
@@ -166,6 +159,20 @@ public class TelaPrincipal extends AppCompatActivity {
     }
 
 
+    private List<AlarmeDTOInsert> carregarAlarmesDeSharedPreferences() {
+        List<AlarmeDTOInsert> alarmes = new ArrayList<>();
+        SharedPreferences sharedPreferences = getSharedPreferences("alarmes", MODE_PRIVATE);
+        Map<String, ?> allEntries = sharedPreferences.getAll();
+
+        Gson gson = new Gson();
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            String jsonAlarme = entry.getValue().toString();
+            AlarmeDTOInsert alarme = gson.fromJson(jsonAlarme, AlarmeDTOInsert.class);
+            alarmes.add(alarme);
+        }
+
+        return alarmes;
+    }
 
 
 

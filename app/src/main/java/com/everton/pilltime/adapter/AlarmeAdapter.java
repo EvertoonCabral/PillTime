@@ -72,7 +72,6 @@ public class AlarmeAdapter extends RecyclerView.Adapter<AlarmeAdapter.AlarmeView
 
         public AlarmeViewHolder(@Nonnull View itemView) {
             super(itemView);
-            tvNomeIdoso = itemView.findViewById(R.id.tvNomeIdoso);
             tvNomeRemedio = itemView.findViewById(R.id.tvNomeRemedio);
             tvHora = itemView.findViewById(R.id.tvHora);
         }

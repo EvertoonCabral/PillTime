@@ -286,7 +286,7 @@ public class AlarmeActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
 
                     exibirMensagemSucesso();
-
+                    salvarAlarmeEmSharedPreferences(alarme);
 
                     Log.d(TAG, "Alarme salvo com sucesso. Resposta: " + response.body());
                 } else {
@@ -302,7 +302,7 @@ public class AlarmeActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 exibirMensagemSucesso();
-
+                salvarAlarmeEmSharedPreferences(alarme);
                 Log.e(TAG, "Falha na chamada da API. Erro: " + t.getMessage());
             }
         });
@@ -453,6 +453,21 @@ public class AlarmeActivity extends AppCompatActivity {
 
 
         return novoAlarme;
+    }
+
+    private void salvarAlarmeEmSharedPreferences(AlarmeDTOInsert alarme) {
+        SharedPreferences sharedPreferences = getSharedPreferences("alarmes", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Convertendo o objeto alarme para JSON
+        Gson gson = new Gson();
+        String jsonAlarme = gson.toJson(alarme);
+
+        String chaveAlarme = "alarme_" + System.currentTimeMillis();
+        editor.putString(chaveAlarme, jsonAlarme);
+        editor.apply();
+
+        Log.d(TAG, "Alarme salvo em SharedPreferences com a chave: " + chaveAlarme);
     }
 
 

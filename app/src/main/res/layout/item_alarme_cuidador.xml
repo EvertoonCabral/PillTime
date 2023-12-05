@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvNomeIdoso"
+            android:id="@+id/tvTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nome Idoso"
@@ -20,14 +20,6 @@
             android:textStyle="bold"
             android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/tvNomeRemedio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="Medicamento"/>
 
         <TextView
             android:id="@+id/tvHora"
@@ -37,6 +29,17 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:text="Horario"/>
+
+        <TextView
+            android:id="@+id/tvDescricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="Medicamento"/>
+
+
     </LinearLayout>
 
     <ImageView
