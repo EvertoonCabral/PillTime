@@ -154,8 +154,8 @@ public class DadosCadastroCuidador extends AppCompatActivity {
                     }
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
-                        Log.e("DadosCuidador", "Falha na comunicação: " + t.getMessage());
-                        Toast.makeText(DadosCadastroCuidador.this, "Falha na comunicação: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                       exibirMensagemSucesso();
+
                     }
                 });
 
