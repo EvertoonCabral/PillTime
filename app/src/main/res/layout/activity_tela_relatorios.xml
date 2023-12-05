@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:text="Selecione o Relatorio"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="15dp"
         android:gravity="center"
         android:padding="10dp"
@@ -45,7 +45,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="420dp"
         android:layout_margin="30dp"
         android:background="@drawable/list_layout"
         />
@@ -59,8 +59,8 @@
         android:backgroundTint="@color/light_green"
         android:text="Voltar"
         android:drawableRight="@drawable/btnhome"
-        android:padding="15dp"
-        android:textSize="18dp"
+        android:padding="10dp"
+        android:textSize="14dp"
         android:background="@drawable/container_components"
         />
 

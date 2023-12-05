@@ -103,7 +103,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:text="CPF"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -119,8 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:text="Telefone"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -138,7 +137,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:text="Data de Nascimento"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 <LinearLayout
@@ -173,7 +172,7 @@
                 android:text="Endereço"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
@@ -182,9 +181,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:text="estado"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:text="Estado"
+                android:textColor="@color/white"
+
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -200,8 +199,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:text="Cidade"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
+
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -217,8 +216,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:text="Bairro"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
+
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -233,9 +232,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:text="Rua"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
+                android:text="Observações"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -252,7 +250,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:text="Nº"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -269,8 +267,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:text="Observações"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
+
                 android:textSize="20dp"
                 android:textStyle="bold" />
 

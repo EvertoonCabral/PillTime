@@ -23,9 +23,9 @@
             <TextView
                 android:id="@+id/txtCadastro"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:gravity="center"
                 android:background="@color/white"
-                android:drawableRight="@drawable/ic_people_people"
                 android:text="Cadastro Idoso"
                 android:textAlignment="center"
                 android:textAllCaps="true"
@@ -276,7 +276,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
                 android:text="Rua"
-                android:textAllCaps="true"
+                android:textSize="20dp"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -292,7 +292,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
                 android:text="Complemento"
-                android:textAllCaps="true"
+                android:textSize="20dp"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -332,7 +332,6 @@
                 android:drawableRight="@drawable/ic_arrow_next"
                 android:paddingRight="15dp"
                 android:text="@string/salvar"
-                android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <LinearLayout
@@ -350,8 +349,7 @@
                     android:backgroundTint="@color/light_green"
                     android:paddingRight="15dp"
                     android:text="Limpar Dados Usuário"
-                    android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <!-- Botão Limpar Dados do Endereço -->
                 <Button
@@ -364,8 +362,7 @@
                     android:backgroundTint="@color/light_green"
                     android:paddingRight="15dp"
                     android:text="Limpar Dados Endereço"
-                    android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
             </LinearLayout>
 

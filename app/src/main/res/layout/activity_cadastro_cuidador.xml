@@ -23,7 +23,8 @@
             <TextView
                 android:id="@+id/txtCadastro"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="50dp"
                 android:background="@color/white"
                 android:text="Cadastro cuidador"
                 android:textAlignment="center"
@@ -128,7 +129,7 @@
                 android:background="@drawable/container_components"
                 android:paddingRight="15dp"
                 android:text="@string/salvar"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
 
         </LinearLayout>

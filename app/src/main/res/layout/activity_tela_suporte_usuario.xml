@@ -159,7 +159,7 @@
                 android:background="@drawable/container_components"
                 android:paddingRight="15dp"
                 android:text="Enviar"
-                android:textColor="@color/black" />
+ />
 
 
         </LinearLayout>

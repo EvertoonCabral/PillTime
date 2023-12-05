@@ -39,7 +39,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="15dp"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:inputType="text"
                 android:text="Nome Remédio"
                 android:textSize="20dp"
@@ -61,7 +61,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="15dp"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:inputType="text"
                 android:text="Marca Remédio"
                 android:textSize="20dp"
@@ -82,8 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="15dp"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:text="Dosagem"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -104,8 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="15dp"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:text="Forma Farmaceutico"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -123,8 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="15dp"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:text="Validade"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -146,8 +143,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="15dp"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
+
                 android:text="Observações"
                 android:textSize="20dp"
                 android:textStyle="bold" />

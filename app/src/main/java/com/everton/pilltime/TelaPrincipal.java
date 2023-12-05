@@ -176,33 +176,6 @@ public class TelaPrincipal extends AppCompatActivity {
 
 
 
-    private List<Alarme> gerarAlarmesFicticios() {
-        List<Alarme> alarmes = new ArrayList<>();
-
-        // Criando alguns alarmes fictícios
-        for (int i = 1; i <= 10; i++) {
-            Alarme alarme = new Alarme();
-            alarme.setTitulo("Alarme " + i);
-            alarme.setDescricao("Descrição do alarme " + i);
-       //     alarme.setDtCadastrado(new Date());
-
-            Idoso idoso = new Idoso();
-            idoso.setNome("Idoso " + i);
-            alarme.setIdoso(idoso);
-
-            Remedio remedio = new Remedio();
-            remedio.setNome("Remédio " + i);
-            List<Remedio> remedios = new ArrayList<>();
-            remedios.add(remedio);
-         //   alarme.setRemediosIdosos(remedios);
-
-           // alarme.setAlarme(LocalDateTime.now().plusHours(i)); // Adicionando horas para diferenciar
-
-            alarmes.add(alarme);
-        }
-
-        return alarmes;
-    }
 
 
 }

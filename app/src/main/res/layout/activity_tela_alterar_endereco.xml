@@ -39,8 +39,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:textAllCaps="true"
-                android:layout_marginTop="1dp"
-                android:textColor="@color/black"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/white"
                 android:inputType="text"
                 android:text="CEP"
                 android:textSize="20dp"
@@ -79,7 +79,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:textAllCaps="true"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:inputType="text"
                 android:text="Rua"
                 android:textSize="20dp"
@@ -101,7 +101,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:textAllCaps="true"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:inputType="text"
                 android:text="Bairro"
                 android:textSize="20dp"
@@ -123,7 +123,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:textAllCaps="true"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:inputType="text"
                 android:text="Cidade"
                 android:textSize="20dp"
@@ -145,7 +145,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:textAllCaps="true"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:inputType="text"
                 android:text="Estado"
                 android:textSize="20dp"
@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:text="Número"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -188,7 +188,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="10dp"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:inputType="text"
                 android:text="Complemento"
                 android:textSize="20dp"
@@ -213,7 +213,6 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/container_components"
-                android:backgroundTint="@color/light_green"
                 android:drawableRight="@drawable/ic_check_sucesso"
                 android:padding="10dp"
                 android:text="@string/confirmar"
@@ -221,7 +220,7 @@
 
             <Button
                 android:id="@+id/btnLimpar"
-                android:layout_width="200dp"
+                android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="30dp"
@@ -230,7 +229,7 @@
                 android:drawableRight="@drawable/ic_config_black"
                 android:padding="10dp"
                 android:text="Limpar Endereço"
-                android:textSize="17dp" />
+                android:textSize="14dp" />
 
         </LinearLayout>
 

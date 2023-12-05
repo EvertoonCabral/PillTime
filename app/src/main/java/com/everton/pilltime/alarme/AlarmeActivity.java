@@ -20,11 +20,20 @@ import android.app.TimePickerDialog;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.everton.pilltime.MainActivity;
+import com.everton.pilltime.R;
+import com.everton.pilltime.TelaAlterarRemedio;
+import com.everton.pilltime.TelaConfPerfilIdoso;
+import com.everton.pilltime.TelaPerfilCuidador;
+import com.everton.pilltime.TelaPrincipal;
+import com.everton.pilltime.TelaSuporteUsuario;
 import com.everton.pilltime.api.ApiCuidador;
 import com.everton.pilltime.api.ApiFoto;
 
@@ -88,6 +97,33 @@ public class AlarmeActivity extends AppCompatActivity {
         token = sharedPreferences.getString("token", "");
         idCuidador = sharedPreferences.getLong("id", 0);
 
+
+        binding.btnPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupMenu(binding.btnPerfil, R.menu.menu_perfil);
+            }
+        });
+
+        binding.btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AlarmeActivity.this, TelaPrincipal.class);
+                startActivity(intent);
+
+            }
+        });
+
+        binding.btnHome.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(AlarmeActivity.this, MainActivity.class);
+                startActivity(intent);
+                Toast.makeText(AlarmeActivity.this, "Saindo!", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
         binding.btnSelecionarHora.setOnClickListener(view -> {
             Log.d(TAG, "Botão 'Selecionar Hora' pressionado.");
             showTimePicker();
@@ -119,6 +155,40 @@ public class AlarmeActivity extends AppCompatActivity {
 
     }
 
+    private void showPopupMenu(View view, int menuRes) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        popupMenu.getMenuInflater().inflate(menuRes, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_MeuPerfil:
+                        Intent intent = new Intent(AlarmeActivity.this, TelaPerfilCuidador.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.action_edit_profile:
+                        Intent intent2 = new Intent(AlarmeActivity.this, TelaConfPerfilIdoso.class);
+                        startActivity(intent2);
+                        return true;
+                    case R.id.action_suporte:
+                        Intent intent3 = new Intent(AlarmeActivity.this, TelaSuporteUsuario.class);
+                        startActivity(intent3);
+                        return true;
+                    case R.id.action_Alterar_Remedio:
+                        Intent intent4 = new Intent(AlarmeActivity.this, TelaAlterarRemedio.class);
+                        startActivity(intent4);
+                        return true;
+                    case R.id.action_logout:
+                        Intent intent5 = new Intent(AlarmeActivity.this, MainActivity.class);
+                        startActivity(intent5);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
+        popupMenu.show();
+    }
 
 
 
