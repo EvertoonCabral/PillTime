@@ -19,6 +19,7 @@ import com.everton.pilltime.R;
 import com.everton.pilltime.api.ApiFoto;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityAlarmDetailsBinding;
+import com.everton.pilltime.dto.IdosoComCuidadorDTO;
 import com.everton.pilltime.models.Cuidador;
 import com.everton.pilltime.models.EmailRequest;
 import com.everton.pilltime.models.Foto;
@@ -136,7 +137,6 @@ public class AlarmDetailsActivity extends AppCompatActivity {
     }
 
 
-    // Método para buscar informações do idoso e enviar e-mail
     private void buscarInformacoesIdosoEEnviarEmail(Long idosoId) {
         String token = recuperarTokenAutenticacao();
         if (token.isEmpty()) {
@@ -145,20 +145,20 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         }
 
         // Fazendo a chamada à API para buscar informações completas do idoso
-        Retrofit.GET_FULL_IDOSO_BY_ID().GET_FULL_IDOSO_BY_ID("Bearer " + token, idosoId).enqueue(new Callback<Idoso>() {
+        Retrofit.get_Idoso_With_Cuidador().getIdosoWithCuidador(token, idosoId).enqueue(new Callback<IdosoComCuidadorDTO>() {
             @Override
-            public void onResponse(Call<Idoso> call, Response<Idoso> response) {
+            public void onResponse(Call<IdosoComCuidadorDTO> call, Response<IdosoComCuidadorDTO> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Idoso idoso = response.body();
-                    // Agora você tem o objeto completo do idoso
-                    buscarInformacoesCuidadorEEnviarEmail(idoso.getCuidador().getId());
+                    IdosoComCuidadorDTO idosoDTO = response.body();
+                    // Agora você tem o ID do cuidador
+                    buscarInformacoesCuidadorEEnviarEmail(idosoDTO.getCuidadorId());
                 } else {
                     Log.e("AlarmDetailsActivity", "Falha ao buscar informações do idoso. Código: " + response.code());
                 }
             }
 
             @Override
-            public void onFailure(Call<Idoso> call, Throwable t) {
+            public void onFailure(Call<IdosoComCuidadorDTO> call, Throwable t) {
                 Log.e("AlarmDetailsActivity", "Falha na chamada da API.", t);
             }
         });
@@ -176,7 +176,7 @@ public class AlarmDetailsActivity extends AppCompatActivity {
             public void onResponse(Call<Cuidador> call, Response<Cuidador> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Cuidador cuidador = response.body();
-                    enviarEmail(cuidador.getEmail(), "Assunto do E-mail", "Corpo do E-mail");
+                    enviarEmail(cuidador.getEmail(), "E-MAIL NEGADO!", "Ola" + cuidador.getNome() + "alguem recusou o alarme que você cadastrou, verifique!");
                 } else {
                     Log.e("AlarmDetailsActivity", "Falha ao buscar informações do cuidador. Código: " + response.code());
                 }
@@ -191,8 +191,11 @@ public class AlarmDetailsActivity extends AppCompatActivity {
     }
 
     private void enviarEmail(String emailDestinatario, String assunto, String corpoEmail) {
+        String token = recuperarTokenAutenticacao();
+
+
         EmailRequest emailRequest = new EmailRequest(emailDestinatario, assunto, corpoEmail);
-        Retrofit.GET_EMAIL_SERVICE().enviarEmail(emailRequest).enqueue(new Callback<Void>() {
+        Retrofit.GET_EMAIL_SERVICE().enviarEmail(token, emailRequest).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()) {

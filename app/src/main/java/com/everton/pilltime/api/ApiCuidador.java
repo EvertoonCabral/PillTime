@@ -20,23 +20,18 @@ import retrofit2.http.Query;
 
 public interface ApiCuidador {
 
-    // Adicionar um cuidador
     @POST("cuidador")
     Call<Cuidador> insertCuidador(@Body CuidadorDTO cuidadorDto);
 
-    // Editar um cuidador
     @PUT("cuidador")
     Call<CuidadorDTO> editCuidador(@Body Cuidador cuidador);
 
-    // Deletar um cuidador
     @DELETE("cuidador/{id}")
     Call<Void> deleteCuidador(@Path("id") Long id);
 
-    // Retorna uma lista de cuidadores
     @GET("cuidador")
     Call<List<CuidadorDTO>> findAllCuidadores();
 
-    // Retorna um cuidador pelo ID
     @GET("cuidador/{id}")
     Call<CuidadorDTO> GET_CUIDADOR(@Header("Authorization") String token, @Path("id") Long id);
 
@@ -45,11 +40,9 @@ public interface ApiCuidador {
     Call<Cuidador> GET_CUIDADOR_FULL_BY_ID(@Header("Authorization") String token, @Path("id") Long id);
 
 
-    // Obter um cuidador pelo nome
     @GET("cuidador/filter")
     Call<List<Cuidador>> findCuidadorByFilters(@Query("nome") String nome);
 
-    // Retorna todos os Idosos da Lista do Cuidador
     @GET("cuidador/{cuidadorId}/idosos")
     Call<List<IdosoDTO>> GET_ALL_IDOSOS_CUIDADOR(@Header("Authorization") String token, @Path("cuidadorId") Long cuidadorId);
 

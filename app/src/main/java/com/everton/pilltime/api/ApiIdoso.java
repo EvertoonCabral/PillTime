@@ -1,6 +1,7 @@
 package com.everton.pilltime.api;
 
 import com.everton.pilltime.dto.AlarmeDTOInsert;
+import com.everton.pilltime.dto.IdosoComCuidadorDTO;
 import com.everton.pilltime.dto.IdosoDTO;
 import com.everton.pilltime.models.Idoso;
 
@@ -53,7 +54,8 @@ public interface ApiIdoso {
     Call<List<AlarmeDTOInsert>> obterAlarmesDeIdoso(@Header("Authorization") String token, @Path("id") Long id);
 
     @GET("idoso/full/{id}")
-    Call<Idoso> GET_FULL_IDOSO_BY_ID(@Header("Authorization") String token, @Path("id") Long id);
+    Call<IdosoComCuidadorDTO> getIdosoWithCuidador(@Header("Authorization") String token, @Path("id") Long id);
+
 
 
 }
