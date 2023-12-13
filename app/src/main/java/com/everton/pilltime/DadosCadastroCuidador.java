@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 
 import android.widget.DatePicker;
@@ -71,9 +72,6 @@ public class DadosCadastroCuidador extends AppCompatActivity {
         binding.btnRegistrarCuidador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
                 String nome = binding.edNomeCadastroCuidador.getText().toString().trim();
                 String senha = binding.edSenhaCadastroCuidador.getText().toString().trim();
                 String email = binding.edEmailCadastroCuidador.getText().toString().trim();
@@ -88,12 +86,16 @@ public class DadosCadastroCuidador extends AppCompatActivity {
                 String complemento = binding.edObservacaoCadastroCuidador.getText().toString().trim();
 
                 Date dataNascimento = formataData(dataNascimentoString);
-                if (dataNascimento == null) {
-                    Toast.makeText(DadosCadastroCuidador.this, "Data de nascimento inválida.", Toast.LENGTH_SHORT).show();
-                    return;
+
+                if (!validarDataNascimento(dataNascimentoString) ||
+                        !validarEmail(email) ||
+                        !validarCPF(cpf) ||
+                        !validarSenha(senha)) {
+                    return; // Se alguma validação falhar, retorna e não continua com o registro
                 }
 
-                if (nome.isEmpty() || senha.isEmpty() || email.isEmpty() || cpf.isEmpty() || telefone.isEmpty() || estado.isEmpty() || cidade.isEmpty() || bairro.isEmpty() || rua.isEmpty() || numero.isEmpty()) {
+                // Verifica se os campos obrigatórios estão preenchidos
+                if (nome.isEmpty() || telefone.isEmpty() || estado.isEmpty() || cidade.isEmpty() || bairro.isEmpty() || rua.isEmpty() || numero.isEmpty()) {
                     Toast.makeText(DadosCadastroCuidador.this, "Todos os campos são obrigatórios.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -215,15 +217,156 @@ public class DadosCadastroCuidador extends AppCompatActivity {
 
     }
 
+    private boolean validarDataNascimento(String dataNascimentoString) {
+        if (dataNascimentoString.isEmpty()) {
+            Toast.makeText(DadosCadastroCuidador.this, "Data de nascimento é obrigatória.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        Date dataNascimento;
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            dataNascimento = formatter.parse(dataNascimentoString);
+            if (dataNascimento == null) {
+                Toast.makeText(DadosCadastroCuidador.this, "Formato de data inválido.", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        } catch (ParseException e) {
+            Toast.makeText(DadosCadastroCuidador.this, "Formato de data inválido.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // Verifica se a data de nascimento é futura
+        if (dataNascimento.after(new Date())) {
+            Toast.makeText(DadosCadastroCuidador.this, "A data de nascimento não pode ser no futuro.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // Verificar se a pessoa tem pelo menos 18 anos
+        Calendar dataLimite = Calendar.getInstance();
+        dataLimite.add(Calendar.YEAR, -18);
+        if (dataNascimento.after(dataLimite.getTime())) {
+            Toast.makeText(DadosCadastroCuidador.this, "A idade deve ser pelo menos 18 anos.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+
+    private boolean validarEmail(String email) {
+        if (email.isEmpty()) {
+            Toast.makeText(DadosCadastroCuidador.this, "Email é obrigatório.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(DadosCadastroCuidador.this, "Email inválido.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validarCPF(String cpf) {
+        if (cpf.isEmpty()) {
+            Toast.makeText(DadosCadastroCuidador.this, "CPF é obrigatório.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // Remove caracteres não numéricos
+        cpf = cpf.replaceAll("\\D+", "");
+
+        if (cpf.length() != 11 || cpf.matches(cpf.charAt(0) + "{11}")) {
+            Toast.makeText(DadosCadastroCuidador.this, "CPF inválido.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        int[] pesosCPF = {10, 9, 8, 7, 6, 5, 4, 3, 2};
+
+        int soma = 0;
+        for (int i = 0; i < 9; i++) {
+            soma += (cpf.charAt(i) - '0') * pesosCPF[i];
+        }
+
+        int primeiroDigito = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        soma = 0;
+
+        int[] pesosCPF2 = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
+        for (int i = 0; i < 10; i++) {
+            soma += (cpf.charAt(i) - '0') * pesosCPF2[i];
+        }
+
+        int segundoDigito = soma % 11 < 2 ? 0 : 11 - soma % 11;
+
+        return cpf.equals(cpf.substring(0, 9) + primeiroDigito + segundoDigito);
+    }
+
+    private boolean validarSenha(String senha) {
+        if (senha.isEmpty()) {
+            Toast.makeText(DadosCadastroCuidador.this, "A senha é obrigatória.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (senha.length() < 8) {
+            Toast.makeText(DadosCadastroCuidador.this, "A senha deve ter pelo menos 8 caracteres.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!senha.matches(".*[A-Z].*")) {
+            Toast.makeText(DadosCadastroCuidador.this, "A senha deve conter pelo menos uma letra maiúscula.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!senha.matches(".*[a-z].*")) {
+            Toast.makeText(DadosCadastroCuidador.this, "A senha deve conter pelo menos uma letra minúscula.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!senha.matches(".*\\d.*")) {
+            Toast.makeText(DadosCadastroCuidador.this, "A senha deve conter pelo menos um número.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!senha.matches(".*[!@#$%^&*+=?-].*")) {
+            Toast.makeText(DadosCadastroCuidador.this, "A senha deve conter pelo menos um caractere especial (!@#$%^&*+=?-).", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void limparCampos() {
+        binding.edNomeCadastroCuidador.setText("");
+        binding.edSenhaCadastroCuidador.setText("");
+        binding.edEmailCadastroCuidador.setText("");
+        binding.edCPFCadastroCuidador.setText("");
+        binding.edTelefone.setText("");
+        binding.edDataNascCadastroCuidador.setText("");
+        binding.edEstadoCadastroCuidador.setText("");
+        binding.edCidadeCadastroCuidador.setText("");
+        binding.edBairroCadastroCuidador.setText("");
+        binding.edRuaCadastroCuidador.setText("");
+        binding.edNumeroCadastroCuidador.setText("");
+        binding.edObservacaoCadastroCuidador.setText("");
+    }
+
+
 
     private void exibirMensagemSucesso() {
         AlertDialog.Builder builder = new AlertDialog.Builder(DadosCadastroCuidador.this);
         builder.setTitle("Sucesso");
         builder.setMessage("Você foi cadastrado com sucesso!");
-        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            dialog.dismiss();
+            limparCampos();
+        });
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+
+
 
 
 
