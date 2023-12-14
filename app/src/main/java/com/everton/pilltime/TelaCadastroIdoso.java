@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
@@ -42,6 +43,20 @@ public class TelaCadastroIdoso extends AppCompatActivity {
         binding = ActivityTelaCadastroIdosoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+        binding.edDataNascCadastroIdoso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
+
+        binding.btnCalendario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
 
 
         binding.btSalvarCadastro.setOnClickListener(new View.OnClickListener() {
@@ -137,76 +152,11 @@ public class TelaCadastroIdoso extends AppCompatActivity {
             }
         });
 
-        binding.btLimparDadosUsuario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                limparDadosUsuario();
-            }
-        });
 
-        binding.btLimparDadosEndereco.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                limparDadosEndereco();
-            }
-        });
     }
 
 
-    private boolean validarCampos() {
-        Log.d("CadastroIdoso", "Iniciando validação dos campos");
 
-        String nome = binding.edNomeCadastroIdoso.getText().toString().trim();
-        String senha = binding.edSenhaCadastroIdoso.getText().toString().trim();
-        String cpf = binding.edCPFCadastroIdoso.getText().toString().trim();
-        String dataNascimento = binding.edDataNascCadastroIdoso.getText().toString().trim();
-        String estado = binding.edEstadoCadastroCuidador.getText().toString().trim();
-        String cidade = binding.edCidadeCadastroIdoso.getText().toString().trim();
-
-        // Validação do nome
-        if (nome.length() < 3 || nome.length() > 50) {
-            Log.e("CadastroIdoso", "Erro na validação do nome");
-            binding.edNomeCadastroIdoso.setError("O nome deve ter entre 2 e 50 caracteres.");
-            return false;
-        }
-
-        // Validação da senha
-        if (senha.length() < 6) {
-            Log.e("CadastroIdoso", "Erro na validação da senha");
-            binding.edSenhaCadastroIdoso.setError("A senha deve ter mais de 6 caracteres.");
-            return false;
-        }
-
-        // Validação do CPF
-        if (cpf.length() != 11) {
-            Log.e("CadastroIdoso", "Erro na validação do CPF");
-            binding.edCPFCadastroIdoso.setError("O CPF deve ter 11 caracteres.");
-            return false;
-        }
-
-        // Validação da cidade
-        if (cidade.isEmpty()) {
-            Log.e("CadastroIdoso", "Erro na validação da cidade");
-            binding.edCidadeCadastroIdoso.setError("Cidade não pode estar vazia.");
-            return false;
-        }
-
-        // Validação do estado
-        if (estado.length() != 2 || !estado.matches("[A-Z]{2}")) {
-            Log.e("CadastroIdoso", "Erro na validação do estado");
-            binding.edEstadoCadastroCuidador.setError("Estado deve ser uma sigla válida (ex: PR)!");
-            return false;
-        }
-
-        // Validação da data de nascimento
-        if (!validarDataNascimento(dataNascimento)) {
-            Log.e("CadastroIdoso", "Erro na validação da data de nascimento");
-            return false;
-        }
-
-        Log.d("CadastroIdoso", "Validação dos campos concluída com sucesso");
-        return true;
-    }
     private boolean validarDataNascimento(String dataNascimento) {
         SimpleDateFormat sdf;
         if (dataNascimento.contains("/")) {
@@ -225,6 +175,112 @@ public class TelaCadastroIdoso extends AppCompatActivity {
         }
         return true;
     }
+
+    private boolean validarCPF(String cpf) {
+        if (cpf.isEmpty()) {
+            Toast.makeText(TelaCadastroIdoso.this, "CPF é obrigatório.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        cpf = cpf.replaceAll("\\D+", "");
+
+        if (cpf.length() != 11) {
+            Toast.makeText(TelaCadastroIdoso.this, "CPF deve ter 11 dígitos.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        int[] pesoCPF = {10, 9, 8, 7, 6, 5, 4, 3, 2};
+        int soma = 0;
+
+        for (int i = 0; i < 9; i++) {
+            soma += Integer.parseInt(cpf.substring(i, i + 1)) * pesoCPF[i];
+        }
+
+        int numero = 11 - (soma % 11);
+        String digitoVerificador1 = (numero > 9) ? "0" : String.valueOf(numero);
+
+        soma = 0;
+        pesoCPF = new int[]{11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
+
+        for (int i = 0; i < 10; i++) {
+            soma += Integer.parseInt(cpf.substring(i, i + 1)) * pesoCPF[i];
+        }
+
+        numero = 11 - (soma % 11);
+        String digitoVerificador2 = (numero > 9) ? "0" : String.valueOf(numero);
+
+        return cpf.equals(cpf.substring(0, 9) + digitoVerificador1 + digitoVerificador2);
+    }
+
+    private boolean validarNome(String nome) {
+        if (nome.isEmpty()) {
+            Toast.makeText(TelaCadastroIdoso.this, "O nome é obrigatório.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (nome.length() < 2 || nome.length() > 50) {
+            Toast.makeText(TelaCadastroIdoso.this, "O nome deve ter entre 2 e 50 caracteres.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!nome.matches("[a-zA-Z\\s]+")) { // Regex para permitir apenas letras e espaços
+            Toast.makeText(TelaCadastroIdoso.this, "O nome não deve conter caracteres especiais.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+
+    private boolean validarEmail(String email) {
+        if (email.isEmpty()) {
+            Toast.makeText(TelaCadastroIdoso.this, "Email é obrigatório.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(TelaCadastroIdoso.this, "Email inválido.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validarSenha(String senha) {
+        if (senha.isEmpty()) {
+            Toast.makeText(TelaCadastroIdoso.this, "A senha é obrigatória.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (senha.length() < 8) {
+            Toast.makeText(TelaCadastroIdoso.this, "A senha deve ter pelo menos 8 caracteres.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!senha.matches(".*[A-Z].*")) {
+            Toast.makeText(TelaCadastroIdoso.this, "A senha deve conter pelo menos uma letra maiúscula.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!senha.matches(".*[a-z].*")) {
+            Toast.makeText(TelaCadastroIdoso.this, "A senha deve conter pelo menos uma letra minúscula.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!senha.matches(".*\\d.*")) {
+            Toast.makeText(TelaCadastroIdoso.this, "A senha deve conter pelo menos um número.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!senha.matches(".*[!@#$%^&*+=?-].*")) {
+            Toast.makeText(TelaCadastroIdoso.this, "A senha deve conter pelo menos um caractere especial (!@#$%^&*+=?-).", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+
 
 
     private Date formataData(String data) {
@@ -280,6 +336,8 @@ public class TelaCadastroIdoso extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        limparDadosUsuario();
+                        limparDadosEndereco();
                     }
                 })
                 .setIcon(android.R.drawable.ic_dialog_info)
@@ -287,6 +345,15 @@ public class TelaCadastroIdoso extends AppCompatActivity {
     }
 
 
+    private boolean validarCampos() {
+        String nome = binding.edNomeCadastroIdoso.getText().toString().trim();
+        String email = binding.edEmailCadastroIdoso.getText().toString().trim();
+        String senha = binding.edSenhaCadastroIdoso.getText().toString().trim();
+        String cpf = binding.edCPFCadastroIdoso.getText().toString().trim();
+        String dataNascimento = binding.edDataNascCadastroIdoso.getText().toString().trim();
+
+        return validarNome(nome) && validarEmail(email) && validarSenha(senha) && validarCPF(cpf) && validarDataNascimento(dataNascimento);
+    }
 
 
 
@@ -298,6 +365,7 @@ public class TelaCadastroIdoso extends AppCompatActivity {
         binding.edTelefoneCadastroIdoso.setText("");
         binding.edDataNascCadastroIdoso.setText("");
         binding.edObsIdoso.setText("");
+        binding.edCPFCuidadorCadIdoso.setText("");
     }
 
     private void limparDadosEndereco() {
@@ -306,6 +374,7 @@ public class TelaCadastroIdoso extends AppCompatActivity {
         binding.edBairroCadastroIdoso.setText("");
         binding.edRuaCadastroIdoso.setText("");
         binding.edNumeroCadastroCuidador.setText("");
+        binding.edComplementoCadastroIdoso.setText("");
     }
 
 }
