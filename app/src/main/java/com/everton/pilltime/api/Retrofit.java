@@ -8,8 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Retrofit {
 
-   //    public static final String BASE_URL_API = "http://10.0.2.2:8080/";
-    public static final String BASE_URL_API = "https://f9c8-177-91-39-96.ngrok.io/";
+      public static final String BASE_URL_API = "http://10.0.2.2:8080/";
+    // public static final String BASE_URL_API = "https://f9c8-177-91-39-96.ngrok.io/";
 
     private static Gson gson = new GsonBuilder()
             .setDateFormat("dd/MM/yyyy")
