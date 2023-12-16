@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,6 +62,9 @@ public class TelaCadastroRemedio extends AppCompatActivity {
                     return;
                 }
 
+
+                binding.btnCadastroRemedio.setEnabled(true);
+
                 String nome = binding.edNomeRemedio.getText().toString().trim();
                 String marca = binding.edMarcaRemedio.getText().toString().trim();
                 String dosagem = binding.edDosagemRemedio.getText().toString().trim();
@@ -93,6 +97,7 @@ public class TelaCadastroRemedio extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         if (response.isSuccessful()){
+                            
 
                         } else {
                             int statusCode = response.code();
@@ -111,14 +116,23 @@ public class TelaCadastroRemedio extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
-                        // Criação do AlertDialog
+
                         new AlertDialog.Builder(TelaCadastroRemedio.this)
                                 .setTitle("Cadastro de Remédio")
                                 .setMessage("Remédio cadastrado com sucesso!")
-                                .setPositiveButton(android.R.string.ok, null)
+                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        limparCampos();
+                                    }
+                                })
                                 .show();
 
+                        binding.btnCadastroRemedio.setEnabled(true);
+
                     }
+
+
+
                 });
 
 
@@ -157,13 +171,30 @@ public class TelaCadastroRemedio extends AppCompatActivity {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         formatter.setLenient(false);
         try {
-            formatter.parse(dataString);
+            Date validade = formatter.parse(dataString);
+            Date hoje = new Date();
+
+            // Configurar o calendário para 5 anos à frente
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(hoje);
+            calendar.add(Calendar.YEAR, 5);
+            Date cincoAnosAFrente = calendar.getTime();
+
+            if (validade.before(hoje)) {
+                Log.e("Validação", "Data de validade não pode ser retroativa.");
+                return false;
+            } else if (validade.after(cincoAnosAFrente)) {
+                Log.e("Validação", "Data de validade não pode ser mais de 5 anos no futuro.");
+                return false;
+            }
             return true;
         } catch (ParseException e) {
             Log.e("Validação", "Erro ao formatar a data: " + e.getMessage());
             return false;
         }
     }
+
+
 
     private Date formataData(String data) {
 
@@ -183,6 +214,30 @@ public class TelaCadastroRemedio extends AppCompatActivity {
 
     }
 
+
+    private void showDialog(String title, String message) {
+        new AlertDialog.Builder(TelaCadastroRemedio.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .show();
+    }
+
+
+    private void limparCampos() {
+        binding.edNomeRemedio.setText("");
+        binding.edMarcaRemedio.setText("");
+        binding.edDosagemRemedio.setText("");
+        binding.edFormaFarmaceutica.setText("");
+        binding.edDataValidadeRemedio.setText("");
+        binding.edObservacaoRemedio.setText("");
+    }
 
 
 

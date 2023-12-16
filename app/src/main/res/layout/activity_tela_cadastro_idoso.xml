@@ -339,30 +339,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btLimparDadosUsuario"
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="9dp"
-                    android:background="@drawable/container_components"
-                    android:backgroundTint="@color/light_green"
-                    android:paddingRight="15dp"
-                    android:text="Limpar Dados Usuário"
-                    android:textSize="14dp" />
 
-                <!-- Botão Limpar Dados do Endereço -->
-                <Button
-                    android:id="@+id/btLimparDadosEndereco"
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="9dp"
-                    android:background="@drawable/container_components"
-                    android:backgroundTint="@color/light_green"
-                    android:paddingRight="15dp"
-                    android:text="Limpar Dados Endereço"
-                    android:textSize="14dp" />
 
             </LinearLayout>
 
