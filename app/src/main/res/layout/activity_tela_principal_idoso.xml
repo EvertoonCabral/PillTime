@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:background="@color/azulTeste"
+        android:background="@color/azul"
         android:id="@+id/tbTelaPrincipal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="52dp"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/azulTeste"
+            android:backgroundTint="@color/azul"
             android:src="@drawable/ic_timer"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

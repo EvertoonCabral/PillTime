@@ -7,7 +7,7 @@
     tools:context=".telaPerfilIdoso"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/azulTeste" >
+    android:background="@color/azul" >
 
     <ScrollView
         android:layout_width="match_parent"

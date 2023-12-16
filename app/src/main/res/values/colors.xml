@@ -7,8 +7,9 @@
     <color name="light_green">#90EE90</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="vinho">#3a7ca5</color>
+    <color name="azul">#3a7ca5</color>
     <color name="cinza">#759eb8</color>
     <color name="green">#96be8c</color>
     <color name="blue">#9bb1ff</color>
+    <color name="amarelo">#ffbf69</color>
 </resources>

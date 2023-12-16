@@ -9,7 +9,7 @@
     >
 
     <androidx.appcompat.widget.Toolbar
-        android:background="@color/azulTeste"
+        android:background="@color/azul"
         android:id="@+id/tbTelaPrincipal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,12 +69,16 @@
 
     <Button
         android:id="@+id/btnSelecionarHora"
-        android:layout_width="wrap_content"
+        android:layout_width="145dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginVertical="15dp"
         android:layout_marginEnd="45dp"
-        android:text="Selecionar Hora" />
+        android:background="@drawable/btncamera"
+        android:text="Selecionar Hora"
+        android:textColor="@color/white"
+
+        />
 
     <TextView
         android:id="@+id/textViewSelectedTime"
@@ -114,6 +118,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginVertical="15dp"
+            android:background="@drawable/btncamera"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:text=" CAMERA"
             android:layout_weight="1"
             android:layout_marginRight="10dp"
@@ -124,6 +131,8 @@
             android:id="@+id/btnUploudFoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_upload"
+            android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_marginVertical="15dp"
             android:text="Upload"
@@ -147,14 +156,16 @@
         android:scaleType="fitCenter" />
 
 
-
     <Button
         android:id="@+id/btnSalvarAlarme"
-        android:layout_width="wrap_content"
+        android:layout_width="158dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginVertical="15dp"
-        android:text="Salvar Alarme" />
+        android:background="@drawable/btn_salvar"
+        android:text="Salvar Alarme"
+        android:textStyle="bold" />
+
 
 
 

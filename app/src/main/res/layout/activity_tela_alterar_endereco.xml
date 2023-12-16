@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".TelaAlterarEndereco"
     android:orientation="vertical"
-    android:background="@color/azulTeste"
+    android:background="@color/azul"
     >
 
     <TextView
