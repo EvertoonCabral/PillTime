@@ -39,6 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Suporte PillTime"
+                android:textColor="@color/azul"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:padding="20dp"
@@ -49,7 +50,7 @@
                 android:layout_marginVertical="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Avalie nosso aplicativo"
+                android:text="Avalie nossa Aplicação"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:padding="5dp"
@@ -60,7 +61,7 @@
                 android:layout_marginVertical="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="De 0 a 5 como você avaliaria nosso APP "
+                android:text="De 0 a 5 qual seria sua avaliação: "
                 android:textStyle="bold"
                 android:padding="10dp"
 
@@ -114,7 +115,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Deixe sua sugestão ou avaliação aqui..."
+                android:text="Deixe sua sugestão ou FeedBack aqui..."
                 android:textStyle="bold"
                 android:padding="20dp"
 
@@ -153,11 +154,11 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawableRight="@drawable/ic_arrow_next"
+                android:drawableRight="@drawable/ic_check_sucesso"
+                android:drawablePadding="-50dp"
                 android:textSize="20dp"
-                android:backgroundTint="@color/light_green"
-                android:background="@drawable/container_components"
-                android:paddingRight="15dp"
+                android:background="@drawable/btn_salvar"
+                android:paddingRight="30dp"
                 android:text="Enviar"
  />
 

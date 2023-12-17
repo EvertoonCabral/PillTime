@@ -61,6 +61,7 @@
         android:background="@drawable/titulo_alarme"
         android:textColorHint="@color/white"
         android:textStyle="bold"
+        android:textColor="@color/white"
         android:gravity="center"
 
         />

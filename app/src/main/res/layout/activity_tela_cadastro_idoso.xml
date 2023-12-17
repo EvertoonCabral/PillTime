@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".CadastroCuidador"
     android:orientation="vertical"
-    android:background="@color/azul"
+    android:background="@color/white"
 
     >
 
@@ -23,25 +23,19 @@
             <TextView
                 android:id="@+id/txtCadastro"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="108dp"
+                android:background="@drawable/background_topo"
+                android:drawableEnd="@drawable/ic_idoso_cadastro"
+                android:padding="40dp"
+                android:drawablePadding="-20dp"
                 android:gravity="center"
-                android:background="@color/white"
-                android:text="Cadastro Idoso"
+                android:text="Cadastro Idoso(a)"
                 android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/logoCadastoIdoso"
-                style="@style/ContainerComponentes"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:layout_margin="30dp"
-                android:src="@drawable/logoredondo"
-                android:textSize="30dp" />
+
 
 
             <TextView
@@ -49,8 +43,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
                 android:text="Nome completo"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -59,7 +54,7 @@
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
                 android:inputType="text"
-
+                android:background="@drawable/bordaredonda_azul"
                 />
 
             <TextView
@@ -67,9 +62,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:text="Email"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -77,7 +72,9 @@
                 android:id="@+id/edEmailCadastroIdoso"
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:background="@drawable/bordaredonda_azul"
+                />
 
             <TextView
                 android:id="@+id/txtSenhaCadastroIdoso"
@@ -86,7 +83,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="15dp"
                 android:text="Senha"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -95,7 +92,8 @@
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
                 android:drawableRight="@drawable/ic_eye"
-                android:inputType="numberPassword" />
+                android:inputType="numberPassword"
+                android:background="@drawable/bordaredonda_azul"/>
 
 
             <TextView
@@ -106,7 +104,7 @@
                 android:layout_marginTop="10dp"
                 android:text="CPF"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -115,7 +113,8 @@
                 style="@style/Edit_Text"
                 android:layout_marginTop="10dp"
                 android:inputType="number"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:background="@drawable/bordaredonda_azul"/>
 
             <TextView
                 android:id="@+id/txtTelefoneCadastroIdoso"
@@ -124,7 +123,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
                 android:text="Telefone"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -133,7 +132,8 @@
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
                 android:hint="(DD)12345-6789"
-                android:inputType="text" />
+                android:inputType="text"
+                android:background="@drawable/bordaredonda_azul"/>
 
             <TextView
                 android:id="@+id/txtDataNascCadastroIdoso"
@@ -141,8 +141,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
-                android:text="Data de Nascimento"
-                android:textColor="@color/white"
+                android:text="Dt. Nascimento: "
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -158,14 +158,15 @@
                     android:layout_marginTop="5dp"
                     android:hint="____/_____/____"
                     android:inputType="date"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:background="@drawable/bordaredonda_azul"/>
 
                 <ImageButton
                     android:id="@+id/btnCalendario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_calendar" />
+                    android:src="@drawable/ic_calendario" />
 
             </LinearLayout>
             <TextView
@@ -175,7 +176,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
                 android:text="Observaoes"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -184,7 +185,8 @@
                 style="@style/Edit_Text"
                 android:layout_marginTop="10dp"
                 android:inputType="text"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:background="@drawable/bordaredonda_azul"/>
 
             <TextView
                 android:id="@+id/txtCPFcuidador"
@@ -194,7 +196,7 @@
                 android:layout_marginTop="10dp"
                 android:text="CPF do Cuidador"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -203,7 +205,8 @@
                 style="@style/Edit_Text"
                 android:layout_marginTop="10dp"
                 android:inputType="number"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:background="@drawable/bordaredonda_azul"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -213,6 +216,7 @@
                 android:text="Endereço"
                 android:textAlignment="center"
                 android:textAllCaps="true"
+                android:background="@color/azul"
                 android:textColor="@color/white"
                 android:textSize="25dp"
                 android:textStyle="bold" />
@@ -224,7 +228,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
                 android:text="Estado"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -233,7 +237,8 @@
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
                 android:inputType="text"
-                android:textAllCaps="true" />
+                android:textAllCaps="true"
+                android:background="@drawable/bordaredonda_azul"/>
 
             <TextView
                 android:id="@+id/txtEstadoCadastroIdoso"
@@ -242,7 +247,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
                 android:text="Cidade"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -250,7 +255,8 @@
                 android:id="@+id/edCidadeCadastroIdoso"
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
-                android:inputType="text" />
+                android:inputType="text"
+                android:background="@drawable/bordaredonda_azul"/>
 
             <TextView
                 android:id="@+id/txtBairroCadastroIdoso"
@@ -259,7 +265,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
                 android:text="Bairro"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -267,7 +273,8 @@
                 android:id="@+id/edBairroCadastroIdoso"
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
-                android:inputType="text" />
+                android:inputType="text"
+                android:background="@drawable/bordaredonda_azul"/>
 
             <TextView
                 android:id="@+id/txtRuaCadastroIdoso"
@@ -277,14 +284,15 @@
                 android:layout_marginTop="10dp"
                 android:text="Rua"
                 android:textSize="20dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edRuaCadastroIdoso"
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
-                android:inputType="text" />
+                android:inputType="text"
+                android:background="@drawable/bordaredonda_azul"/>
             <TextView
                 android:id="@+id/txtComplementoCadastroIdoso"
                 android:layout_width="wrap_content"
@@ -293,14 +301,15 @@
                 android:layout_marginTop="10dp"
                 android:text="Complemento"
                 android:textSize="20dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edComplementoCadastroIdoso"
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
-                android:inputType="text" />
+                android:inputType="text"
+                android:background="@drawable/bordaredonda_azul"/>
 
             <TextView
                 android:id="@+id/txtNumeroCadastroIdoso"
@@ -309,7 +318,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
                 android:text="Nº"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -318,7 +327,8 @@
                 style="@style/Edit_Text"
                 android:layout_width="100dp"
                 android:layout_marginTop="5dp"
-                android:inputType="number" />
+                android:inputType="number"
+                android:background="@drawable/bordaredonda_azul"/>
 
 
             <Button
@@ -327,11 +337,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="40dp"
-                android:background="@drawable/container_components"
-                android:backgroundTint="@color/light_green"
-                android:drawableRight="@drawable/ic_arrow_next"
-                android:paddingRight="15dp"
+                android:background="@drawable/btn_salvar"
+                android:drawableRight="@drawable/ic_check_sucesso"
+                android:drawablePadding="-20dp"
                 android:text="@string/salvar"
+                android:padding="10dp"
                 android:textSize="20dp" />
 
             <LinearLayout
@@ -343,6 +353,20 @@
 
             </LinearLayout>
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="108dp"
+                android:layout_marginLeft="80dp"
+                android:background="@drawable/background_bottom"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                />
 
         </LinearLayout>
 
