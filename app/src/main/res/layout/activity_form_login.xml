@@ -78,6 +78,7 @@
                 android:background="@drawable/edittext_rounded"
                 android:drawableRight="@drawable/ic_email"
                 android:inputType="textEmailAddress"
+                android:paddingLeft="16dp"
                 app:layout_constraintEnd_toEndOf="@id/containerLogin"
                 app:layout_constraintStart_toStartOf="@id/containerLogin"
                 app:layout_constraintTop_toBottomOf="@id/txtLogin" />
@@ -103,7 +104,7 @@
                 android:layout_height="48dp"
                 android:background="@drawable/edittext_rounded"
                 android:drawableRight="@drawable/ic_eye"
-                android:inputType="numberPassword"
+                android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="@id/containerLogin"
                 app:layout_constraintStart_toStartOf="@id/containerLogin"
                 app:layout_constraintTop_toBottomOf="@id/txtSenha" />

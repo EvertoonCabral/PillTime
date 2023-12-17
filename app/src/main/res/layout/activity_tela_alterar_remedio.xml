@@ -47,11 +47,11 @@
 
             <EditText
                 android:id="@+id/edNomeRemedioConfig"
+                style="@style/Edit_Text"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:drawableRight="@drawable/ic_config_black"
-                style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
+                android:drawableRight="@drawable/ic_config_black"
                 android:padding="10dp" />
 
             <!-- Marca Remédio -->
