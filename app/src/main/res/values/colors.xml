@@ -11,5 +11,6 @@
     <color name="cinza">#759eb8</color>
     <color name="green">#96be8c</color>
     <color name="blue">#9bb1ff</color>
-    <color name="amarelo">#ffbf69</color>
+    <color name="amarelo">#FEC868</color>
+    <color name="red">#FF6969</color>
 </resources>

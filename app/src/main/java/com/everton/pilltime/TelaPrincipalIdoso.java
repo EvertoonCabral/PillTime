@@ -70,18 +70,6 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
         binding.recyclerViewAlarmes.setAdapter(alarmeAdapterCuidador);
 
 
-        binding.fabAddAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Toast.makeText(TelaPrincipalIdoso.this, "Feature em Desenvolvimento!", Toast.LENGTH_SHORT).show();
-
-
-            }
-        });
-
-
         binding.btnPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

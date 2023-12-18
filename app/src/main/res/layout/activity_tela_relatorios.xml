@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,20 +14,21 @@
     android:layout_height="match_parent"
     tools:context=".TelaRelatorios"
     android:orientation="vertical"
-    android:background="@color/azul"
+    android:background="@color/white"
     >
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gerador de Relatorios"
+        android:text="Relatorios"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20dp"
         android:gravity="center"
         android:padding="10dp"
         android:layout_marginBottom="30dp"
-        android:background="@color/white"
+        android:background="@color/azul"
         />
 
     <TextView
@@ -27,7 +36,7 @@
         android:layout_height="wrap_content"
         android:text="Selecione o Relatorio"
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/red"
         android:textSize="15dp"
         android:gravity="center"
         android:padding="10dp"
@@ -36,7 +45,9 @@
         android:id="@+id/spinnerRelatorio"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/btn_relatorio"
         android:layout_gravity="center"
         android:layout_marginHorizontal="30dp"
         style="@style/Edit_Text"
@@ -52,16 +63,19 @@
 
     <Button
         android:id="@+id/btnVolarTelaRelatorio"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_margin="30dp"
-        android:backgroundTint="@color/light_green"
-        android:text="Voltar"
-        android:drawableRight="@drawable/btnhome"
-        android:padding="10dp"
-        android:textSize="14dp"
+
         android:background="@drawable/container_components"
+        android:drawableRight="@drawable/ic_retorno"
+        android:drawablePadding="10dp"
+        android:padding="10dp"
+        android:text="Voltar"
+        android:textSize="20dp"
+        android:textColor="@color/azul"
         />
 
+
 </LinearLayout>
+</ScrollView>
