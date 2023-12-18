@@ -136,7 +136,7 @@
                 android:layout_marginBottom="618dp"
                 android:background="@drawable/edittext_cadastro"
                 android:gravity="center"
-                android:text="Cadastro Conta"
+                android:text="Cadastrar Conta"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="18dp"
