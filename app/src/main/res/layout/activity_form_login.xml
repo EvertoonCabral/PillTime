@@ -29,8 +29,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.05" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="180dp"
@@ -111,7 +110,7 @@
                 app:layout_constraintStart_toStartOf="@id/containerLogin"
                 app:layout_constraintTop_toBottomOf="@id/txtSenha" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btEntrarlogin"
                 android:layout_width="154dp"
                 android:layout_height="42dp"
@@ -120,12 +119,14 @@
                 android:background="@drawable/btn_salvar"
                 android:text="Entrar"
                 android:textAlignment="center"
+                style="@style/btnLogin"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edSenha" />
+
 
             <TextView
                 android:id="@+id/txtCadastro"
