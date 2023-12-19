@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Responsavel"
+                android:text="Responsavel/Cuidador"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@color/azul"
@@ -110,13 +110,14 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnVoltarTelaPrincipal"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_margin="30dp"
-                android:background="@drawable/container_components"
-                android:backgroundTint="@color/light_green"
-                android:drawableRight="@drawable/ic_retorno"
+                android:background="@drawable/edittext_cadastro"
+                android:textStyle="bold
+"               android:drawablePadding="-20dp"
+                android:drawableRight="@drawable/ic_return_black"
                 android:padding="15dp"
                 android:text="Voltar"
                 android:textSize="18dp" />

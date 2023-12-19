@@ -50,7 +50,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:inputType="text"
-                android:text="Nome"
+                android:text="Nome: "
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -74,7 +74,7 @@
                 android:textColor="@color/black"
 
                 android:inputType="text"
-                android:text="E-mail"
+                android:text="E-mail: "
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -99,7 +99,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:inputType="text"
-                android:text="Telefone"
+                android:text="Telefone: "
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -124,7 +124,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:inputType="text"
-                android:text="CPF"
+                android:text="CPF: "
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -156,7 +156,7 @@
                     android:textAllCaps="true"
                     android:textColor="@color/black"
                     android:inputType="text"
-                    android:text="Inicio Cuidados"
+                    android:text="Inicio Cuidados:"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     />
@@ -166,7 +166,7 @@
                     android:textAllCaps="true"
                     android:textColor="@color/black"
                     android:inputType="text"
-                    android:text="Tempo Responsavel"
+                    android:text="Tempo Responsavel:"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     />
@@ -208,11 +208,12 @@
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="wrap_content"
+                android:layout_width="170dp"
                 android:layout_height="50dp"
+                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_margin="30dp"
-                android:background="@drawable/btn_salvar"
+                android:background="@drawable/edittext_cadastro"
                 android:drawableRight="@drawable/ic_return_black"
                 android:drawablePadding="15dp"
                 android:padding="15dp"

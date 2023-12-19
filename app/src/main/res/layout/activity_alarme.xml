@@ -78,9 +78,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSelecionarHora"
-        android:layout_width="145dp"
+        android:layout_width="190dp"
+        android:padding="10dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:drawableRight="@drawable/ic_clock_hour"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/btncamera"
@@ -128,6 +130,8 @@
             android:layout_gravity="center"
             android:layout_marginVertical="15dp"
             android:background="@drawable/btncamera"
+            android:drawableRight="@drawable/ic_camera"
+            android:padding="15dp"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:text=" CAMERA"
@@ -147,7 +151,8 @@
             android:text="Upload"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
-
+            android:drawableRight="@drawable/ic_upload"
+            android:padding="10dp"
 
             />
 

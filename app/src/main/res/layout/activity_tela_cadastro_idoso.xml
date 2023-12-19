@@ -55,6 +55,7 @@
                 android:layout_marginTop="5dp"
                 android:inputType="text"
                 android:background="@drawable/bordaredonda_azul"
+                android:drawableRight="@drawable/ic_nome"
                 />
 
             <TextView
