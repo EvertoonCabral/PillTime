@@ -11,12 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Título do Alarme"
+        android:background="@color/azul"
         android:layout_gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:padding="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/azul"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
         />
 
 
@@ -24,6 +26,7 @@
         android:id="@+id/imgAlarme"
         android:layout_width="match_parent"
         android:layout_height="400dp"
+        android:layout_marginTop="20dp"
         />
 
     <TextView
@@ -31,9 +34,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Descrição do Alarme"
-        android:textColor="@color/azul"
+        android:textColor="@color/white"
         android:layout_gravity="center"
+        android:background="@color/azul"
+        android:padding="10dp"
         android:textSize="18sp"
+        android:textStyle="bold"
         android:layout_below="@id/tvAlarmTitle"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"/>
@@ -48,21 +54,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Aceitar"
+            android:textSize="20dp"
+            android:gravity="center"
             android:textStyle="bold"
             android:background="@drawable/btn_salvar"
             android:layout_below="@id/tvAlarmDescription"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
             android:layout_toStartOf="@+id/btnDeny"
+            android:drawableRight="@drawable/ic_accept"
+            android:padding="10dp"
             android:layout_weight="1"
             />
 
         <!-- Botão Negar -->
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnDeny"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Negar"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:background="@drawable/btn_recusar"
+            android:drawableRight="@drawable/ic_cancelar"
+            android:padding="10dp"
             android:layout_below="@id/tvAlarmDescription"
             android:layout_marginTop="40dp"
             android:layout_centerHorizontal="true"
