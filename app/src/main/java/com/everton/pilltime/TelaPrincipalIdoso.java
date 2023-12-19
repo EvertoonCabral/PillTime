@@ -233,7 +233,7 @@ public class TelaPrincipalIdoso extends AppCompatActivity {
     }
 
 
-    private void createNotificationChannel() {
+    private void createNotificationChannel(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "Nome do Canal";
             String description = "Descrição do Canal";
