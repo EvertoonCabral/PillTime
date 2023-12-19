@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".TelaPerfilCuidadorVisaoIdoso"
     android:orientation="vertical"
-    android:background="@color/azul"
+    android:background="@color/white"
     >
 
 
@@ -21,6 +21,25 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
+
+            <TextView
+                android:id="@+id/txtTituloCadastroRemedio"
+                android:layout_width="match_parent"
+                android:layout_height="108dp"
+                android:text="Perfil do seu Cuidador"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:background="@drawable/background_topo"
+                android:drawableEnd="@drawable/ic_pessoa3"
+                android:drawablePadding="-20dp"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp"
+                android:padding="40dp"
+
+                />
 
 
             <TextView
@@ -41,8 +60,11 @@
                 android:layout_height="60dp"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
-                android:padding="10dp"
+                android:padding="20dp"
+                android:background="@drawable/bordaredonda_azul"
+                android:drawableRight="@drawable/ic_nome"
                 />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,6 +72,7 @@
                 android:textAllCaps="true"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
+
                 android:inputType="text"
                 android:text="E-mail"
                 android:textSize="20dp"
@@ -61,10 +84,12 @@
                 android:layout_height="60dp"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
-                android:padding="10dp"
+                android:padding="20dp"
                 android:hint="teste@gmail.com"
                 android:maxLength="255"
                 android:inputType="text"
+                android:background="@drawable/bordaredonda_azul"
+                android:drawableRight="@drawable/ic_email_blue"
                 />
             <TextView
                 android:layout_width="match_parent"
@@ -84,10 +109,13 @@
                 android:layout_height="60dp"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
-                android:padding="10dp"
+                android:padding="20dp"
                 android:hint="(45)99999-0000"
                 android:inputType="phone"
+                android:background="@drawable/bordaredonda_azul"
+                android:drawableRight="@drawable/ic_fone"
                 />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,10 +134,13 @@
                 android:layout_height="60dp"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
-                android:padding="10dp"
+                android:padding="20dp"
                 android:inputType="text"
                 android:maxLength="11"
+                android:background="@drawable/bordaredonda_azul"
+                android:drawableRight="@drawable/ic_cpf"
                 />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -159,7 +190,9 @@
                     android:layout_margin="20dp"
                     android:padding="10dp"
                     android:inputType="text"
+                    android:background="@drawable/bordaredonda_azul"
                     />
+
                 <EditText
                     android:id="@+id/edTempoSobeCuidados"
                     android:layout_width="170dp"
@@ -168,26 +201,37 @@
                     style="@style/Edit_Text"
                     android:padding="10dp"
                     android:inputType="text"
+                    android:background="@drawable/bordaredonda_azul"
                     />
 
             </LinearLayout>
 
 
-
-
             <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_margin="30dp"
-                android:backgroundTint="@color/light_green"
-                android:text="Voltar"
-                android:drawableRight="@drawable/btnhome"
-                android:padding="15dp"
-                android:textSize="18dp"
                 android:background="@drawable/container_components"
-                />
+                android:backgroundTint="@color/light_green"
+                android:drawableRight="@drawable/ic_retorno"
+                android:padding="15dp"
+                android:text="Voltar"
+                android:textSize="18dp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="108dp"
+                android:layout_marginLeft="80dp"
+                android:background="@drawable/background_bottom"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                />
 
 
         </LinearLayout>
