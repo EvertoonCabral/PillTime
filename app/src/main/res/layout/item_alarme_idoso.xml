@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/azul"
             android:text="Medicamento"/>
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/azul"
             android:text="Horario"/>
     </LinearLayout>
 
@@ -37,6 +37,6 @@
         android:layout_gravity="top|end"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:src="@drawable/ic_clock" />
+        android:src="@drawable/ic_alarme3" />
 
 </FrameLayout>

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/azul"
             android:text="Nome:"
             />
 
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/azul"
             android:text="Marca:"
 
             />
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/azul"
             android:text="Data de Validade:" />
 
 
@@ -55,7 +55,7 @@
         android:layout_height="44dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:src="@drawable/icon_pill"
+        android:src="@drawable/ic_pill2"
         android:layout_gravity="top|end"
 
         />

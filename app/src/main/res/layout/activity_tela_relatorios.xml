@@ -17,16 +17,22 @@
 
 
     <TextView
+        android:id="@+id/txtTituloCadastroRemedio"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Relatorios"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:textSize="20dp"
+        android:layout_height="108dp"
+        android:text="Alteração de Remédio"
+        android:textAlignment="center"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:padding="10dp"
-        android:layout_marginBottom="30dp"
-        android:background="@color/azul"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:background="@drawable/background_topo"
+        android:drawableEnd="@drawable/ic_relatorio2"
+        android:drawablePadding="-15dp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
+        android:padding="40dp"
+
         />
 
     <TextView
@@ -37,7 +43,7 @@
         android:textColor="@color/red"
         android:textSize="15dp"
         android:gravity="center"
-        android:padding="10dp"
+        android:padding="0dp"
         />
 
     <Spinner
@@ -60,18 +66,31 @@
         android:background="@drawable/list_layout"
         />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnVolarTelaRelatorio"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="180dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
-        android:background="@drawable/container_components"
-        android:drawableRight="@drawable/ic_retorno"
-        android:drawablePadding="10dp"
+        android:background="@drawable/edittext_cadastro"
+        android:drawableRight="@drawable/ic_return_black"
+        android:drawablePadding="-20dp"
         android:padding="10dp"
         android:text="Voltar"
-        android:textSize="20dp"
-        android:textColor="@color/azul"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="108dp"
+        android:layout_marginLeft="80dp"
+        android:background="@drawable/background_bottom"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
         />
 
 

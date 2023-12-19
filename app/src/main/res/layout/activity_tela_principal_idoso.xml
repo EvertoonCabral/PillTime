@@ -24,7 +24,7 @@
                 android:id="@+id/btnPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_person_pb"
+                android:src="@drawable/ic_idoso8"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:layout_marginEnd="16dp"/>
 
@@ -32,7 +32,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tela Principal"
+                android:text=" - Tela Principal Idoso"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"/>
 
@@ -40,7 +41,8 @@
                 android:id="@+id/btnHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_home"
+                android:src="@drawable/ic_home2"
+                android:padding="5dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:layout_marginStart="16dp"/>
 

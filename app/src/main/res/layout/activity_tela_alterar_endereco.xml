@@ -59,16 +59,16 @@
                 android:background="@drawable/bordaredonda_azul"
                 />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnBuscarCep"
-                android:layout_width="wrap_content"
+                android:layout_width="181dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="95dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/container_components"
-                android:backgroundTint="@color/light_green"
+                android:background="@drawable/btn_upload"
+                android:drawableRight="@drawable/ic_search"
                 android:padding="10dp"
                 android:text="Buscar CEP"
                 android:textSize="20dp" />
@@ -210,7 +210,7 @@
                 android:background="@drawable/bordaredonda_azul"
                 />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSalvar"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
@@ -218,20 +218,19 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/container_components"
+                android:background="@drawable/btn_salvar"
                 android:drawableRight="@drawable/ic_check_sucesso"
                 android:padding="10dp"
                 android:text="@string/confirmar"
                 android:textSize="20dp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnLimpar"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="30dp"
-                android:background="@drawable/container_components"
-                android:backgroundTint="@color/light_green"
+                android:background="@drawable/edittext_cadastro"
                 android:drawableRight="@drawable/ic_config_black"
                 android:padding="10dp"
                 android:text="Limpar Endereço"

@@ -27,7 +27,7 @@
                 android:id="@+id/btnPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_person_pb"
+                android:src="@drawable/ic_user2"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:layout_marginEnd="16dp"/>
 
@@ -35,7 +35,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tela Principal"
+                android:textSize="20dp"
+                android:text=" - Tela Cadastro Alarme"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"/>
 
@@ -43,7 +44,8 @@
                 android:id="@+id/btnHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_home"
+                android:src="@drawable/ic_home2"
+                android:padding="5dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:layout_marginStart="16dp"/>
 
@@ -57,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="15dp"
         style="@style/Edit_Text"
-        android:hint="Título do Alarme"
+        android:hint="Digite aqui o Título..."
         android:background="@drawable/titulo_alarme"
         android:textColorHint="@color/white"
         android:textStyle="bold"
@@ -74,7 +76,7 @@
         style="@style/Edit_Text"
         android:layout_height="60sp" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSelecionarHora"
         android:layout_width="145dp"
         android:layout_height="wrap_content"
@@ -119,7 +121,7 @@
         android:paddingHorizontal="10dp"
 
         >
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnTirarFoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -134,7 +136,7 @@
 
             />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnUploudFoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -163,7 +165,7 @@
         android:scaleType="fitCenter" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSalvarAlarme"
         android:layout_width="158dp"
         android:layout_height="wrap_content"

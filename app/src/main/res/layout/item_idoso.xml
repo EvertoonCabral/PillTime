@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/azul"
         android:text="Nome:"
         />
 
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/azul"
         android:text="CPF:"
 
         />
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/azul"
         android:text="Telefone:" />
 
     <TextView
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/azul"
         android:text="Data de Nascimento:" />
 
 </LinearLayout>
@@ -64,7 +64,7 @@
         android:layout_height="44dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:src="@drawable/icon_idoso"
+        android:src="@drawable/ic_idoso4"
         android:layout_gravity="top|end"
         />
 

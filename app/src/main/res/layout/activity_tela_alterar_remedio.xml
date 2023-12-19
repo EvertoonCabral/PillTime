@@ -176,15 +176,15 @@
                 android:background="@drawable/bordaredonda_azul"
                 android:padding="10dp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSalvarEditRemedio"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="30dp"
-                android:background="@drawable/container_components"
-                android:backgroundTint="@color/light_green"
+                android:background="@drawable/btn_salvar"
                 android:drawableRight="@drawable/ic_check_sucesso"
+                android:drawablePadding="-15dp"
                 android:padding="10dp"
                 android:text="@string/confirmar"
                 android:textSize="20dp" />
