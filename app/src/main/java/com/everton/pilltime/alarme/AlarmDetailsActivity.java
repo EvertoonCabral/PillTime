@@ -85,8 +85,7 @@ public class AlarmDetailsActivity extends AppCompatActivity {
 
             final Long finalIdosoId = getIntent().getLongExtra("IDOSO_ID", 0L);
             if (finalIdosoId != 0) {
-                buscarInformacoesIdosoEEnviarEmail(finalIdosoId); // Esta chamada é para enviar email
-                buscarTelefoneCuidador(finalIdosoId); // Adicione esta chamada para enviar SMS
+                buscarIdCuidadorETelefone(finalIdosoId);
             } else {
                 Log.e("AlarmDetailsActivity", "Idoso ID inválido.");
             }
@@ -191,7 +190,7 @@ public class AlarmDetailsActivity extends AppCompatActivity {
             public void onResponse(Call<Cuidador> call, Response<Cuidador> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Cuidador cuidador = response.body();
-                    enviarEmail(cuidador.getEmail(), "E-MAIL NEGADO!", "Ola" + cuidador.getNome() + "alguem recusou o alarme que você cadastrou, verifique!");
+                    enviarEmail(cuidador.getEmail(), "E-MAIL NEGADO!", "Olá " + cuidador.getNome() + " o alarme que você cadastrou, verifique!");
                 } else {
                     Log.e("AlarmDetailsActivity", "Falha ao buscar informações do cuidador. Código: " + response.code());
                 }
@@ -205,7 +204,34 @@ public class AlarmDetailsActivity extends AppCompatActivity {
 
     }
 
+
+    private void buscarIdCuidadorETelefone(Long idosoId) {
+        String token = recuperarTokenAutenticacao();
+        if (token.isEmpty()) {
+            Log.e("AlarmDetailsActivity", "Token de autenticação não encontrado.");
+            return;
+        }
+
+        Retrofit.get_Idoso_With_Cuidador().getIdosoWithCuidador(token, idosoId).enqueue(new Callback<IdosoComCuidadorDTO>() {
+            @Override
+            public void onResponse(Call<IdosoComCuidadorDTO> call, Response<IdosoComCuidadorDTO> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Long cuidadorId = response.body().getCuidadorId();
+                    buscarTelefoneCuidador(cuidadorId);
+                } else {
+                    Log.e("AlarmDetailsActivity", "Falha ao buscar informações do idoso. Código: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<IdosoComCuidadorDTO> call, Throwable t) {
+                Log.e("AlarmDetailsActivity", "Falha na chamada da API.", t);
+            }
+        });
+    }
+
     private void buscarTelefoneCuidador(Long cuidadorId) {
+        Log.d("AlarmDetailsActivity", "Iniciando busca pelo telefone do cuidador com ID: " + cuidadorId);
         String token = recuperarTokenAutenticacao();
         if (token.isEmpty()) {
             Log.e("AlarmDetailsActivity", "Token de autenticação não encontrado.");
@@ -217,9 +243,8 @@ public class AlarmDetailsActivity extends AppCompatActivity {
             public void onResponse(Call<Cuidador> call, Response<Cuidador> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Cuidador cuidador = response.body();
-                    // Aqui você tem o número de telefone do cuidador
                     String numeroTelefoneCuidador = cuidador.getTelefone();
-                    // Agora você pode fazer algo com o número de telefone, como enviar um SMS
+                    Log.d("AlarmDetailsActivity", "Número do telefone do cuidador encontrado: " + numeroTelefoneCuidador);
                     enviarSMS(numeroTelefoneCuidador, "Um alarme foi recusado. Verifique o aplicativo para mais detalhes.");
                 } else {
                     Log.e("AlarmDetailsActivity", "Falha ao buscar informações do cuidador. Código: " + response.code());
@@ -228,20 +253,22 @@ public class AlarmDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Cuidador> call, Throwable t) {
-                Log.e("AlarmDetailsActivity", "Falha na chamada da API.", t);
+                Log.e("AlarmDetailsActivity", "Falha na chamada da API para buscar informações do cuidador.", t);
             }
         });
     }
+
 
     private void enviarSMS(String numeroTelefone, String mensagem) {
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(numeroTelefone, null, mensagem, null, null);
-            Log.d("SMS", "SMS enviado com sucesso.");
+            Log.d("SMS", "SMS enviado com sucesso para: " + numeroTelefone);
         } catch (Exception e) {
-            Log.e("SMS", "Falha ao enviar SMS.", e);
+            Log.e("SMS", "Falha ao enviar SMS para: " + numeroTelefone, e);
         }
     }
+
 
 
 
