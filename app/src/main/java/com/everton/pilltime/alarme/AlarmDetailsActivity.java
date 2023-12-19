@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.telephony.SmsManager;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.everton.pilltime.MainActivity;
 import com.everton.pilltime.R;
 import com.everton.pilltime.TelaPrincipal;
+import com.everton.pilltime.TelaPrincipalIdoso;
 import com.everton.pilltime.api.ApiFoto;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityAlarmDetailsBinding;
@@ -71,7 +73,7 @@ public class AlarmDetailsActivity extends AppCompatActivity {
 
 
             Intent intent1;
-            intent1 = new Intent(AlarmDetailsActivity.this, TelaPrincipal.class);
+            intent1 = new Intent(AlarmDetailsActivity.this, TelaPrincipalIdoso.class);
             startActivity(intent1);
 
 
@@ -83,11 +85,13 @@ public class AlarmDetailsActivity extends AppCompatActivity {
 
             final Long finalIdosoId = getIntent().getLongExtra("IDOSO_ID", 0L);
             if (finalIdosoId != 0) {
-                buscarInformacoesIdosoEEnviarEmail(finalIdosoId);
+                buscarInformacoesIdosoEEnviarEmail(finalIdosoId); // Esta chamada é para enviar email
+                buscarTelefoneCuidador(finalIdosoId); // Adicione esta chamada para enviar SMS
             } else {
                 Log.e("AlarmDetailsActivity", "Idoso ID inválido.");
             }
         });
+
 
 
         mediaPlayer = MediaPlayer.create(this, R.raw.som_alarme_1);
@@ -200,6 +204,47 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         });
 
     }
+
+    private void buscarTelefoneCuidador(Long cuidadorId) {
+        String token = recuperarTokenAutenticacao();
+        if (token.isEmpty()) {
+            Log.e("AlarmDetailsActivity", "Token de autenticação não encontrado.");
+            return;
+        }
+
+        Retrofit.GET_FULL_CUIDADOR().GET_CUIDADOR_FULL_BY_ID("Bearer " + token, cuidadorId).enqueue(new Callback<Cuidador>() {
+            @Override
+            public void onResponse(Call<Cuidador> call, Response<Cuidador> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Cuidador cuidador = response.body();
+                    // Aqui você tem o número de telefone do cuidador
+                    String numeroTelefoneCuidador = cuidador.getTelefone();
+                    // Agora você pode fazer algo com o número de telefone, como enviar um SMS
+                    enviarSMS(numeroTelefoneCuidador, "Um alarme foi recusado. Verifique o aplicativo para mais detalhes.");
+                } else {
+                    Log.e("AlarmDetailsActivity", "Falha ao buscar informações do cuidador. Código: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Cuidador> call, Throwable t) {
+                Log.e("AlarmDetailsActivity", "Falha na chamada da API.", t);
+            }
+        });
+    }
+
+    private void enviarSMS(String numeroTelefone, String mensagem) {
+        try {
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(numeroTelefone, null, mensagem, null, null);
+            Log.d("SMS", "SMS enviado com sucesso.");
+        } catch (Exception e) {
+            Log.e("SMS", "Falha ao enviar SMS.", e);
+        }
+    }
+
+
+
 
     private void enviarEmail(String emailDestinatario, String assunto, String corpoEmail) {
         String token = recuperarTokenAutenticacao();
