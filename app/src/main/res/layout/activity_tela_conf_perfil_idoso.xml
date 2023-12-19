@@ -6,21 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".TelaConfPerfilIdoso"
     android:orientation="vertical"
-    android:background="@color/azul"
+    android:background="@color/white"
 
     >
 
 <TextView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="108dp"
     android:text="Configuração de Perfil"
+    android:drawableEnd="@drawable/ic_edit_pessoa"
     android:textSize="20dp"
-    android:background="@color/white"
+    android:drawablePadding="-20dp"
+    android:background="@drawable/background_topo"
     android:textStyle="bold"
     android:gravity="center"
-    android:padding="10dp"
-    android:textColor="@color/black"
-    android:textAllCaps="true"
+    android:padding="40dp"
+    android:textColor="@color/white"
     />
 
 <ScrollView
@@ -38,11 +39,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:textAllCaps="true"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
             android:inputType="text"
-            android:text="Nome"
+            android:layout_marginTop="20dp"
+            android:text="Nome: "
+            android:textAllCaps="true"
+            android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -50,41 +51,44 @@
             android:id="@+id/edNomeUsuario"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:background="@drawable/bordaredonda_azul"
             style="@style/Edit_Text"
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
-            android:drawableRight="@drawable/ic_config_black"
+
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:textAllCaps="true"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:inputType="text"
             android:text="Senha"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            />
 
         <EditText
             android:id="@+id/edSenhaUsuario"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             style="@style/Edit_Text"
+            android:background="@drawable/bordaredonda_azul"
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
             android:hint="*********"
             android:inputType="textPassword"
-            android:drawableRight="@drawable/ic_config_black"
+            android:drawableRight="@drawable/ic_eye_blue"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:textAllCaps="true"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
             android:inputType="text"
             android:text="E-mail"
             android:textSize="20dp"
@@ -95,19 +99,20 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             style="@style/Edit_Text"
+            android:background="@drawable/bordaredonda_azul"
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
             android:hint="teste@gmail.com"
             android:inputType="textEmailAddress"
-            android:drawableRight="@drawable/ic_config_black"
+            android:drawableRight="@drawable/ic_email_blue"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:textAllCaps="true"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
             android:inputType="text"
             android:text="Telefone"
             android:textSize="20dp"
@@ -118,21 +123,22 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             style="@style/Edit_Text"
+            android:background="@drawable/bordaredonda_azul"
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
             android:inputType="phone"
             android:hint="(DD)9 9999-0000"
-            android:drawableRight="@drawable/ic_config_black"
+            android:drawableRight="@drawable/ic_fone"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:textAllCaps="true"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
             android:inputType="text"
-            android:text="Data de Nascimento"
+            android:text="Data de Nascimento: "
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -144,7 +150,8 @@
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
             android:inputType="date"
-            android:drawableRight="@drawable/ic_config_black"
+            android:background="@drawable/bordaredonda_azul"
+            android:drawableRight="@drawable/ic_calendario_menor"
             android:hint="dd/mm/yyyy"
             />
         <TextView
@@ -152,10 +159,10 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:textAllCaps="true"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
             android:inputType="text"
-            android:text="CPF"
+            android:text="CPF: "
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -167,30 +174,30 @@
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
             android:inputType="text"
-            android:drawableRight="@drawable/ic_config_black"
+            android:background="@drawable/bordaredonda_azul"
+            android:drawableRight="@drawable/ic_cpf"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:textAllCaps="true"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:inputType="text"
-            android:text="Observaçõs"
+            android:text="Observações: "
             android:textSize="20dp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edOBSUsuario"
+            style="@style/Edit_Text"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            style="@style/Edit_Text"
             android:layout_marginHorizontal="30dp"
-            android:padding="10dp"
-            android:drawableRight="@drawable/ic_config_black"
-            />
+            android:background="@drawable/bordaredonda_azul"
+            android:padding="10dp" />
 
         <Button
             android:id="@+id/btnSalvarEditPerfil"
@@ -219,6 +226,20 @@
             android:padding="10dp"
             android:text="Alterar Endereço"
             android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="108dp"
+            android:layout_marginLeft="80dp"
+            android:background="@drawable/background_bottom"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            />
 
     </LinearLayout>
 

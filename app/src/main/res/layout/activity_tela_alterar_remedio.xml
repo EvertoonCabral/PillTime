@@ -6,22 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".TelaAlterarRemedio"
     android:orientation="vertical"
-    android:background="@color/azul"
+    android:background="@color/white"
     >
 
     <TextView
         android:id="@+id/txtTituloCadastroRemedio"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cadastro de Remédio"
+        android:layout_height="108dp"
+        android:text="Alteração de Remédio"
         android:textAlignment="center"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:background="@color/white"
-        android:textColor="@color/black"
-        android:textAllCaps="true"
+        android:background="@drawable/background_topo"
+        android:drawableEnd="@drawable/ic_remedio"
+        android:drawablePadding="-20dp"
+        android:textColor="@color/white"
         android:layout_marginBottom="20dp"
-        android:padding="10dp" />
+        android:padding="40dp"
+
+        />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -39,11 +44,12 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="15dp"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:inputType="text"
-                android:text="Nome Remédio"
+                android:text="Nome Remédio: "
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"/>
 
             <EditText
                 android:id="@+id/edNomeRemedioConfig"
@@ -51,8 +57,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="30dp"
-                android:drawableRight="@drawable/ic_config_black"
-                android:padding="10dp" />
+                android:padding="30dp"
+                android:background="@drawable/bordaredonda_azul"
+                android:drawableRight="@drawable/ic_pill_red"/>
 
             <!-- Marca Remédio -->
             <TextView
@@ -61,20 +68,22 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="15dp"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:inputType="text"
-                android:text="Marca Remédio"
+                android:text="Marca Remédio: "
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"/>
 
             <EditText
                 android:id="@+id/edMarcaRemedioConfig"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:drawableRight="@drawable/ic_config_black"
+                android:drawableRight="@drawable/ic_logo"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
-                android:padding="10dp" />
+                android:padding="30dp"
+                android:background="@drawable/bordaredonda_azul"/>
 
             <!-- Dosagem -->
             <TextView
@@ -82,20 +91,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="15dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="Dosagem"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"/>
 
             <EditText
                 android:id="@+id/edDosagemRemedioConfig"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:drawableRight="@drawable/ic_config_black"
+                android:drawableRight="@drawable/ic_dosagem"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
                 android:hint="1 comprimido / 10ml"
-                android:padding="10dp" />
+                android:padding="30dp"
+                android:background="@drawable/bordaredonda_azul"/>
 
             <!-- Forma Farmacêutica -->
             <TextView
@@ -103,9 +114,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="15dp"
-                android:textColor="@color/white"
-                android:text="Forma Farmaceutico"
+                android:textColor="@color/black"
+                android:text="Forma Farmaceutico: "
                 android:textSize="20dp"
+                android:layout_marginTop="20dp"
                 android:textStyle="bold" />
 
             <Spinner
@@ -113,7 +125,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 style="@style/Edit_Text"
-                android:layout_marginHorizontal="30dp" />
+                android:layout_marginHorizontal="30dp"
+                android:background="@drawable/bordaredonda_azul"
+                />
 
             <!-- Validade -->
             <TextView
@@ -121,21 +135,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="15dp"
-                android:textColor="@color/white"
-                android:text="Validade"
+                android:textColor="@color/black"
+                android:text="Validade: "
                 android:textSize="20dp"
+                android:layout_marginTop="20dp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edValidadeRemedioConfig"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:drawableRight="@drawable/ic_config_black"
+                android:drawableRight="@drawable/ic_validade"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
                 android:hint="dd/mm/yyyy"
                 android:inputType="date"
-                android:padding="10dp" />
+                android:padding="30dp"
+                android:background="@drawable/bordaredonda_azul"/>
 
             <!-- Observações -->
             <TextView
@@ -143,21 +159,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="15dp"
-                android:textColor="@color/white"
-
-                android:text="Observações"
+                android:textColor="@color/black"
+                android:text="Observações: "
                 android:textSize="20dp"
+                android:layout_marginTop="20dp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edObservacaoRemedioConfig"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:drawableRight="@drawable/ic_config_black"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
                 android:gravity="top"
                 android:hint="Ex:  Este remédio não é recomendado para pessoas que possuam diabetes, pressão alta..."
+                android:background="@drawable/bordaredonda_azul"
                 android:padding="10dp" />
 
             <Button
@@ -172,6 +188,21 @@
                 android:padding="10dp"
                 android:text="@string/confirmar"
                 android:textSize="20dp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="108dp"
+                android:layout_marginLeft="80dp"
+                android:background="@drawable/background_bottom"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                />
 
         </LinearLayout>
     </ScrollView>

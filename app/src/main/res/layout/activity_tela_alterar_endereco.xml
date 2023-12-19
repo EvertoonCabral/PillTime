@@ -7,20 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".TelaAlterarEndereco"
     android:orientation="vertical"
-    android:background="@color/azul"
+    android:background="@color/white"
     >
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="108dp"
         android:text="Configuração de Endereço"
-        android:textSize="20dp"
-        android:background="@color/white"
+        android:textSize="23dp"
+        android:background="@drawable/background_topo"
+        android:drawableRight="@drawable/ic_address"
+        android:padding="40dp"
         android:textStyle="bold"
         android:gravity="center"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textAllCaps="true"
+        android:textColor="@color/white"
         />
 
     <ScrollView
@@ -39,10 +39,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:textAllCaps="true"
-                android:layout_marginTop="30dp"
-                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:inputType="text"
-                android:text="CEP"
+                android:text="CEP: "
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -55,7 +55,8 @@
                 android:padding="10dp"
                 android:inputType="number"
                 android:maxLength="8"
-                android:drawableRight="@drawable/ic_config_black"
+                android:drawableRight="@drawable/ic_location"
+                android:background="@drawable/bordaredonda_azul"
                 />
 
             <Button
@@ -77,11 +78,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:textAllCaps="true"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:inputType="text"
-                android:text="Rua"
+                android:text="Rua: "
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -93,17 +93,18 @@
                 android:layout_marginHorizontal="30dp"
                 android:padding="10dp"
                 android:inputType="text"
-                android:drawableRight="@drawable/ic_config_black"
+                android:drawableRight="@drawable/ic_rua"
+                android:background="@drawable/bordaredonda_azul"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:textAllCaps="true"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:inputType="text"
-                android:text="Bairro"
+                android:text="Bairro: "
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -115,17 +116,18 @@
                 android:layout_marginHorizontal="30dp"
                 android:padding="10dp"
                 android:inputType="text"
-                android:drawableRight="@drawable/ic_config_black"
+                android:drawableRight="@drawable/ic_bairro"
+                android:background="@drawable/bordaredonda_azul"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:textAllCaps="true"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:inputType="text"
-                android:text="Cidade"
+                android:text="Cidade: "
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -137,17 +139,18 @@
                 android:layout_marginHorizontal="30dp"
                 android:padding="10dp"
                 android:inputType="text"
-                android:drawableRight="@drawable/ic_config_black"
+                android:drawableRight="@drawable/ic_city"
+                android:background="@drawable/bordaredonda_azul"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:textAllCaps="true"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:inputType="text"
-                android:text="Estado"
+                android:text="Estado: "
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -159,15 +162,17 @@
                 android:layout_marginHorizontal="30dp"
                 android:padding="10dp"
                 android:inputType="text"
-                android:drawableRight="@drawable/ic_config_black"
+                android:drawableRight="@drawable/ic_location"
+                android:background="@drawable/bordaredonda_azul"
                 />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
-                android:text="Número"
+                android:layout_marginTop="20dp"
+                android:text="Número: "
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -179,18 +184,19 @@
                 android:layout_marginHorizontal="30dp"
                 android:padding="10dp"
                 android:inputType="number"
-                android:drawableRight="@drawable/ic_config_black"
+
+                android:background="@drawable/bordaredonda_azul"
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:inputType="text"
-                android:text="Complemento"
+                android:text="Complemento: "
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -201,7 +207,7 @@
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
                 android:padding="10dp"
-                android:drawableRight="@drawable/ic_config_black"
+                android:background="@drawable/bordaredonda_azul"
                 />
 
             <Button
@@ -230,6 +236,21 @@
                 android:padding="10dp"
                 android:text="Limpar Endereço"
                 android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="108dp"
+                android:layout_marginLeft="80dp"
+                android:background="@drawable/background_bottom"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                />
+
 
         </LinearLayout>
 
