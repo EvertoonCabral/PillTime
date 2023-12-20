@@ -115,12 +115,14 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnVolarMenu"
-                android:layout_width="wrap_content"
+                android:layout_width="170dp"
                 android:layout_height="50dp"
+                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_margin="30dp"
-                android:background="@drawable/btn_salvar"
+                android:background="@drawable/edittext_cadastro"
                 android:drawableRight="@drawable/ic_return_black"
+                android:drawablePadding="15dp"
                 android:padding="15dp"
                 android:text="Voltar"
                 android:textSize="18dp"

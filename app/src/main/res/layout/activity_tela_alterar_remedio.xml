@@ -59,7 +59,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:padding="30dp"
                 android:background="@drawable/bordaredonda_azul"
-                android:drawableRight="@drawable/ic_pill_red"/>
+                android:drawableRight="@drawable/ic_pill"/>
 
             <!-- Marca Remédio -->
             <TextView
@@ -79,7 +79,7 @@
                 android:id="@+id/edMarcaRemedioConfig"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:drawableRight="@drawable/ic_logo"
+                android:drawableRight="@drawable/ic_marca_blue"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
                 android:padding="30dp"
@@ -101,7 +101,7 @@
                 android:id="@+id/edDosagemRemedioConfig"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:drawableRight="@drawable/ic_dosagem"
+                android:drawableRight="@drawable/ic_dosagem3"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
                 android:hint="1 comprimido / 10ml"
@@ -141,19 +141,20 @@
                 android:layout_marginTop="20dp"
                 android:textStyle="bold" />
 
+            <!-- Observações -->
+
             <EditText
                 android:id="@+id/edValidadeRemedioConfig"
+                style="@style/Edit_Text"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:drawableRight="@drawable/ic_validade"
-                style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
+                android:background="@drawable/bordaredonda_azul"
+                android:drawableRight="@drawable/ic_validade2"
                 android:hint="dd/mm/yyyy"
                 android:inputType="date"
-                android:padding="30dp"
-                android:background="@drawable/bordaredonda_azul"/>
+                android:padding="30dp" />
 
-            <!-- Observações -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

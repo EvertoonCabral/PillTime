@@ -56,7 +56,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:padding="20dp"
                 android:background="@drawable/bordaredonda_azul"
-                android:drawableRight="@drawable/ic_pill_red"
+                android:drawableRight="@drawable/ic_pill"
                 />
 
             <TextView
@@ -77,7 +77,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:padding="20dp"
                 android:background="@drawable/bordaredonda_azul"
-                android:drawableRight="@drawable/ic_logo"
+                android:drawableRight="@drawable/ic_marca_blue"
 
                 />
 
@@ -100,7 +100,7 @@
                 android:hint="1 comprimido / 10ml"
                 android:padding="20dp"
                 android:background="@drawable/bordaredonda_azul"
-                android:drawableRight="@drawable/ic_dosagem"
+                android:drawableRight="@drawable/ic_dosagem2"
 
                 />
 
@@ -121,7 +121,7 @@
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
                 android:background="@drawable/bordaredonda_azul"
-                android:drawableRight="@drawable/ic_formafarmaceutica"
+                android:drawableRight="@drawable/ic_prescricao"
 
                 />
 

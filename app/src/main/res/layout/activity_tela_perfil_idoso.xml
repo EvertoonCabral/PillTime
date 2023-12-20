@@ -112,12 +112,12 @@
                 android:id="@+id/btnVoltarTelaPrincipal"
                 android:layout_width="170dp"
                 android:layout_height="50dp"
+                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_margin="30dp"
                 android:background="@drawable/edittext_cadastro"
-                android:textStyle="bold
-"               android:drawablePadding="-20dp"
                 android:drawableRight="@drawable/ic_return_black"
+                android:drawablePadding="15dp"
                 android:padding="15dp"
                 android:text="Voltar"
                 android:textSize="18dp" />

@@ -245,6 +245,7 @@
                 android:inputType="text"
                 android:textAllCaps="true"
                 android:background="@drawable/bordaredonda_azul"
+                android:drawableRight="@drawable/ic_location"
                 />
 
 
@@ -308,7 +309,7 @@
                 android:layout_marginTop="5dp"
                 android:inputType="text"
                 android:background="@drawable/bordaredonda_azul"
-                android:drawableRight="@drawable/ic_city"/>
+                android:drawableRight="@drawable/ic_bairro"/>
 
             <TextView
                 android:id="@+id/txtRuaCadastroIdoso"
@@ -344,7 +345,8 @@
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
                 android:inputType="text"
-                android:background="@drawable/bordaredonda_azul"/>
+                android:background="@drawable/bordaredonda_azul"
+                android:drawableRight="@drawable/ic_complemento"/>
 
             <TextView
                 android:id="@+id/txtNumeroCadastroIdoso"
@@ -360,9 +362,8 @@
             <EditText
                 android:id="@+id/edNumeroCadastroCuidador"
                 style="@style/Edit_Text"
-                android:layout_width="100dp"
                 android:layout_marginTop="5dp"
-                android:inputType="number"
+                android:inputType="text"
                 android:background="@drawable/bordaredonda_azul"/>
 
 
