@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.telephony.SmsManager;
 import android.util.Base64;
@@ -40,13 +41,19 @@ public class AlarmDetailsActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private Vibrator vibrator;
 
+    private Handler autoCloseHandler = new Handler();
+    private Runnable autoCloseRunnable;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityAlarmDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+
 
 
         Intent intent = getIntent();
@@ -100,11 +107,28 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         long[] pattern = {0, 1000, 500};
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator.vibrate(pattern, 0);
-        } else {
             vibrator.vibrate(pattern, -1);
+
         }
 
+        autoCloseRunnable = new Runnable() {
+            @Override
+            public void run() {
+                final Long finalIdosoId = getIntent().getLongExtra("IDOSO_ID", 0L);
+                if (finalIdosoId != 0) {
+                    enviarEmailAutomatico(finalIdosoId);
+        } else {
+                }
+
+                // Fechar a atividade
+                finish();
+            }
+        };
+
+        // Agendar o Runnable para ser executado após 60 segundos
+        autoCloseHandler.postDelayed(autoCloseRunnable, 60000);
     }
+
 
     private String recuperarTokenAutenticacao() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyToken", Context.MODE_PRIVATE);
@@ -295,12 +319,18 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         });
     }
 
-
+    private void enviarEmailAutomatico(Long idosoId) {
+        // Adicione aqui a lógica para enviar o e-mail
+        buscarInformacoesIdosoEEnviarEmail(idosoId);
+    }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        autoCloseHandler.removeCallbacks(autoCloseRunnable);
+
         if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.release();
