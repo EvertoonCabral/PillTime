@@ -226,6 +226,29 @@
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
+
+            <TextView
+                android:id="@+id/txtCepIdoso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="10dp"
+                android:text="CEP"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edCepIdoso"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="text"
+                android:textAllCaps="true"
+                android:background="@drawable/bordaredonda_azul"
+                />
+
+
+
             <TextView
                 android:id="@+id/txtCidadeCadastroIdoso"
                 android:layout_width="wrap_content"
@@ -236,6 +259,9 @@
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
+
+
+
 
             <EditText
                 android:id="@+id/edEstadoCadastroCuidador"

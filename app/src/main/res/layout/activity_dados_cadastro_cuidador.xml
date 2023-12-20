@@ -186,19 +186,20 @@
                 android:layout_marginTop="20dp"
                 />
 
+
             <TextView
-                android:id="@+id/txtCidadeCadastroCuidador"
+                android:id="@+id/txtCepCuidador"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:text="   Estado:"
+                android:text="   CEP:"
                 android:textColor="@color/black"
                 android:layout_marginTop="20dp"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edCidadeCadastroCuidador"
+                android:id="@+id/edCepCuidador"
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
                 android:inputType="text"
@@ -211,7 +212,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:text="   Cidade:"
+                android:text="   Estado:"
                 android:textColor="@color/black"
                 android:layout_marginTop="20dp"
                 android:textSize="20dp"
@@ -219,6 +220,26 @@
 
             <EditText
                 android:id="@+id/edEstadoCadastroCuidador"
+                style="@style/Edit_Text"
+                android:layout_marginTop="5dp"
+                android:inputType="text"
+                android:background="@drawable/bordaredonda_azul"
+                android:drawableRight="@drawable/ic_city"
+                />
+
+            <TextView
+                android:id="@+id/txtCidadeCadastroCuidador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="   Cidade:"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edCidadeCadastroCuidador"
                 style="@style/Edit_Text"
                 android:layout_marginTop="5dp"
                 android:inputType="text"

@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -14,10 +16,12 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.everton.pilltime.alarme.AlarmeActivity;
+import com.everton.pilltime.api.ApiCep;
 import com.everton.pilltime.api.ApiUser;
 import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityDadosCadastroCuidadorBinding;
 import com.everton.pilltime.dto.EnderecoDTO;
+import com.everton.pilltime.models.CEP;
 import com.everton.pilltime.models.Cuidador;
 import com.everton.pilltime.models.Endereco;
 import com.everton.pilltime.models.TipoUsuario;
@@ -48,6 +52,32 @@ public class DadosCadastroCuidador extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+
+
+        binding.edCepCuidador.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String cep = editable.toString();
+
+                buscarCep(cep);
+
+
+            }
+        });
+
 
         binding.btnCalendario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -337,6 +367,7 @@ public class DadosCadastroCuidador extends AppCompatActivity {
     }
 
     private void limparCampos() {
+        binding.edCepCuidador.setText("");
         binding.edNomeCadastroCuidador.setText("");
         binding.edSenhaCadastroCuidador.setText("");
         binding.edEmailCadastroCuidador.setText("");
@@ -366,7 +397,44 @@ public class DadosCadastroCuidador extends AppCompatActivity {
     }
 
 
+    private void buscarCep(String cep){
 
+
+        ApiCep apiCep = Retrofit.API_CEP();
+
+        Call <CEP> call = apiCep.consultarCEP(cep);
+
+        call.enqueue(new Callback<CEP>() {
+            @Override
+            public void onResponse(Call<CEP> call, Response<CEP> response) {
+
+                if (response.isSuccessful()) {
+
+
+                    CEP cep = response.body();
+
+
+                    binding.edEstadoCadastroCuidador.setText(cep.getUf());
+                    binding.edCidadeCadastroCuidador.setText(cep.getLocalidade());
+                    binding.edBairroCadastroCuidador.setText(cep.getBairro());
+                    binding.edRuaCadastroCuidador.setText(cep.getLogradouro());
+                    binding.edObservacaoCadastroCuidador.setText(cep.getComplemento());
+
+
+                    Log.d("Consulta CEP"," " + cep.getBairro()+cep.getLogradouro());
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CEP> call, Throwable t) {
+
+            }
+        });
+
+
+    }
 
 
 
