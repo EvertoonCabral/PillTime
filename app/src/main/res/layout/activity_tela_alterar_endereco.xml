@@ -178,7 +178,7 @@
 
             <EditText
                 android:id="@+id/edNumLogradouroUsuario"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
