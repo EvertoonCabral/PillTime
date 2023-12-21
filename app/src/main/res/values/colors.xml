@@ -14,6 +14,7 @@
     <color name="amarelo">#FEC868</color>
     <color name="red">#FF6969</color>
     <color name="red2">#DB827E</color>
+    <color name="ciano">#52D3D8</color>
 
     <color name="icon_color_selected">#FEC868</color>
     <color name="icon_color_unselected">#FFFFFFFF</color>
