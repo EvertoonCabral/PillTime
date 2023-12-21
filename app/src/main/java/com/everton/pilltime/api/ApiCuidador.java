@@ -63,5 +63,17 @@ public interface ApiCuidador {
                                            @Body AlarmeDTOInsert alarmeDtoInsert);
 
 
+    // Dentro da interface ApiCuidador
+
+    @PUT("cuidador/{cuidadorId}/remedio")
+    Call<Void> updateRemedioByNome(
+            @Header("Authorization") String token,
+            @Path("cuidadorId") Long cuidadorId,
+            @Query("nomeRemedio") String nomeRemedio,
+            @Body RemedioDTO remedioDTO
+    );
+
+
+
 
 }

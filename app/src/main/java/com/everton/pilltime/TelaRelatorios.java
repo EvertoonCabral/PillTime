@@ -74,7 +74,6 @@ public class TelaRelatorios extends AppCompatActivity {
             }
         });
 
-
         botaoVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,7 +127,6 @@ public class TelaRelatorios extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<IdosoDTO>> call, Throwable t) {
-                // Trate o caso de falha na chamada da API
             }
         });
     }

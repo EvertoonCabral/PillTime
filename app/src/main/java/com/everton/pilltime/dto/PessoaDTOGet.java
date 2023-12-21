@@ -11,7 +11,8 @@ public class PessoaDTOGet {
 
     private java.util.Date dataNascimento;
     private String cpf;
-    private String Telefone;
+    private String telefone;
+
 
     public PessoaDTOGet(Long id, String nome, String email, Date dataNascimento, String cpf, String telefone) {
         this.id = id;
@@ -19,7 +20,7 @@ public class PessoaDTOGet {
         this.email = email;
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;
-        Telefone = telefone;
+        this.telefone = telefone;
     }
 
     public PessoaDTOGet() {
@@ -66,10 +67,10 @@ public class PessoaDTOGet {
     }
 
     public String getTelefone() {
-        return Telefone;
+        return telefone;
     }
 
     public void setTelefone(String telefone) {
-        Telefone = telefone;
+        telefone = telefone;
     }
 }

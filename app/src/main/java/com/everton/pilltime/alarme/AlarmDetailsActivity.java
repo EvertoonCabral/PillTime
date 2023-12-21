@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.speech.tts.TextToSpeech;
 import android.telephony.SmsManager;
 import android.util.Base64;
 import android.util.Log;
@@ -31,6 +32,8 @@ import com.everton.pilltime.models.Foto;
 import com.everton.pilltime.models.Idoso;
 import com.everton.pilltime.models.Pessoa;
 
+import java.util.Locale;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,9 +43,11 @@ public class AlarmDetailsActivity extends AppCompatActivity {
     private ActivityAlarmDetailsBinding binding;
     private MediaPlayer mediaPlayer;
     private Vibrator vibrator;
-
     private Handler autoCloseHandler = new Handler();
     private Runnable autoCloseRunnable;
+
+    private TextToSpeech tts;
+
 
 
 
@@ -52,8 +57,16 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         binding = ActivityAlarmDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-
+        tts = new TextToSpeech(this, status -> {
+            if (status == TextToSpeech.SUCCESS) {
+                int result = tts.setLanguage(new Locale("pt", "BR")); // Configuração para Português do Brasil
+                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Log.e("TTS", "Idioma não suportado");
+                }
+            } else {
+                Log.e("TTS", "Inicialização do TTS falhou");
+            }
+        });
 
 
         Intent intent = getIntent();
@@ -100,6 +113,21 @@ public class AlarmDetailsActivity extends AppCompatActivity {
 
 
 
+        binding.btnFalaDescricao.setOnClickListener(v -> {
+            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
+
+            if (vibrator != null) {
+                vibrator.cancel();
+            }
+
+            speakOut(binding.tvAlarmDescription.getText().toString());
+        });
+
+
         mediaPlayer = MediaPlayer.create(this, R.raw.som_alarme_1);
         mediaPlayer.start();
 
@@ -128,6 +156,11 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         // Agendar o Runnable para ser executado após 60 segundos
         autoCloseHandler.postDelayed(autoCloseRunnable, 60000);
     }
+
+    private void speakOut(String text) {
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "");
+    }
+
 
 
     private String recuperarTokenAutenticacao() {
@@ -324,20 +357,23 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         buscarInformacoesIdosoEEnviarEmail(idosoId);
     }
 
-
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-
-        autoCloseHandler.removeCallbacks(autoCloseRunnable);
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
 
         if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.release();
         }
+
         if (vibrator != null) {
             vibrator.cancel();
         }
+
+        super.onDestroy();
     }
 
 
