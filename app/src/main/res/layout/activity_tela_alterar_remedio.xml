@@ -46,20 +46,21 @@
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:inputType="text"
-                android:text="Nome Remédio: "
+                android:text="Remédio: "
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"/>
 
-            <EditText
-                android:id="@+id/edNomeRemedioConfig"
+            <Spinner
+                android:id="@+id/spinnerNomeRemedio"
                 style="@style/Edit_Text"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="30dp"
                 android:padding="30dp"
                 android:background="@drawable/bordaredonda_azul"
-                android:drawableRight="@drawable/ic_pill"/>
+                android:drawableRight="@drawable/ic_pill"
+                />
 
             <!-- Marca Remédio -->
             <TextView
@@ -82,7 +83,6 @@
                 android:drawableRight="@drawable/ic_marca_blue"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
-                android:padding="30dp"
                 android:background="@drawable/bordaredonda_azul"/>
 
             <!-- Dosagem -->
@@ -105,7 +105,6 @@
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
                 android:hint="1 comprimido / 10ml"
-                android:padding="30dp"
                 android:background="@drawable/bordaredonda_azul"/>
 
             <!-- Forma Farmacêutica -->
@@ -118,15 +117,18 @@
                 android:text="Forma Farmaceutico: "
                 android:textSize="20dp"
                 android:layout_marginTop="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
 
-            <Spinner
-                android:id="@+id/spinnerFormaFarmaceuticaConfig"
+                />
+
+            <EditText
+                android:id="@+id/edFormaFarmaceuticaConfig"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 style="@style/Edit_Text"
                 android:layout_marginHorizontal="30dp"
                 android:background="@drawable/bordaredonda_azul"
+                android:drawableRight="@drawable/ic_pill"
                 />
 
             <!-- Validade -->
@@ -153,7 +155,7 @@
                 android:drawableRight="@drawable/ic_validade2"
                 android:hint="dd/mm/yyyy"
                 android:inputType="date"
-                android:padding="30dp" />
+                />
 
             <TextView
                 android:layout_width="match_parent"

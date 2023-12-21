@@ -117,6 +117,10 @@ public class Retrofit {
         return retrofit.create(ApiCuidador.class);
     }
 
+
+    public static ApiCuidador UPDATE_REMEDIO(){return  retrofit.create(ApiCuidador.class);}
+
+
     //IDOSO
     public static ApiIdoso GET_ALL_IDOSOS() {
         return retrofit.create(ApiIdoso.class);

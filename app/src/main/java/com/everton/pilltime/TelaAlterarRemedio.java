@@ -1,38 +1,158 @@
 package com.everton.pilltime;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.everton.pilltime.api.ApiCuidador;
+import com.everton.pilltime.api.Retrofit;
+import com.everton.pilltime.databinding.ActivityTelaAlterarRemedioBinding;
+import com.everton.pilltime.dto.RemedioDTO;
+
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TelaAlterarRemedio extends AppCompatActivity {
 
-    private Button btnSalvar;
-
+    private ActivityTelaAlterarRemedioBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_alterar_remedio);
+        binding = ActivityTelaAlterarRemedioBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
+        carregarRemediosNoSpinner();
 
-        btnSalvar = findViewById(R.id.btnSalvarEditRemedio);
-
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
+        binding.btnSalvarEditRemedio.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(TelaAlterarRemedio.this, TelaPrincipal.class);
-                startActivity(intent);
-
+            public void onClick(View v) {
+                salvarAlteracoesRemedio();
             }
         });
 
 
+    }
 
+    private void carregarRemediosNoSpinner() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyToken", MODE_PRIVATE);
+        Long idCuidador = sharedPreferences.getLong("id", 0);
+        String token = sharedPreferences.getString("token", "");
+
+        ApiCuidador apiCuidador = Retrofit.GET_ALL_REMEDIO_CUIDADOR();
+        Call<List<RemedioDTO>> call = apiCuidador.GET_ALL_REMEDIO_CUIDADOR(token, idCuidador);
+
+        call.enqueue(new Callback<List<RemedioDTO>>() {
+            @Override
+            public void onResponse(Call<List<RemedioDTO>> call, Response<List<RemedioDTO>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // Usando um ArrayAdapter customizado
+                    ArrayAdapter<RemedioDTO> adapter = new ArrayAdapter(
+                            TelaAlterarRemedio.this,
+                            android.R.layout.simple_spinner_item,
+                            response.body()) {
+
+                        @Override
+                        public View getView(int position, View convertView, ViewGroup parent) {
+                            View view = super.getView(position, convertView, parent);
+                            if (view instanceof TextView) {
+                                ((TextView) view).setText(response.body().get(position).getNome());
+                            }
+                            return view;
+                        }
+                    };
+
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    binding.spinnerNomeRemedio.setAdapter(adapter);
+
+                    binding.spinnerNomeRemedio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            RemedioDTO remedioSelecionado = (RemedioDTO) parent.getItemAtPosition(position);
+                            preencherCamposRemedio(remedioSelecionado);
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+                        }
+                    });
+                }
+                }
+
+
+            @Override
+            public void onFailure(Call<List<RemedioDTO>> call, Throwable t) {
+                // Trate o erro
+            }
+        });
+    }
+
+
+    private void salvarAlteracoesRemedio() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyToken", MODE_PRIVATE);
+        Long idCuidador = sharedPreferences.getLong("id", 0);
+
+        RemedioDTO remedioDTO = new RemedioDTO();
+        remedioDTO.setNome(binding.spinnerNomeRemedio.getSelectedItem().toString());
+        remedioDTO.setMarcaRemedio(binding.edMarcaRemedioConfig.getText().toString());
+        remedioDTO.setDosagem(binding.edDosagemRemedioConfig.getText().toString());
+        remedioDTO.setFormaFarmaceutico(binding.edFormaFarmaceuticaConfig.getText().toString());
+       /*
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String dataValidadeFormatada = sdf.format(remedioDTO.getDataValidade());
+        remedioDTO.setDataValidade(dataValidadeFormatada);
+        remedioDTO.setObservacoes(binding.edObservacaoRemedioConfig.getText().toString());
+*/
+        ApiCuidador apiCuidador = Retrofit.GET_ALL_REMEDIO_CUIDADOR();
+        Call<Void> call = apiCuidador.updateRemedioByNome(idCuidador, remedioDTO.getNome(), remedioDTO);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    // Tratar sucesso (exibir mensagem ao usuário, etc.)
+                } else {
+                    // Tratar erro (exibir mensagem de erro ao usuário, etc.)
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                // Tratar falha (exibir mensagem de erro ao usuário, etc.)
+            }
+        });
+    }
+
+
+
+
+    private void preencherCamposRemedio(RemedioDTO remedio) {
+        binding.edMarcaRemedioConfig.setText(remedio.getMarcaRemedio());
+        binding.edDosagemRemedioConfig.setText(remedio.getDosagem());
+        binding.edObservacaoRemedioConfig.setText(remedio.getObservacoes());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String dataValidadeFormatada = sdf.format(remedio.getDataValidade());
+        binding.edValidadeRemedioConfig.setText(dataValidadeFormatada);
+
+        binding.edFormaFarmaceuticaConfig.setText(remedio.getFormaFarmaceutico());
+
+        int spinnerPosition = ((ArrayAdapter<RemedioDTO>) binding.spinnerNomeRemedio.getAdapter()).getPosition(remedio);
+        binding.spinnerNomeRemedio.setSelection(spinnerPosition);
 
     }
+
 }

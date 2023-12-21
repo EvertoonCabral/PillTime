@@ -40,7 +40,6 @@ public class AlarmDetailsActivity extends AppCompatActivity {
     private ActivityAlarmDetailsBinding binding;
     private MediaPlayer mediaPlayer;
     private Vibrator vibrator;
-
     private Handler autoCloseHandler = new Handler();
     private Runnable autoCloseRunnable;
 
