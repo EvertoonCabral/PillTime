@@ -62,7 +62,6 @@ public class TelaAlterarRemedio extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<RemedioDTO>> call, Response<List<RemedioDTO>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Usando um ArrayAdapter customizado
                     ArrayAdapter<RemedioDTO> adapter = new ArrayAdapter(
                             TelaAlterarRemedio.this,
                             android.R.layout.simple_spinner_item,

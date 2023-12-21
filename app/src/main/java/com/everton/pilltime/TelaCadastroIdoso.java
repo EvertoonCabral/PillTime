@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -399,6 +400,11 @@ public class TelaCadastroIdoso extends AppCompatActivity {
                         dialog.dismiss();
                         limparDadosUsuario();
                         limparDadosEndereco();
+
+                        Intent intent = new Intent(TelaCadastroIdoso.this, TelaPrincipal.class); // Substitua TelaPrincipal pela sua tela principal
+                        startActivity(intent);
+                        finish();
+
                     }
                 })
                 .setIcon(android.R.drawable.ic_dialog_info)

@@ -547,10 +547,20 @@ public class AlarmeActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(AlarmeActivity.this);
         builder.setTitle("Sucesso");
         builder.setMessage("Alarme cadastrado com sucesso!");
-        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            dialog.dismiss();
+
+            // Redirecionar para a tela principal
+            Intent intent = new Intent(AlarmeActivity.this, TelaPrincipal.class); // Substitua TelaPrincipal pela sua tela principal
+            startActivity(intent);
+            finish(); // Encerra a atividade atual
+        }).setIcon(android.R.drawable.ic_dialog_info);
+
         AlertDialog dialog = builder.create();
+
         dialog.show();
     }
+
 
 
 

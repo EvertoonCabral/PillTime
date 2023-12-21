@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -123,6 +124,11 @@ public class TelaCadastroRemedio extends AppCompatActivity {
                                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         limparCampos();
+
+                                        Intent intent = new Intent(TelaCadastroRemedio.this, TelaPrincipal.class); // Substitua TelaPrincipal pela sua tela principal
+                                        startActivity(intent);
+                                        finish();
+
                                     }
                                 })
                                 .show();
