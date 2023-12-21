@@ -8,11 +8,14 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.everton.pilltime.api.ApiCep;
@@ -51,6 +54,28 @@ public class TelaCadastroIdoso extends AppCompatActivity {
 
 
 
+        EditText edSenhaCadastroIdoso = findViewById(R.id.edSenhaCadastroIdoso);
+
+        edSenhaCadastroIdoso.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (edSenhaCadastroIdoso.getRight() - edSenhaCadastroIdoso.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        if(edSenhaCadastroIdoso.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                            edSenhaCadastroIdoso.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            edSenhaCadastroIdoso.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_blue_closed, 0);
+                        } else {
+                            edSenhaCadastroIdoso.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            edSenhaCadastroIdoso.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_blue, 0);
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
 
         binding.edCepIdoso.addTextChangedListener(new TextWatcher() {

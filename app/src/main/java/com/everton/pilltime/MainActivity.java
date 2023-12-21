@@ -12,7 +12,9 @@
     import android.graphics.Color;
     import android.os.Build;
     import android.os.Bundle;
+    import android.text.InputType;
     import android.util.Log;
+    import android.view.MotionEvent;
     import android.view.View;
     import android.Manifest;
 
@@ -52,6 +54,27 @@
             setContentView(binding.getRoot());
 
             requestPermissionsIfNeeded();
+
+            binding.edSenha.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int DRAWABLE_RIGHT = 2;
+
+                    if(event.getAction() == MotionEvent.ACTION_UP) {
+                        if(event.getRawX() >= (binding.edSenha.getRight() - binding.edSenha.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                            if(binding.edSenha.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                                binding.edSenha.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                                binding.edSenha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_blue_closed, 0);
+                            } else {
+                                binding.edSenha.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                                binding.edSenha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_blue, 0);
+                            }
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
 
 
 
@@ -186,6 +209,8 @@
                 }
             }
         }
+
+
 
 
 

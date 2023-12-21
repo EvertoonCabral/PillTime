@@ -7,12 +7,15 @@ import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.everton.pilltime.alarme.AlarmeActivity;
@@ -97,6 +100,29 @@ public class DadosCadastroCuidador extends AppCompatActivity {
             }
         });
 
+
+        EditText edSenhaCadastroCuidador = findViewById(R.id.edSenhaCadastroCuidador);
+
+        edSenhaCadastroCuidador.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (edSenhaCadastroCuidador.getRight() - edSenhaCadastroCuidador.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        if(edSenhaCadastroCuidador.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                            edSenhaCadastroCuidador.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            edSenhaCadastroCuidador.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_blue_closed, 0);
+                        } else {
+                            edSenhaCadastroCuidador.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            edSenhaCadastroCuidador.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_blue, 0);
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
 
         binding.btnRegistrarCuidador.setOnClickListener(new View.OnClickListener() {

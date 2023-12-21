@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +36,29 @@ public class TelaConfPerfilIdoso extends AppCompatActivity {
         edDataNascUsuario = findViewById(R.id.edDataNascUsuario);
         edOBSUsuario = findViewById(R.id.edOBSUsuario);
 
+
+        EditText edSenhaUsuario = findViewById(R.id.edSenhaUsuario);
+
+        edSenhaUsuario.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (edSenhaUsuario.getRight() - edSenhaUsuario.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        if(edSenhaUsuario.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                            edSenhaUsuario.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            edSenhaUsuario.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_blue_closed, 0);
+                        } else {
+                            edSenhaUsuario.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            edSenhaUsuario.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_blue, 0);
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
