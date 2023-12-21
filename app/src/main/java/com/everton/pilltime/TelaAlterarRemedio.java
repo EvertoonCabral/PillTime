@@ -1,10 +1,12 @@
 package com.everton.pilltime;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,6 +19,7 @@ import com.everton.pilltime.api.Retrofit;
 import com.everton.pilltime.databinding.ActivityTelaAlterarRemedioBinding;
 import com.everton.pilltime.dto.RemedioDTO;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -83,6 +86,9 @@ public class TelaAlterarRemedio extends AppCompatActivity {
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             RemedioDTO remedioSelecionado = (RemedioDTO) parent.getItemAtPosition(position);
                             preencherCamposRemedio(remedioSelecionado);
+                            Log.d("TelaAlterarRemedio", "Remédio selecionado: " + remedioSelecionado.getNome());
+                            preencherCamposRemedio(remedioSelecionado);
+
                         }
 
                         @Override
@@ -104,34 +110,46 @@ public class TelaAlterarRemedio extends AppCompatActivity {
     private void salvarAlteracoesRemedio() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyToken", MODE_PRIVATE);
         Long idCuidador = sharedPreferences.getLong("id", 0);
+        String token = sharedPreferences.getString("token", "");
 
         RemedioDTO remedioDTO = new RemedioDTO();
         remedioDTO.setNome(binding.spinnerNomeRemedio.getSelectedItem().toString());
+
         remedioDTO.setMarcaRemedio(binding.edMarcaRemedioConfig.getText().toString());
         remedioDTO.setDosagem(binding.edDosagemRemedioConfig.getText().toString());
         remedioDTO.setFormaFarmaceutico(binding.edFormaFarmaceuticaConfig.getText().toString());
-       /*
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        String dataValidadeFormatada = sdf.format(remedioDTO.getDataValidade());
-        remedioDTO.setDataValidade(dataValidadeFormatada);
+        // remedioDTO.setDataValidade(/* Sua lógica de conversão de data aqui */);
         remedioDTO.setObservacoes(binding.edObservacaoRemedioConfig.getText().toString());
-*/
-        ApiCuidador apiCuidador = Retrofit.GET_ALL_REMEDIO_CUIDADOR();
-        Call<Void> call = apiCuidador.updateRemedioByNome(idCuidador, remedioDTO.getNome(), remedioDTO);
 
+        ApiCuidador apiCuidador = Retrofit.GET_ALL_REMEDIO_CUIDADOR();
+        Call<Void> call = apiCuidador.updateRemedioByNome(token, idCuidador, remedioDTO.getNome(), remedioDTO);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    // Tratar sucesso (exibir mensagem ao usuário, etc.)
+                    Log.d("UpdateRemedio", "Remédio atualizado com sucesso.");
+
+                    // Mostrar diálogo de sucesso
+                    AlertDialog.Builder builder = new AlertDialog.Builder(TelaAlterarRemedio.this);
+                    builder.setTitle("Sucesso");
+                    builder.setMessage("Remédio atualizado com sucesso.");
+                    builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 } else {
-                    // Tratar erro (exibir mensagem de erro ao usuário, etc.)
+                    try {
+                        String errorBody = response.errorBody().string();
+                        Log.e("UpdateRemedio", "Falha na atualização do remédio: " + errorBody);
+                        Toast.makeText(TelaAlterarRemedio.this, "Erro: " + errorBody, Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
-
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                // Tratar falha (exibir mensagem de erro ao usuário, etc.)
+                Log.e("UpdateRemedio", "Erro na chamada da API: " + t.getMessage());
+                Toast.makeText(TelaAlterarRemedio.this, "Erro na chamada da API.", Toast.LENGTH_SHORT).show();
             }
         });
     }
