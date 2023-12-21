@@ -1,6 +1,7 @@
 package com.everton.pilltime;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
@@ -14,9 +15,12 @@ import com.everton.pilltime.dto.AlarmeDTOInsert;
 import com.everton.pilltime.models.Idoso;
 import com.everton.pilltime.models.Remedio;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
