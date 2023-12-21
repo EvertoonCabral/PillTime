@@ -85,6 +85,8 @@
             android:layout_height="wrap_content"
             android:background="@color/azul"
             android:padding="5dp"
+            app:itemIconTint="@color/icon_color_selector"
+            app:itemTextColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
