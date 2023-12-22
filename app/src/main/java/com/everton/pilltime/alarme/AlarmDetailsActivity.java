@@ -1,10 +1,13 @@
 package com.everton.pilltime.alarme;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
@@ -19,6 +22,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.everton.pilltime.MainActivity;
+import android.Manifest;
 import com.everton.pilltime.R;
 import com.everton.pilltime.TelaPrincipal;
 import com.everton.pilltime.TelaPrincipalIdoso;
@@ -116,6 +120,7 @@ public class AlarmDetailsActivity extends AppCompatActivity {
             final Long finalIdosoId = getIntent().getLongExtra("IDOSO_ID", 0L);
             if (finalIdosoId != 0) {
                 buscarIdCuidadorETelefone(finalIdosoId);
+                finish();
             } else {
                 Log.e("AlarmDetailsActivity", "Idoso ID inválido.");
             }
@@ -258,7 +263,7 @@ public class AlarmDetailsActivity extends AppCompatActivity {
             public void onResponse(Call<Cuidador> call, Response<Cuidador> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Cuidador cuidador = response.body();
-                    enviarEmail(cuidador.getEmail(), "E-MAIL NEGADO!", "Olá " + cuidador.getNome() + " o alarme que você cadastrou, verifique!");
+                    enviarEmail(cuidador.getEmail(), "E-MAIL NEGADO!", "Olá " + cuidador.getNome() + " o alarme que você cadastrou foi negado, verifique!");
                 } else {
                     Log.e("AlarmDetailsActivity", "Falha ao buscar informações do cuidador. Código: " + response.code());
                 }
@@ -328,6 +333,15 @@ public class AlarmDetailsActivity extends AppCompatActivity {
 
 
     private void enviarSMS(String numeroTelefone, String mensagem) {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 1);
+            return;
+        }
+/*
+        if (!numeroTelefone.startsWith("+55")) {
+            numeroTelefone = "+55" + numeroTelefone;
+        }
+*/
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(numeroTelefone, null, mensagem, null, null);
@@ -336,6 +350,7 @@ public class AlarmDetailsActivity extends AppCompatActivity {
             Log.e("SMS", "Falha ao enviar SMS para: " + numeroTelefone, e);
         }
     }
+
 
 
 

@@ -23,8 +23,8 @@ public class Retrofit {
             .create();
 
 
-    public static final String BASE_URL_API = "http://10.0.2.2:8080/";
-    // public static final String BASE_URL_API = "https://f9c8-177-91-39-96.ngrok.io/";
+   // public static final String BASE_URL_API = "http://10.0.2.2:8080/";
+    public static final String BASE_URL_API = "https://80cd-177-66-111-179.ngrok-free.app/";
     private static retrofit2.Retrofit retrofit = new retrofit2.Retrofit.Builder()
             .baseUrl(BASE_URL_API)
             .addConverterFactory(GsonConverterFactory.create(gson))
