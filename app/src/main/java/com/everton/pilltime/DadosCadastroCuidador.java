@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -421,6 +422,12 @@ public class DadosCadastroCuidador extends AppCompatActivity {
         builder.setPositiveButton("OK", (dialog, which) -> {
             dialog.dismiss();
             limparCampos();
+
+            Intent intent = new Intent(DadosCadastroCuidador.this, MainActivity.class); // Substitua TelaPrincipal pela sua tela principal
+            startActivity(intent);
+            finish();
+
+
         });
         AlertDialog dialog = builder.create();
         dialog.show();
