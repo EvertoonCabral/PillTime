@@ -87,21 +87,31 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         }
 
         binding.btnAccept.setOnClickListener(v -> {
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
 
-            mediaPlayer.stop();
-            vibrator.cancel();
+            if (vibrator != null) {
+                vibrator.cancel();
+            }
 
-
-            Intent intent1;
-            intent1 = new Intent(AlarmDetailsActivity.this, TelaPrincipalIdoso.class);
+            Intent intent1 = new Intent(AlarmDetailsActivity.this, TelaPrincipalIdoso.class);
             startActivity(intent1);
-
-
         });
 
+
         binding.btnDeny.setOnClickListener(v -> {
-            mediaPlayer.stop();
-            vibrator.cancel();
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
+
+            if (vibrator != null) {
+                vibrator.cancel();
+            }
 
             final Long finalIdosoId = getIntent().getLongExtra("IDOSO_ID", 0L);
             if (finalIdosoId != 0) {
@@ -110,6 +120,7 @@ public class AlarmDetailsActivity extends AppCompatActivity {
                 Log.e("AlarmDetailsActivity", "Idoso ID inválido.");
             }
         });
+
 
 
 
